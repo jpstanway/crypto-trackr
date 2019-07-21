@@ -1,1 +1,46 @@
-html{box-sizing:border-box}*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+:root {
+  --default-font-size: 1.6rem; }
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-size: var(--default-font-size); }
+
+.content {
+  background-color: grey;
+  height: 200rem; }
+
+.footer {
+  background-color: blue;
+  color: white;
+  padding: 2rem; }
+
+.container {
+  display: grid;
+  grid-template-rows: 1fr min-content;
+  margin-left: 25vw;
+  padding-top: 6vh; }
+
+.header {
+  background-color: yellowgreen;
+  height: 6vh;
+  text-align: center;
+  padding: 2rem;
+  position: fixed;
+  width: 100%; }
+
+.navigation {
+  background-color: orangered;
+  height: 94vh;
+  margin-top: 6vh;
+  position: fixed;
+  width: 25vw; }
