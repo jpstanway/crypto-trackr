@@ -1,2 +1,2 @@
-# fight-researcher
-active MMA fighter stats, rankings and upcoming fight card information all in one spot to make researching and previewing fights easier
+# crypto-portfolio-builder
+view current crypto prices and build a portfolio to keep track of your favorites
