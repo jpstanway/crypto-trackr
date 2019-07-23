@@ -10,28 +10,132 @@
     <link rel="stylesheet" href="../styles/css/style.css" />
   </head>
   <body>
-    <!-- header -->
-    <header class="header">
-      <h1 class="header__title">Fight Researcher</h1>
-    </header>
     <!-- navigation -->
     <nav class="navigation">
       <ul class="navigation__menu">
-        <li class="navigation__item">Home</li>
-        <li class="navigation__item">Events</li>
-        <li class="navigation__item">Rankings</li>
-        <li class="navigation__item">Fighters</li>
+        <li class="navigation__item">
+          <a href="#" class="navigation__link">Home</a>
+        </li>
+        <li class="navigation__item">
+          <a href="#" class="navigation__link">Add/search</a>
+        </li>
+        <li class="navigation__item">
+          <a href="#" class="navigation__link">My portfolio</a>
+        </li>
       </ul>
     </nav>
     <!-- CONTAINER START -->
     <div class="container">
       <!-- content -->
       <main class="content">
-        <p>Body</p>
+        <h1 class="heading-1">Current Top 10 Cryptocurrencies</h1>
+        <table class="home-table">
+          <thead class="home-table__head">
+            <tr>
+              <th class="home-table__heading">Rank</th>
+              <th class="home-table__heading">Name</th>
+              <th class="home-table__heading">Market Cap</th>
+              <th class="home-table__heading">Price</th>
+              <th class="home-table__heading">Volume</th>
+            </tr>
+          </thead>
+          <tbody class="home-table__body">
+            <tr class="home-table__row">
+              <td class="home-table__cell">1</td>
+              <td class="home-table__cell home-table__cell--name">
+                <img
+                  src="styles/imgs/Bitcoin_lightning_logo.png"
+                  alt="Bitcoin"
+                  class="home-table__logo"
+                />
+                Bitcoin
+              </td>
+              <td class="home-table__cell">$180,973,226,552</td>
+              <td class="home-table__cell">$10,147.72</td>
+              <td class="home-table__cell">$17,827,408,428</td>
+            </tr>
+            <tr class="home-table__row">
+              <td class="home-table__cell">2</td>
+              <td class="home-table__cell home-table__cell--name">
+                <img
+                  src="styles/imgs/1280px-Ethereum_logo_2014.svg.png"
+                  alt="Ethereum"
+                  class="home-table__logo"
+                />
+                Ethereum
+              </td>
+              <td class="home-table__cell">$23,215,477,041</td>
+              <td class="home-table__cell">$216.92</td>
+              <td class="home-table__cell">$7,156,530,506</td>
+            </tr>
+            <tr class="home-table__row">
+              <td class="home-table__cell">3</td>
+              <td class="home-table__cell home-table__cell--name">XRP</td>
+              <td class="home-table__cell">$13,496,868,721</td>
+              <td class="home-table__cell">$0.315107</td>
+              <td class="home-table__cell">$1,058,438,679</td>
+            </tr>
+            <tr class="home-table__row">
+              <td class="home-table__cell">4</td>
+              <td class="home-table__cell home-table__cell--name">Litecoin</td>
+              <td class="home-table__cell">$5,846,135,332</td>
+              <td class="home-table__cell">$93.10</td>
+              <td class="home-table__cell">$2,722,809,484</td>
+            </tr>
+            <tr class="home-table__row">
+              <td class="home-table__cell">5</td>
+              <td class="home-table__cell home-table__cell--name">
+                Bitcoin Cash
+              </td>
+              <td class="home-table__cell">$5,464,319,458</td>
+              <td class="home-table__cell">$305.14</td>
+              <td class="home-table__cell">$1,405,567,189</td>
+            </tr>
+            <tr class="home-table__row">
+              <td class="home-table__cell">6</td>
+              <td class="home-table__cell home-table__cell--name">
+                Binance Coin
+              </td>
+              <td class="home-table__cell">$4,664,098,180</td>
+              <td class="home-table__cell">$29.99</td>
+              <td class="home-table__cell">$285,491,880</td>
+            </tr>
+            <tr class="home-table__row">
+              <td class="home-table__cell">7</td>
+              <td class="home-table__cell home-table__cell--name">Tether</td>
+              <td class="home-table__cell">$4,024,559,911</td>
+              <td class="home-table__cell">$1.00</td>
+              <td class="home-table__cell">$18,940,955,009</td>
+            </tr>
+            <tr class="home-table__row">
+              <td class="home-table__cell">8</td>
+              <td class="home-table__cell home-table__cell--name">EOS</td>
+              <td class="home-table__cell">$3,940,127,037</td>
+              <td class="home-table__cell">$4.26</td>
+              <td class="home-table__cell">$1,785,793,728</td>
+            </tr>
+            <tr class="home-table__row">
+              <td class="home-table__cell">9</td>
+              <td class="home-table__cell home-table__cell--name">
+                Bitcoin SV
+              </td>
+              <td class="home-table__cell">$3,069,678,692</td>
+              <td class="home-table__cell">$171.92</td>
+              <td class="home-table__cell">$486,421,164</td>
+            </tr>
+            <tr class="home-table__row">
+              <td class="home-table__cell">10</td>
+              <td class="home-table__cell home-table__cell--name">TRON</td>
+              <td class="home-table__cell">$1,687,400,042</td>
+              <td class="home-table__cell">$0.025305</td>
+              <td class="home-table__cell">$1,041,176,604</td>
+            </tr>
+          </tbody>
+        </table>
       </main>
       <footer class="footer">
         <p class="footer__copyright">
-          &copy; 2019 Fight Researcher. All rights reserved.
+          &copy; 2019 Crypto Portfolio Builder. All rights reserved.
         </p>
       </footer>
     </div>

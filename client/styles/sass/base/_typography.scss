@@ -1,3 +1,11 @@
 body {
+  font-family: var(--default-font-family);
   font-size: var(--default-font-size);
+}
+
+.heading-1 {
+  color: var(--color-black);
+  font-family: var(--heading-font-family);
+  margin-bottom: 3rem;
+  margin-top: 2rem;
 }

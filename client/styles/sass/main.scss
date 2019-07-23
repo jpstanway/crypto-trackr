@@ -4,8 +4,12 @@
 @import "base/reset";
 @import "base/typography";
 
+@import "components/tables";
+
 @import "layout/content";
 @import "layout/footer";
 @import "layout/grid";
 @import "layout/header";
 @import "layout/navigation";
+
+@import "vendors/fonts";

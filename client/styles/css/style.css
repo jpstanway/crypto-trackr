@@ -1,5 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700|Ubuntu+Mono:400,700&display=swap");
 :root {
-  --default-font-size: 1.6rem; }
+  --default-font-family: "Source Sans Pro", "Arial", sans-serif;
+  --default-font-size: 1.6rem;
+  --heading-font-family: "Ubuntu Mono", monospace;
+  --color-black: #2a2a2a;
+  --color-white: #fefefe;
+  --color-grey-light: #eee;
+  --color-grey: #c6c6c6;
+  --color-grey-dark: #7f7f7f;
+  --color-primary: #c1fcd4;
+  --color-secondary: #d4c1fc;
+  --color-tertiary: #fcd4c1;
+  --color-complement: #fcc1e9; }
 
 html {
   box-sizing: border-box;
@@ -13,34 +25,72 @@ html {
   padding: 0; }
 
 body {
+  font-family: var(--default-font-family);
   font-size: var(--default-font-size); }
 
+.heading-1 {
+  color: var(--color-black);
+  font-family: var(--heading-font-family);
+  margin-bottom: 3rem;
+  margin-top: 2rem; }
+
+.home-table {
+  border-collapse: collapse;
+  color: var(--color-black);
+  font-size: 2rem;
+  table-layout: fixed; }
+  .home-table__head {
+    border-bottom: 1px solid var(--color-grey-dark); }
+  .home-table__row:not(:last-child) {
+    border-bottom: 1px solid var(--color-grey-light); }
+  .home-table__cell {
+    padding: 1rem;
+    text-align: center; }
+    .home-table__cell--name {
+      align-items: center;
+      display: flex; }
+  .home-table__logo {
+    margin-right: 1rem;
+    max-height: 2rem; }
+
 .content {
-  background-color: grey;
-  height: 200rem; }
+  align-items: center;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  height: 200rem;
+  padding: 5rem; }
 
 .footer {
-  background-color: blue;
-  color: white;
+  color: var(--color-black);
+  font-size: 1.2rem;
   padding: 2rem; }
 
 .container {
   display: grid;
   grid-template-rows: 1fr min-content;
-  margin-left: 25vw;
-  padding-top: 6vh; }
-
-.header {
-  background-color: yellowgreen;
-  height: 6vh;
-  text-align: center;
-  padding: 2rem;
-  position: fixed;
-  width: 100%; }
+  margin-left: 20vw; }
 
 .navigation {
-  background-color: orangered;
-  height: 94vh;
-  margin-top: 6vh;
+  align-items: center;
+  background-color: var(--color-primary);
+  display: flex;
+  height: 100%;
+  justify-content: center;
   position: fixed;
-  width: 25vw; }
+  width: 20vw; }
+  .navigation__menu {
+    font-family: var(--heading-font-family);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.3rem;
+    list-style: none;
+    text-align: center;
+    text-transform: uppercase; }
+  .navigation__item:not(:last-child) {
+    margin-bottom: 1.5rem; }
+  .navigation__link:visited, .navigation__link:link {
+    color: var(--color-black);
+    text-decoration: none; }
+  .navigation__link:hover {
+    color: gray; }

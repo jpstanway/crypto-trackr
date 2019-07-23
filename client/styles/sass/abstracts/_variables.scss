@@ -1,6 +1,20 @@
 :root {
   // FONTS
+  --default-font-family: "Source Sans Pro", "Arial", sans-serif;
   --default-font-size: 1.6rem;
+  --heading-font-family: "Ubuntu Mono", monospace;
   // COLORS
+  --color-black: #2a2a2a;
+  --color-white: #fefefe;
+
+  --color-grey-light: #eee;
+  --color-grey: #c6c6c6;
+  --color-grey-dark: #7f7f7f;
+
+  --color-primary: #c1fcd4;
+  --color-secondary: #d4c1fc;
+  --color-tertiary: #fcd4c1;
+  --color-complement: #fcc1e9;
+
   // MEDIA QUERIES
 }
