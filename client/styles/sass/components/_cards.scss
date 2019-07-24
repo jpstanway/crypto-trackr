@@ -1,0 +1,29 @@
+.crypto-card {
+  border: 1px solid var(--color-grey-light);
+  box-shadow: 0 1px 0.5px rgba(black, 0.25);
+  padding: 2rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__name {
+  }
+
+  &__add {
+    color: var(--color-tertiary);
+    cursor: pointer;
+
+    &:hover {
+      color: darken(#fcd4c1, 20%);
+    }
+  }
+
+  &__info {
+    list-style: none;
+  }
+
+  &__item {
+  }
+}

@@ -1,0 +1,29 @@
+.search-box {
+  margin-bottom: 7rem;
+  margin-top: 5rem;
+
+  &__search {
+    height: 3.5rem;
+  }
+
+  &__input {
+    font-family: var(--default-font-family);
+    height: inherit;
+    padding-left: 1.5rem;
+    width: 84%;
+  }
+
+  &__btn {
+    background-color: var(--color-grey-light);
+    border: none;
+    cursor: pointer;
+    height: inherit;
+    width: 15%;
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-grey);
+      outline: none;
+    }
+  }
+}

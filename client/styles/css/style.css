@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700|Ubuntu+Mono:400,700&display=swap");
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 :root {
   --default-font-family: "Source Sans Pro", "Arial", sans-serif;
   --default-font-size: 1.6rem;
@@ -25,6 +26,7 @@ html {
   padding: 0; }
 
 body {
+  color: var(--color-black);
   font-family: var(--default-font-family);
   font-size: var(--default-font-size); }
 
@@ -32,7 +34,43 @@ body {
   color: var(--color-black);
   font-family: var(--heading-font-family);
   margin-bottom: 3rem;
-  margin-top: 2rem; }
+  margin-top: 2rem;
+  text-align: center; }
+
+.crypto-card {
+  border: 1px solid var(--color-grey-light);
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.25);
+  padding: 2rem; }
+  .crypto-card__header {
+    display: flex;
+    justify-content: space-between; }
+  .crypto-card__add {
+    color: var(--color-tertiary);
+    cursor: pointer; }
+    .crypto-card__add:hover {
+      color: #f79160; }
+  .crypto-card__info {
+    list-style: none; }
+
+.search-box {
+  margin-bottom: 7rem;
+  margin-top: 5rem; }
+  .search-box__search {
+    height: 3.5rem; }
+  .search-box__input {
+    font-family: var(--default-font-family);
+    height: inherit;
+    padding-left: 1.5rem;
+    width: 84%; }
+  .search-box__btn {
+    background-color: var(--color-grey-light);
+    border: none;
+    cursor: pointer;
+    height: inherit;
+    width: 15%; }
+    .search-box__btn:hover, .search-box__btn:focus {
+      background-color: var(--color-grey);
+      outline: none; }
 
 .home-table {
   border-collapse: collapse;
@@ -54,21 +92,19 @@ body {
     max-height: 2rem; }
 
 .content {
-  align-items: center;
   background-color: var(--color-white);
-  display: flex;
-  flex-direction: column;
-  height: 200rem;
-  padding: 5rem; }
+  padding: 5rem;
+  position: relative; }
 
 .footer {
   color: var(--color-black);
   font-size: 1.2rem;
+  height: 6vh;
   padding: 2rem; }
 
 .container {
   display: grid;
-  grid-template-rows: 1fr min-content;
+  grid-template-rows: minmax(94vh, 1fr) min-content;
   margin-left: 20vw; }
 
 .navigation {
@@ -94,3 +130,13 @@ body {
     text-decoration: none; }
   .navigation__link:hover {
     color: gray; }
+
+.home-content {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+
+.add-search-content {
+  margin: auto;
+  width: 50%; }
