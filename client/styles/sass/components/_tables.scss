@@ -63,11 +63,12 @@
   }
 
   &__remove {
-    color: var(--color-tertiary);
+    color: var(--color-tertiary-dark);
     cursor: pointer;
+    transition: all 0.2s;
 
     &:hover {
-      color: darken(#fcd4c1, 20%);
+      color: var(--color-tertiary);
     }
   }
 
