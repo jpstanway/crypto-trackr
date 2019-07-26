@@ -45,10 +45,10 @@ body {
     display: flex;
     justify-content: space-between; }
   .crypto-card__add {
-    color: var(--color-tertiary);
+    color: var(--color-secondary);
     cursor: pointer; }
     .crypto-card__add:hover {
-      color: #f79160; }
+      color: #9160f7; }
   .crypto-card__info {
     list-style: none; }
 
@@ -91,6 +91,34 @@ body {
     margin-right: 1rem;
     max-height: 2rem; }
 
+.portfolio-table {
+  box-shadow: 0rem 1px 0.5px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--color-grey-dark);
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: center; }
+  .portfolio-table__head {
+    border-bottom: 1px solid var(--color-grey-dark); }
+  .portfolio-table__heading {
+    padding: 1rem; }
+    .portfolio-table__heading:not(:last-child) {
+      border-right: 1px solid var(--color-grey-dark); }
+  .portfolio-table__row {
+    border-bottom: 1px solid var(--color-grey); }
+  .portfolio-table__cell {
+    padding: 1.5rem; }
+    .portfolio-table__cell:not(:last-child) {
+      border-right: 1px solid var(--color-grey); }
+  .portfolio-table__remove {
+    color: var(--color-tertiary);
+    cursor: pointer; }
+    .portfolio-table__remove:hover {
+      color: #f79160; }
+  .portfolio-table__foot td {
+    border-right: 1px solid var(--color-grey-dark);
+    font-weight: 700;
+    padding: 1rem; }
+
 .content {
   background-color: var(--color-white);
   padding: 5rem;
@@ -131,12 +159,18 @@ body {
   .navigation__link:hover {
     color: gray; }
 
+.add-search-content {
+  margin: auto;
+  width: 50%; }
+
 .home-content {
   left: 50%;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%); }
 
-.add-search-content {
-  margin: auto;
-  width: 50%; }
+.portfolio-content {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%); }

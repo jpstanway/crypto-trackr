@@ -12,11 +12,11 @@
   }
 
   &__add {
-    color: var(--color-tertiary);
+    color: var(--color-secondary);
     cursor: pointer;
 
     &:hover {
-      color: darken(#fcd4c1, 20%);
+      color: darken(#d4c1fc, 20%);
     }
   }
 
