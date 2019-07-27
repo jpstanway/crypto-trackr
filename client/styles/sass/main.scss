@@ -1,3 +1,4 @@
+@import "abstracts/mixins";
 @import "abstracts/variables";
 
 @import "base/base";
@@ -6,12 +7,11 @@
 
 @import "components/buttons";
 @import "components/cards";
-@import "components/search-bar";
+@import "components/forms";
 @import "components/tables";
 
 @import "layout/content";
 @import "layout/footer";
-@import "layout/forms";
 @import "layout/grid";
 @import "layout/header";
 @import "layout/navigation";

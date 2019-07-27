@@ -1,15 +1,15 @@
 .home-table {
   border-collapse: collapse;
-  color: var(--color-black);
+  color: $color-black;
   font-size: 2rem;
   table-layout: fixed;
 
   &__head {
-    border-bottom: 1px solid var(--color-grey-dark);
+    border-bottom: 1px solid $color-grey-dark;
   }
 
   &__row:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-light);
+    border-bottom: 1px solid $color-grey-light;
   }
 
   &__cell {
@@ -29,51 +29,42 @@
 }
 
 .portfolio-table {
-  box-shadow: 0rem 1px 0.5px rgba(black, 0.25);
-  border: 1px solid var(--color-grey-dark);
+  box-shadow: 0rem 1px 0.5px rgba($color-black, 0.25);
+  border: 1px solid $color-grey-dark;
   border-collapse: collapse;
   table-layout: fixed;
   text-align: center;
 
   &__head {
-    border-bottom: 1px solid var(--color-grey-dark);
+    border-bottom: 1px solid $color-grey-dark;
   }
 
   &__heading {
     padding: 1rem;
 
     &:not(:last-child) {
-      border-right: 1px solid var(--color-grey-dark);
+      border-right: 1px solid $color-grey-dark;
     }
   }
 
-  &__body {
-  }
-
   &__row {
-    border-bottom: 1px solid var(--color-grey);
+    border-bottom: 1px solid $color-grey;
   }
 
   &__cell {
     padding: 1.5rem;
 
     &:not(:last-child) {
-      border-right: 1px solid var(--color-grey);
+      border-right: 1px solid $color-grey;
     }
   }
 
   &__remove {
-    color: var(--color-tertiary-dark);
-    cursor: pointer;
-    transition: all 0.2s;
-
-    &:hover {
-      color: var(--color-tertiary);
-    }
+    @include color-hover($color-tertiary-dark, $color-tertiary);
   }
 
   &__foot td {
-    border-right: 1px solid var(--color-grey-dark);
+    border-right: 1px solid $color-grey-dark;
     font-weight: 700;
     padding: 1rem;
   }

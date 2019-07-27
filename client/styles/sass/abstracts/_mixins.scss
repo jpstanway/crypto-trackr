@@ -1,0 +1,19 @@
+@mixin color-hover($color, $hoverColor) {
+  color: $color;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    color: $hoverColor;
+  }
+}
+
+@mixin background-hover($color, $hoverColor) {
+  background-color: $color;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: $hoverColor;
+  }
+}

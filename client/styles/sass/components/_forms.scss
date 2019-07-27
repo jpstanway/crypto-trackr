@@ -1,0 +1,58 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  height: 35rem;
+  justify-content: space-between;
+  padding: 2rem;
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  &__input {
+    font-family: $default-font-family;
+    font-size: 1.8rem;
+    height: 5rem;
+    padding-left: 1.5rem;
+
+    &--invisible {
+      visibility: hidden;
+    }
+  }
+
+  &__btn {
+    align-self: center;
+    margin-top: 1rem;
+  }
+
+  &--login {
+    border-right: 1px solid $color-grey;
+  }
+}
+
+.search-box {
+  margin-bottom: 7rem;
+  margin-top: 5rem;
+
+  &__search {
+    height: 3.5rem;
+  }
+
+  &__input {
+    font-family: $default-font-family;
+    height: inherit;
+    padding-left: 1.5rem;
+    width: 84%;
+  }
+
+  &__btn {
+    @include background-hover($color-grey-light, $color-grey);
+    border: none;
+    height: inherit;
+    width: 15%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

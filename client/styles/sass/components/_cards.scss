@@ -1,6 +1,6 @@
 .crypto-card {
-  border: 1px solid var(--color-grey-light);
-  box-shadow: 0 1px 0.5px rgba(black, 0.25);
+  border: 1px solid $color-grey-light;
+  box-shadow: 0 1px 0.5px rgba($color-black, 0.25);
   padding: 2rem;
 
   &__header {
@@ -8,23 +8,11 @@
     justify-content: space-between;
   }
 
-  &__name {
-  }
-
   &__add {
-    color: var(--color-secondary-dark);
-    cursor: pointer;
-    transition: all 0.2s;
-
-    &:hover {
-      color: var(--color-secondary);
-    }
+    @include color-hover($color-secondary-dark, $color-secondary);
   }
 
   &__info {
     list-style: none;
-  }
-
-  &__item {
   }
 }
