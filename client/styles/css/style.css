@@ -93,7 +93,7 @@ body {
     border: none;
     height: inherit;
     width: 15%; }
-    .search-box__btn:hover {
+    .search-box__btn:hover, .search-box__btn:focus {
       background-color: #c6c6c6; }
     .search-box__btn:focus {
       outline: none; }
@@ -163,9 +163,9 @@ body {
   margin-left: 30rem; }
   @media only screen and (max-width: 62.5em) {
     .container {
-      grid-template-rows: minmax(87vh, 1fr) min-content;
+      grid-template-rows: minmax(86vh, 1fr) min-content;
       margin-left: 0;
-      padding-top: 5rem; } }
+      padding-top: 6rem; } }
 
 .navigation {
   align-items: center;
@@ -175,13 +175,18 @@ body {
   justify-content: center;
   position: fixed;
   width: 30rem;
-  z-index: 999; }
+  z-index: 9999;
+  /* MOBILE STYLING */ }
   @media only screen and (max-width: 62.5em) {
     .navigation {
       align-items: stretch;
-      height: 5rem;
-      justify-content: flex-start;
+      height: 6rem;
       width: 100%; } }
+  @media only screen and (max-width: 50em) {
+    .navigation {
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 1rem; } }
   .navigation__menu {
     font-family: "Ubuntu Mono", monospace;
     font-size: 2.2rem;
@@ -195,8 +200,11 @@ body {
       .navigation__menu {
         align-items: center;
         display: flex;
-        font-size: 1.8rem;
-        padding-left: 5rem; } }
+        justify-content: center;
+        font-size: 1.8rem; } }
+    @media only screen and (max-width: 50em) {
+      .navigation__menu {
+        display: none; } }
   .navigation__item {
     background-color: transparent;
     cursor: pointer;
@@ -205,12 +213,84 @@ body {
     display: flex;
     height: 100%;
     justify-content: center; }
-    .navigation__item:hover {
+    .navigation__item:hover, .navigation__item:focus {
       background-color: #fcc1e9; }
   .navigation__link:visited, .navigation__link:link {
     color: #2a2a2a;
     padding: 1rem;
     text-decoration: none; }
+  .navigation__mobile-nav {
+    left: 0;
+    position: absolute;
+    top: -25rem;
+    transition: all 0.5s;
+    width: 100%; }
+  .navigation__mobile-nav-menu {
+    background-color: #c1fcd4;
+    border-top: 2px solid #fefefe;
+    box-shadow: 0 0.25rem 0.5rem rgba(42, 42, 42, 0.5);
+    display: flex;
+    flex-direction: column;
+    z-index: 999; }
+  .navigation__mobile-nav-item {
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 1rem 2rem; }
+    .navigation__mobile-nav-item:hover, .navigation__mobile-nav-item:focus {
+      background-color: #fcc1e9; }
+    .navigation__mobile-nav-item:not(:last-child) {
+      border-bottom: 1px solid #c6c6c6; }
+  .navigation__mobile-nav-link:visited, .navigation__mobile-nav-link:link {
+    color: #2a2a2a;
+    font-family: "Ubuntu Mono", monospace;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    text-decoration: none;
+    text-transform: uppercase; }
+  .navigation__mobile-btn {
+    padding: 3px;
+    height: 5rem;
+    width: 5rem;
+    z-index: 1000; }
+  .navigation__mobile-btn-box {
+    align-items: center;
+    border: 1px solid #2a2a2a;
+    display: flex;
+    height: 100%;
+    padding: 0.5rem;
+    transition: all 0.2s; }
+    .navigation__mobile-btn-box:hover {
+      border: 1px solid #7f7f7f; }
+    .navigation__mobile-btn-box:hover .navigation__mobile-btn-bar,
+    .navigation__mobile-btn-box:hover .navigation__mobile-btn-bar::before,
+    .navigation__mobile-btn-box:hover .navigation__mobile-btn-bar::after {
+      background-color: #c6c6c6; }
+  .navigation__mobile-btn-bar {
+    position: relative; }
+    .navigation__mobile-btn-bar, .navigation__mobile-btn-bar::before, .navigation__mobile-btn-bar::after {
+      background-color: #7f7f7f;
+      border-radius: 2px;
+      height: 0.5rem;
+      transition: all 0.2s;
+      width: 100%; }
+    .navigation__mobile-btn-bar::before, .navigation__mobile-btn-bar::after {
+      content: "";
+      left: 0;
+      position: absolute; }
+    .navigation__mobile-btn-bar::before {
+      top: -1.2rem; }
+    .navigation__mobile-btn-bar::after {
+      top: 1.2rem; }
+
+.mobile {
+  display: none; }
+  @media only screen and (max-width: 50em) {
+    .mobile {
+      display: initial; } }
+
+.mobile-dropdown {
+  top: 6rem; }
 
 .add-search-content {
   margin: auto;

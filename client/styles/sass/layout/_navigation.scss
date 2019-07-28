@@ -6,13 +6,18 @@
   justify-content: center;
   position: fixed;
   width: 30rem;
-  z-index: 999;
+  z-index: 9999;
 
   @media only screen and (max-width: $screen-size-lg) {
     align-items: stretch;
-    height: 5rem;
-    justify-content: flex-start;
+    height: 6rem;
     width: 100%;
+  }
+
+  @media only screen and (max-width: $screen-size-md) {
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
   }
 
   &__menu {
@@ -28,8 +33,12 @@
     @media only screen and (max-width: $screen-size-lg) {
       align-items: center;
       display: flex;
+      justify-content: center;
       font-size: 1.8rem;
-      padding-left: 5rem;
+    }
+
+    @media only screen and (max-width: $screen-size-md) {
+      display: none;
     }
   }
 
@@ -49,4 +58,110 @@
       text-decoration: none;
     }
   }
+
+  /* MOBILE STYLING */
+  &__mobile-nav {
+    left: 0;
+    position: absolute;
+    top: -25rem;
+    transition: all 0.5s;
+    width: 100%;
+  }
+
+  &__mobile-nav-menu {
+    background-color: $color-primary;
+    border-top: 2px solid $color-white;
+    box-shadow: 0 0.25rem 0.5rem rgba($color-black, 0.5);
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+  }
+
+  &__mobile-nav-item {
+    @include background-hover(transparent, $color-complement);
+    padding: 1rem 2rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-grey;
+    }
+  }
+
+  &__mobile-nav-link {
+    &:visited,
+    &:link {
+      color: $color-black;
+      font-family: $heading-font-family;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+
+  &__mobile-btn {
+    padding: 3px;
+    height: 5rem;
+    width: 5rem;
+    z-index: 1000;
+  }
+
+  &__mobile-btn-box {
+    align-items: center;
+    border: 1px solid $color-black;
+    display: flex;
+    height: 100%;
+    padding: 0.5rem;
+    transition: all 0.2s;
+
+    &:hover {
+      border: 1px solid $color-grey-dark;
+    }
+
+    &:hover .navigation__mobile-btn-bar,
+    &:hover .navigation__mobile-btn-bar::before,
+    &:hover .navigation__mobile-btn-bar::after {
+      background-color: $color-grey;
+    }
+  }
+
+  &__mobile-btn-bar {
+    position: relative;
+
+    &,
+    &::before,
+    &::after {
+      background-color: $color-grey-dark;
+      border-radius: 2px;
+      height: 0.5rem;
+      transition: all 0.2s;
+      width: 100%;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      left: 0;
+      position: absolute;
+    }
+
+    &::before {
+      top: -1.2rem;
+    }
+
+    &::after {
+      top: 1.2rem;
+    }
+  }
+}
+
+.mobile {
+  display: none;
+
+  @media only screen and (max-width: $screen-size-md) {
+    display: initial;
+  }
+}
+
+.mobile-dropdown {
+  top: 6rem;
 }

@@ -4,8 +4,8 @@
   margin-left: 30rem;
 
   @media only screen and (max-width: $screen-size-lg) {
-    grid-template-rows: minmax(87vh, 1fr) min-content;
+    grid-template-rows: minmax(86vh, 1fr) min-content;
     margin-left: 0;
-    padding-top: 5rem;
+    padding-top: 6rem;
   }
 }
