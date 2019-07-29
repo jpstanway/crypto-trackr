@@ -28,18 +28,24 @@ body {
 
 .btn-form {
   background-color: #8e5cf5;
-  border: 0;
+  cursor: pointer;
+  transition: all 0.2s;
   color: #fefefe;
   cursor: pointer;
-  font-size: 1.7rem;
+  transition: all 0.2s;
+  background-color: #8e5cf5;
+  border: 0;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: 0.2rem;
   padding: 1.5rem 2.5rem;
-  text-transform: uppercase;
-  transition: all 0.2s; }
-  .btn-form:hover, .btn-form:focus, .btn-form:active {
-    background-color: #d4c1fc;
-    color: #2a2a2a;
+  text-transform: uppercase; }
+  .btn-form:hover, .btn-form:focus {
+    background-color: #d4c1fc; }
+  .btn-form:hover {
+    color: #2a2a2a; }
+  .btn-form:focus, .btn-form:active {
     outline: none; }
 
 .crypto-card {
@@ -78,6 +84,10 @@ body {
     margin-top: 1rem; }
   .auth-form--login {
     border-right: 1px solid #c6c6c6; }
+    @media only screen and (max-width: 50em) {
+      .auth-form--login {
+        border-bottom: 1px solid #c6c6c6;
+        border-right: 0; } }
 
 .search-box {
   margin: 7rem auto;
@@ -88,7 +98,7 @@ body {
     box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
     display: grid;
     grid-template-columns: 80% 1fr;
-    height: 3.5rem; }
+    height: 5rem; }
   .search-box__input {
     border: 0;
     font-family: "Source Sans Pro", "Arial", sans-serif;
@@ -344,7 +354,17 @@ body {
   height: 100%;
   justify-content: center;
   margin: auto;
+  max-width: 100rem;
   width: 80%; }
+  @media only screen and (max-width: 75em) {
+    .login-signup-content {
+      width: 90%; } }
+  @media only screen and (max-width: 50em) {
+    .login-signup-content {
+      grid-template-columns: 100%; } }
+  @media only screen and (max-width: 25em) {
+    .login-signup-content {
+      width: 100%; } }
 
 .portfolio-content {
   left: 50%;

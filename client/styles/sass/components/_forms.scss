@@ -27,6 +27,11 @@
 
   &--login {
     border-right: $border-grey;
+
+    @media only screen and (max-width: $screen-size-md) {
+      border-bottom: $border-grey;
+      border-right: 0;
+    }
   }
 }
 
@@ -40,7 +45,7 @@
     box-shadow: $box-shadow-thin;
     display: grid;
     grid-template-columns: 80% 1fr;
-    height: 3.5rem;
+    height: 5rem;
   }
 
   &__input {
