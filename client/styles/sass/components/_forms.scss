@@ -26,30 +26,36 @@
   }
 
   &--login {
-    border-right: 1px solid $color-grey;
+    border-right: $border-grey;
   }
 }
 
 .search-box {
-  margin-bottom: 7rem;
-  margin-top: 5rem;
+  margin: 7rem auto;
+  max-width: 60rem;
 
   &__search {
+    border: $border-grey-light;
+    border-radius: 2px;
+    box-shadow: $box-shadow-thin;
+    display: grid;
+    grid-template-columns: 80% 1fr;
     height: 3.5rem;
   }
 
   &__input {
+    border: 0;
     font-family: $default-font-family;
-    height: inherit;
+    height: 100%;
     padding-left: 1.5rem;
-    width: 84%;
+    width: 100%;
   }
 
   &__btn {
     @include background-hover($color-grey-light, $color-grey);
-    border: none;
-    height: inherit;
-    width: 15%;
+    border: 0;
+    height: 100%;
+    width: 100%;
 
     &:focus {
       outline: none;

@@ -6,10 +6,7 @@
   transform: translate(-50%, -50%);
   width: 80%;
 
-  &__title {
-  }
-
   &__content {
-    overflow-x: scroll;
+    @include table-scroll($screen-size-sm);
   }
 }

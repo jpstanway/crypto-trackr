@@ -44,7 +44,7 @@ body {
 
 .crypto-card {
   border: 1px solid #eee;
-  box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
+  box-shadow: 0 5px 5px rgba(42, 42, 42, 0.25);
   padding: 2rem; }
   .crypto-card__header {
     display: flex;
@@ -80,22 +80,28 @@ body {
     border-right: 1px solid #c6c6c6; }
 
 .search-box {
-  margin-bottom: 7rem;
-  margin-top: 5rem; }
+  margin: 7rem auto;
+  max-width: 60rem; }
   .search-box__search {
+    border: 1px solid #eee;
+    border-radius: 2px;
+    box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
+    display: grid;
+    grid-template-columns: 80% 1fr;
     height: 3.5rem; }
   .search-box__input {
+    border: 0;
     font-family: "Source Sans Pro", "Arial", sans-serif;
-    height: inherit;
+    height: 100%;
     padding-left: 1.5rem;
-    width: 84%; }
+    width: 100%; }
   .search-box__btn {
     background-color: #eee;
     cursor: pointer;
     transition: all 0.2s;
-    border: none;
-    height: inherit;
-    width: 15%; }
+    border: 0;
+    height: 100%;
+    width: 100%; }
     .search-box__btn:hover, .search-box__btn:focus {
       background-color: #c6c6c6; }
     .search-box__btn:focus {
@@ -112,9 +118,6 @@ body {
   @media only screen and (max-width: 62.5em) {
     .home-table {
       font-size: 2rem; } }
-  @media only screen and (min-width: 50em) {
-    .home-table {
-      width: 100%; } }
   .home-table__head {
     border-bottom: 1px solid #7f7f7f; }
   .home-table__row:not(:last-child) {
@@ -133,7 +136,7 @@ body {
     max-height: 2rem; }
 
 .portfolio-table {
-  box-shadow: 0rem 1px 0.5px rgba(42, 42, 42, 0.25);
+  box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
   border: 1px solid #7f7f7f;
   border-collapse: collapse;
   table-layout: fixed;
@@ -160,6 +163,11 @@ body {
     border-right: 1px solid #7f7f7f;
     font-weight: 700;
     padding: 1rem; }
+
+@media only screen and (min-width: 50em) {
+  .home-table,
+  .portfolio-table {
+    width: 100%; } }
 
 .content {
   background-color: #fefefe;
@@ -243,7 +251,7 @@ body {
   .navigation__mobile-nav-menu {
     background-color: #c1fcd4;
     border-top: 2px solid #fefefe;
-    box-shadow: 0 0.25rem 0.5rem rgba(42, 42, 42, 0.5);
+    box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
     display: flex;
     flex-direction: column;
     z-index: 999; }
@@ -311,7 +319,11 @@ body {
 
 .add-search-content {
   margin: auto;
-  width: 50%; }
+  max-width: 100rem;
+  width: 80%; }
+  @media only screen and (max-width: 37.5em) {
+    .add-search-content {
+      width: 90%; } }
 
 .home-content {
   left: 50%;
@@ -320,8 +332,10 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 80%; }
-  .home-content__content {
-    overflow-x: scroll; }
+  @media only screen and (max-width: 37.5em) {
+    .home-content__content {
+      overflow-x: scroll;
+      padding: 2rem 0; } }
 
 .login-signup-content {
   align-content: center;
@@ -334,6 +348,12 @@ body {
 
 .portfolio-content {
   left: 50%;
+  max-width: 100rem;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+  width: 80%; }
+  @media only screen and (max-width: 37.5em) {
+    .portfolio-content__content {
+      overflow-x: scroll;
+      padding: 2rem 0; } }

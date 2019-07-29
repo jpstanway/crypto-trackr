@@ -12,16 +12,12 @@
     font-size: 2rem;
   }
 
-  @media only screen and (min-width: $screen-size-md) {
-    width: 100%;
-  }
-
   &__head {
-    border-bottom: 1px solid $color-grey-dark;
+    border-bottom: $border-grey-dark;
   }
 
   &__row:not(:last-child) {
-    border-bottom: 1px solid $color-grey-light;
+    border-bottom: $border-grey-light;
   }
 
   &__heading {
@@ -48,33 +44,33 @@
 }
 
 .portfolio-table {
-  box-shadow: 0rem 1px 0.5px rgba($color-black, 0.25);
-  border: 1px solid $color-grey-dark;
+  box-shadow: $box-shadow-thin;
+  border: $border-grey-dark;
   border-collapse: collapse;
   table-layout: fixed;
   text-align: center;
 
   &__head {
-    border-bottom: 1px solid $color-grey-dark;
+    border-bottom: $border-grey-dark;
   }
 
   &__heading {
     padding: 1rem;
 
     &:not(:last-child) {
-      border-right: 1px solid $color-grey-dark;
+      border-right: $border-grey-dark;
     }
   }
 
   &__row {
-    border-bottom: 1px solid $color-grey;
+    border-bottom: $border-grey;
   }
 
   &__cell {
     padding: 1.5rem;
 
     &:not(:last-child) {
-      border-right: 1px solid $color-grey;
+      border-right: $border-grey;
     }
   }
 
@@ -83,8 +79,15 @@
   }
 
   &__foot td {
-    border-right: 1px solid $color-grey-dark;
+    border-right: $border-grey-dark;
     font-weight: 700;
     padding: 1rem;
+  }
+}
+
+.home-table,
+.portfolio-table {
+  @media only screen and (min-width: $screen-size-md) {
+    width: 100%;
   }
 }

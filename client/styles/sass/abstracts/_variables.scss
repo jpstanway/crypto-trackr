@@ -18,6 +18,13 @@ $color-tertiary: #fcd4c1;
 $color-tertiary-dark: #f58e5c;
 $color-complement: #fcc1e9;
 
+// EFFECTS
+$box-shadow-thick: 0 5px 5px rgba($color-black, 0.25);
+$box-shadow-thin: 0 1px 0.5px rgba($color-black, 0.25);
+$border-grey-dark: 1px solid $color-grey-dark;
+$border-grey: 1px solid $color-grey;
+$border-grey-light: 1px solid $color-grey-light;
+
 // MEDIA QUERIES
 $screen-size-xl: 75em; // 1200px
 $screen-size-lg: 62.5em; // 1000px

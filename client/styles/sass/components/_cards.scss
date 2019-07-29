@@ -1,6 +1,6 @@
 .crypto-card {
-  border: 1px solid $color-grey-light;
-  box-shadow: 0 1px 0.5px rgba($color-black, 0.25);
+  border: $border-grey-light;
+  box-shadow: $box-shadow-thick;
   padding: 2rem;
 
   &__header {

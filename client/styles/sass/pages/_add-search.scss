@@ -1,4 +1,9 @@
 .add-search-content {
   margin: auto;
-  width: 50%;
+  max-width: 100rem;
+  width: 80%;
+
+  @media only screen and (max-width: $screen-size-sm) {
+    width: 90%;
+  }
 }
