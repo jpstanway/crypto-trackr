@@ -1,4 +1,8 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%; // 10px = 1rem
+
+  @media only screen and (max-width: $screen-size-sm) {
+    font-size: 55%;
+  }
 }

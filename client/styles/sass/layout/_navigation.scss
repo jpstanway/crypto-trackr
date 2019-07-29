@@ -79,7 +79,6 @@
 
   &__mobile-nav-item {
     @include background-hover(transparent, $color-complement);
-    padding: 1rem 2rem;
 
     &:not(:last-child) {
       border-bottom: 1px solid $color-grey;
@@ -87,6 +86,9 @@
   }
 
   &__mobile-nav-link {
+    display: block;
+    padding: 1rem 2rem;
+
     &:visited,
     &:link {
       color: $color-black;

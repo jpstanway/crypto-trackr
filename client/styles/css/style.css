@@ -3,6 +3,9 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%; }
+  @media only screen and (max-width: 37.5em) {
+    html {
+      font-size: 55%; } }
 
 *,
 *::before,
@@ -103,16 +106,28 @@ body {
   color: #2a2a2a;
   font-size: 2rem;
   table-layout: fixed; }
+  @media only screen and (max-width: 75em) {
+    .home-table {
+      font-size: 1.6rem; } }
+  @media only screen and (max-width: 62.5em) {
+    .home-table {
+      font-size: 2rem; } }
+  @media only screen and (min-width: 50em) {
+    .home-table {
+      width: 100%; } }
   .home-table__head {
     border-bottom: 1px solid #7f7f7f; }
   .home-table__row:not(:last-child) {
     border-bottom: 1px solid #eee; }
+  .home-table__heading--rank {
+    width: 5rem; }
   .home-table__cell {
     padding: 1rem;
     text-align: center; }
     .home-table__cell--name {
       align-items: center;
-      display: flex; }
+      display: flex;
+      justify-content: center; }
   .home-table__logo {
     margin-right: 1rem;
     max-height: 2rem; }
@@ -235,19 +250,21 @@ body {
   .navigation__mobile-nav-item {
     background-color: transparent;
     cursor: pointer;
-    transition: all 0.2s;
-    padding: 1rem 2rem; }
+    transition: all 0.2s; }
     .navigation__mobile-nav-item:hover, .navigation__mobile-nav-item:focus {
       background-color: #fcc1e9; }
     .navigation__mobile-nav-item:not(:last-child) {
       border-bottom: 1px solid #c6c6c6; }
-  .navigation__mobile-nav-link:visited, .navigation__mobile-nav-link:link {
-    color: #2a2a2a;
-    font-family: "Ubuntu Mono", monospace;
-    font-size: 1.8rem;
-    letter-spacing: 3px;
-    text-decoration: none;
-    text-transform: uppercase; }
+  .navigation__mobile-nav-link {
+    display: block;
+    padding: 1rem 2rem; }
+    .navigation__mobile-nav-link:visited, .navigation__mobile-nav-link:link {
+      color: #2a2a2a;
+      font-family: "Ubuntu Mono", monospace;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      text-decoration: none;
+      text-transform: uppercase; }
   .navigation__mobile-btn {
     padding: 3px;
     height: 5rem;
@@ -298,9 +315,13 @@ body {
 
 .home-content {
   left: 50%;
+  max-width: 100rem;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+  width: 80%; }
+  .home-content__content {
+    overflow-x: scroll; }
 
 .login-signup-content {
   align-content: center;
