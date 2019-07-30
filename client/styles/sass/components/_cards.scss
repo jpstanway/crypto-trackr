@@ -12,6 +12,25 @@
     @include color-hover($color-secondary-dark, $color-secondary);
   }
 
+  &__icon {
+    &--check {
+      @include color-hover($color-primary-dark, $color-primary);
+      display: none;
+    }
+  }
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__checkbox:checked ~ .crypto-card__add .crypto-card__icon {
+    display: none;
+  }
+
+  &__checkbox:checked ~ .crypto-card__add .crypto-card__icon--check {
+    display: inline-block;
+  }
+
   &__info {
     list-style: none;
   }

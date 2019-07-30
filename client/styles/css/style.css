@@ -26,6 +26,12 @@ body {
   margin-top: 2rem;
   text-align: center; }
 
+.btn {
+  position: relative; }
+  .btn:focus, .btn:active {
+    outline: none;
+    top: 2px; }
+
 .btn-form {
   background-color: #8e5cf5;
   cursor: pointer;
@@ -33,8 +39,8 @@ body {
   color: #fefefe;
   cursor: pointer;
   transition: all 0.2s;
-  background-color: #8e5cf5;
   border: 0;
+  box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
   font-family: "Ubuntu Mono", monospace;
   font-size: 1.8rem;
   font-weight: 700;
@@ -45,8 +51,6 @@ body {
     background-color: #d4c1fc; }
   .btn-form:hover {
     color: #2a2a2a; }
-  .btn-form:focus, .btn-form:active {
-    outline: none; }
 
 .crypto-card {
   border: 1px solid #eee;
@@ -61,6 +65,19 @@ body {
     transition: all 0.2s; }
     .crypto-card__add:hover {
       color: #d4c1fc; }
+  .crypto-card__icon--check {
+    color: #5cf58e;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: none; }
+    .crypto-card__icon--check:hover {
+      color: #c1fcd4; }
+  .crypto-card__checkbox {
+    display: none; }
+  .crypto-card__checkbox:checked ~ .crypto-card__add .crypto-card__icon {
+    display: none; }
+  .crypto-card__checkbox:checked ~ .crypto-card__add .crypto-card__icon--check {
+    display: inline-block; }
   .crypto-card__info {
     list-style: none; }
 

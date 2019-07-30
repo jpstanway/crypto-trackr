@@ -1,17 +1,22 @@
+.btn {
+  position: relative;
+
+  &:focus,
+  &:active {
+    outline: none;
+    top: 2px;
+  }
+}
+
 .btn-form {
   @include background-hover($color-secondary-dark, $color-secondary);
   @include color-hover($color-white, $color-black);
-  background-color: $color-secondary-dark;
   border: 0;
+  box-shadow: $box-shadow-thin;
   font-family: $heading-font-family;
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: 0.2rem;
   padding: 1.5rem 2.5rem;
   text-transform: uppercase;
-
-  &:focus,
-  &:active {
-    outline: none;
-  }
 }

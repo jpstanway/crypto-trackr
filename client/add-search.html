@@ -84,9 +84,15 @@
             <div class="crypto-card">
               <div class="crypto-card__header">
                 <h2 class="crypto-card__name">Bitcoin</h2>
-                <span class="crypto-card__add"
-                  ><i class="fas fa-plus fa-2x"></i
-                ></span>
+                <input
+                  type="checkbox"
+                  id="add-crypto"
+                  class="crypto-card__checkbox"
+                />
+                <label for="add-crypto" class="crypto-card__add">
+                  <i class="fas fa-plus fa-2x crypto-card__icon"></i>
+                  <i class="fas fa-check fa-2x crypto-card__icon--check"></i>
+                </label>
               </div>
               <ul class="crypto-card__info">
                 <li class="crypto-card__item"><strong>Rank: </strong>1</li>
