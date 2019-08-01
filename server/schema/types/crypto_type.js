@@ -6,10 +6,7 @@ const CryptoType = new GraphQLObjectType({
   fields: {
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    rank: { type: GraphQLInt },
-    price: { type: GraphQLString },
-    marketValue: { type: GraphQLString },
-    volume: { type: GraphQLString }
+    rank: { type: GraphQLInt }
   }
 });
 

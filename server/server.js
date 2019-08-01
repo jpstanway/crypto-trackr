@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 const expressGraphQL = require("express-graphql");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -7,6 +8,7 @@ const mongoose = require("mongoose");
 
 const schema = require("./schema/schema");
 const mongoURI = require("./config/keys").mongoURI;
+const cryptos = require("./services/api");
 
 app.get("/", (req, res) => res.send("Hellooooooo"));
 
@@ -22,6 +24,10 @@ const db = mongoose.connection
     console.log("Error connection to MongoDB cloud: ", error)
   )
   .once("open", () => console.log("Successfully connected to MongoDB!"));
+
+// Body parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Express Session
 app.use(

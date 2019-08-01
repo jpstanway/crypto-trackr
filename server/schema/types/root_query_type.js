@@ -8,7 +8,7 @@ const RootQueryType = new GraphQLObjectType({
     crypto: {
       type: CryptoType,
       resolve(parentValue, args, req) {
-        console.log("Is it working?");
+        return req.body;
       }
     }
   }
