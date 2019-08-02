@@ -1,12 +1,12 @@
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLID } = graphql;
-const CryptoType = require("./crypto_type");
+const UserType = require("./user_type");
 
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    crypto: {
-      type: CryptoType,
+    users: {
+      type: UserType,
       resolve(parentValue, args, req) {
         return req.body;
       }

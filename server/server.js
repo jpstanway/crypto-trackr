@@ -5,10 +5,13 @@ const expressGraphQL = require("express-graphql");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
+const passport = require("passport");
 
 const schema = require("./schema/schema");
 const mongoURI = require("./config/keys").mongoURI;
 const cryptos = require("./services/api");
+const models = require("./models");
+const passportConfig = require("./services/auth");
 
 app.get("/", (req, res) => res.send("Hellooooooo"));
 
@@ -41,6 +44,10 @@ app.use(
     })
   })
 );
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // mount graphql instance on path of same name
 app.use(
