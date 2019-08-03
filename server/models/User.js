@@ -24,7 +24,7 @@ UserSchema.pre("save", function save(next) {
 
   bcrypt.genSalt(10, (err, salt) => {
     if (err) return next(err);
-    bcrypt.hash(user.password, salt, null, (err, hash) => {
+    bcrypt.hash(user.password, salt, (err, hash) => {
       if (err) return next(err);
       user.password = hash;
       next();
@@ -42,4 +42,4 @@ UserSchema.methods.comparePassword = function comparePassword(
   });
 };
 
-mongoose.model("user", UserSchema);
+mongoose.model("User", UserSchema);

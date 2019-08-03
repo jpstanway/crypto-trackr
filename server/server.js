@@ -7,11 +7,12 @@ const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 const passport = require("passport");
 
+require("./models");
+require("./services/api");
+require("./services/auth");
+
 const schema = require("./schema/schema");
 const mongoURI = require("./config/keys").mongoURI;
-const cryptos = require("./services/api");
-const models = require("./models");
-const passportConfig = require("./services/auth");
 
 app.get("/", (req, res) => res.send("Hellooooooo"));
 
