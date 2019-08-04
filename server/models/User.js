@@ -9,7 +9,7 @@ const UserSchema = new Schema({
     {
       name: String,
       price: String,
-      amount: String
+      amount: Number
     }
   ]
 });

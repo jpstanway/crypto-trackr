@@ -1,7 +1,9 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLFloat } = graphql;
 const UserType = require("./types/user_type");
+const CryptoType = require("./types/crypto_type");
 const auth = require("../services/auth");
+const portfolio = require("../services/portfolio");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -32,6 +34,17 @@ const mutation = new GraphQLObjectType({
         const { user } = req;
         req.logout();
         return user;
+      }
+    },
+    addCrypto: {
+      type: CryptoType,
+      args: {
+        name: { type: GraphQLString },
+        price: { type: GraphQLString },
+        amount: { type: GraphQLFloat }
+      },
+      resolve(parentValue, { name, price, amount }, req) {
+        return portfolio.addCrypto({ name, price, amount, req });
       }
     }
   }
