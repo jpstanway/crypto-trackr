@@ -46,6 +46,26 @@ const mutation = new GraphQLObjectType({
       resolve(parentValue, { name, price, amount }, req) {
         return portfolio.addCrypto({ name, price, amount, req });
       }
+    },
+    updateCrypto: {
+      type: CryptoType,
+      args: {
+        name: { type: GraphQLString },
+        price: { type: GraphQLString },
+        amount: { type: GraphQLFloat }
+      },
+      resolve(parentValue, { name, price, amount }, req) {
+        return portfolio.updateCrypto({ name, price, amount, req });
+      }
+    },
+    deleteCrypto: {
+      type: CryptoType,
+      args: {
+        name: { type: GraphQLString }
+      },
+      resolve(parentValue, { name }, req) {
+        return portfolio.deleteCrypto({ name, req });
+      }
     }
   }
 });
