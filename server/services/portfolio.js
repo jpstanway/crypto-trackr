@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const getPortfolioIndex = require("../utils/getPortfolioIndex");
 const User = mongoose.model("User");
 
 function addCrypto({ name, price, amount, req }) {
@@ -39,9 +39,7 @@ function updateCrypto({ name, price, amount, req }) {
   return User.findOne({ email: req.user.email })
     .then(user => {
       // iterate through portfolio to find correct crypto by name and retrive index
-      const cryptoIndex = user.portfolio
-        .map(portfolioCrypto => portfolioCrypto.name)
-        .indexOf(crypto.name);
+      const cryptoIndex = getPortfolioIndex(user.portfolio, crypto.name);
 
       if (cryptoIndex === -1)
         throw new Error("Cryptocurrency not found in portfolio");
@@ -66,9 +64,7 @@ function deleteCrypto({ name, req }) {
   return User.findOne({ email: req.user.email })
     .then(user => {
       // get index of crypto to be removed
-      const cryptoIndex = user.portfolio
-        .map(portfolioCrypto => portfolioCrypto.name)
-        .indexOf(crypto.name);
+      const cryptoIndex = getPortfolioIndex(user.portfolio, crypto.name);
 
       if (cryptoIndex === -1)
         throw new Error("Cryptocurrency not found in portfolio");
@@ -87,14 +83,3 @@ function deleteCrypto({ name, req }) {
 }
 
 module.exports = { addCrypto, updateCrypto, deleteCrypto };
-
-// mutation {
-//   addCrypto(
-//     name: "Bitcoin",
-//     price: "$10,000.00",
-//     amount: 2.55
-//   ) {
-//     id
-//     name
-//   }
-// }

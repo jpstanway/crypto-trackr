@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-
+const hashPassword = require("../utils/hashPassword");
 const User = mongoose.model("User");
 
 // Sessions
@@ -64,4 +64,36 @@ function login({ email, password, req }) {
   });
 }
 
-module.exports = { signup, login };
+// Update + Delete
+function changePassword({ email, oldPassword, newPassword, req }) {
+  if (!req.user)
+    throw new Error("You must be logged in to perform this action");
+
+  return new Promise((resolve, reject) => {
+    return User.findOne({ email }).then(user => {
+      // compare old password
+      user.comparePassword(oldPassword, (err, isMatch) => {
+        if (err) reject(err);
+        if (isMatch) {
+          user.password = newPassword;
+          return user.save().then(() => {
+            resolve(user);
+          });
+        }
+        return false;
+      });
+    });
+  });
+}
+
+function deleteAccount({ email, req }) {
+  if (!req.user) {
+    throw new Error("You must be logged in to perform this action");
+  }
+
+  return User.findOneAndDelete({ email }).then(user => {
+    return user;
+  });
+}
+
+module.exports = { signup, login, changePassword, deleteAccount };

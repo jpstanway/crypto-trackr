@@ -1,5 +1,10 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString, GraphQLFloat } = graphql;
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLFloat,
+  GraphQLNonNull
+} = graphql;
 const UserType = require("./types/user_type");
 const CryptoType = require("./types/crypto_type");
 const auth = require("../services/auth");
@@ -11,8 +16,8 @@ const mutation = new GraphQLObjectType({
     signup: {
       type: UserType,
       args: {
-        email: { type: GraphQLString },
-        password: { type: GraphQLString }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve(parentValue, { email, password }, req) {
         return auth.signup({ email, password, req });
@@ -21,8 +26,8 @@ const mutation = new GraphQLObjectType({
     login: {
       type: UserType,
       args: {
-        email: { type: GraphQLString },
-        password: { type: GraphQLString }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        password: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve(parentValue, { email, password }, req) {
         return auth.login({ email, password, req });
@@ -36,12 +41,32 @@ const mutation = new GraphQLObjectType({
         return user;
       }
     },
+    changePassword: {
+      type: UserType,
+      args: {
+        email: { type: new GraphQLNonNull(GraphQLString) },
+        oldPassword: { type: new GraphQLNonNull(GraphQLString) },
+        newPassword: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve(parentValue, { email, oldPassword, newPassword }, req) {
+        return auth.changePassword({ email, oldPassword, newPassword, req });
+      }
+    },
+    deleteAccount: {
+      type: UserType,
+      args: {
+        email: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      resolve(parentValue, { email }, req) {
+        return auth.deleteAccount({ email, req });
+      }
+    },
     addCrypto: {
       type: CryptoType,
       args: {
-        name: { type: GraphQLString },
-        price: { type: GraphQLString },
-        amount: { type: GraphQLFloat }
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        price: { type: new GraphQLNonNull(GraphQLString) },
+        amount: { type: new GraphQLNonNull(GraphQLFloat) }
       },
       resolve(parentValue, { name, price, amount }, req) {
         return portfolio.addCrypto({ name, price, amount, req });
@@ -50,7 +75,7 @@ const mutation = new GraphQLObjectType({
     updateCrypto: {
       type: CryptoType,
       args: {
-        name: { type: GraphQLString },
+        name: { type: new GraphQLNonNull(GraphQLString) },
         price: { type: GraphQLString },
         amount: { type: GraphQLFloat }
       },
@@ -61,7 +86,7 @@ const mutation = new GraphQLObjectType({
     deleteCrypto: {
       type: CryptoType,
       args: {
-        name: { type: GraphQLString }
+        name: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve(parentValue, { name }, req) {
         return portfolio.deleteCrypto({ name, req });
