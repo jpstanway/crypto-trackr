@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 $(document).ready(() => {
   const $mobileBtn = $(".navigation__mobile-btn");
   const $mobileMenu = $(".navigation__mobile-nav");

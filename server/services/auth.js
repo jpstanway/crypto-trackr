@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const hashPassword = require("../utils/hashPassword");
 const User = mongoose.model("User");
 
 // Sessions
