@@ -2,5 +2,5 @@
 /node_modules
 package-lock.json
 
-# keys
-/server/config
+# env
+/server/config.env

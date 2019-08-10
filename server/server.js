@@ -1,3 +1,5 @@
+require("dotenv").config({ path: "./server/config.env" });
+
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -8,13 +10,11 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 require("./models");
-require("./services/api");
+// require("./services/api");
 require("./services/auth");
 
 const schema = require("./schema/schema");
-const mongoURI = require("./config/keys").mongoURI;
-
-app.get("/", (req, res) => res.send("Hellooooooo"));
+const mongoURI = process.env.MONGO_URI;
 
 // MongoDB connection
 mongoose.connect(mongoURI, {
@@ -59,4 +59,11 @@ app.use(
   })
 );
 
-module.exports = app;
+// Server set up
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => {
+  console.log(
+    `Server running in ${process.env.NODE_ENV} mode on port ${port}!`
+  );
+});

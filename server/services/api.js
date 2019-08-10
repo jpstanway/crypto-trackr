@@ -1,8 +1,16 @@
-const axios = require("axios");
-const apiKey = require("../config/keys").apiKey;
-const apiURL = `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}`;
+// const axios = require("axios");
+// const apiKey = require("../config/keys").apiKey;
+// const apiURL = `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}`;
 
-axios.get(apiURL).then(response => {
-  const topTen = response.data.filter(crypto => crypto.rank <= 10);
-  console.log(topTen);
-});
+// async function getData() {
+//   const data = await axios.get(apiURL);
+//   return data;
+// }
+
+// const result = getData();
+
+// console.log(result);
+
+// module.exports = {};
+
+// // response.data.filter(crypto => crypto.rank <= 10);
