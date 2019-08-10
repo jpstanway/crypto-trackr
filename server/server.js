@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 require("./models");
-// require("./services/api");
+require("./services/api").getTopTen();
 require("./services/auth");
 
 const schema = require("./schema/schema");
