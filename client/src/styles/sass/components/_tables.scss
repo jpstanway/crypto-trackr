@@ -41,6 +41,11 @@
     margin-right: 1rem;
     max-height: 2rem;
   }
+
+  &__loading {
+    height: 40rem;
+    text-align: center;
+  }
 }
 
 .portfolio-table {

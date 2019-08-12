@@ -8,8 +8,6 @@ async function getTopTen() {
   );
   const topTen = await response.data.filter(crypto => crypto.rank <= 10);
 
-  console.log(topTen);
-
   return topTen;
 }
 

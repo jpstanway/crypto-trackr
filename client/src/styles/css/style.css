@@ -161,6 +161,9 @@ body {
   .home-table__logo {
     margin-right: 1rem;
     max-height: 2rem; }
+  .home-table__loading {
+    height: 40rem;
+    text-align: center; }
 
 .portfolio-table {
   box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);

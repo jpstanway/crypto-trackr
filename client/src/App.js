@@ -11,7 +11,9 @@ import AddSearch from "./components/pages/AddSearch";
 import MyPortfolio from "./components/pages/MyPortfolio";
 import LoginSignUp from "./components/pages/LoginSignUp";
 
-const client = new ApolloClient();
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql"
+});
 
 function App() {
   return (

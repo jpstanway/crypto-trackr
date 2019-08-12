@@ -1,8 +1,47 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { graphql } from "react-apollo";
+import query from "../../queries/GetTopTen";
 
 class Home extends Component {
-  componentDidMount() {}
+  renderTopTen() {
+    const { loading, cryptos } = this.props.data;
+
+    if (loading)
+      return (
+        <tr>
+          <td colspan="5" className="home-table__loading">
+            Loading...
+          </td>
+        </tr>
+      );
+
+    if (cryptos) {
+      return cryptos.map(crypto => {
+        return (
+          <tr key={crypto.id} className="home-table__row">
+            <td className="home-table__cell">{crypto.rank}</td>
+            <td className="home-table__cell home-table__cell--name">
+              <img
+                src={crypto.logo_url}
+                alt={crypto.name}
+                className="home-table__logo"
+              />
+              {crypto.name}
+            </td>
+            <td className="home-table__cell">${crypto.market_cap}</td>
+            <td className="home-table__cell">${crypto.price}</td>
+            <td className="home-table__cell">${crypto.circulating_supply}</td>
+          </tr>
+        );
+      });
+    } else {
+      return (
+        <tr>
+          <td>No data available</td>
+        </tr>
+      );
+    }
+  }
 
   render() {
     return (
@@ -23,94 +62,7 @@ class Home extends Component {
                 <th className="home-table__heading">Volume</th>
               </tr>
             </thead>
-            <tbody className="home-table__body">
-              <tr className="home-table__row">
-                <td className="home-table__cell">1</td>
-                <td className="home-table__cell home-table__cell--name">
-                  Bitcoin
-                </td>
-                <td className="home-table__cell">$180,973,226,552</td>
-                <td className="home-table__cell">$10,147.72</td>
-                <td className="home-table__cell">$17,827,408,428</td>
-              </tr>
-              <tr className="home-table__row">
-                <td className="home-table__cell">2</td>
-                <td className="home-table__cell home-table__cell--name">
-                  Ethereum
-                </td>
-                <td className="home-table__cell">$23,215,477,041</td>
-                <td className="home-table__cell">$216.92</td>
-                <td className="home-table__cell">$7,156,530,506</td>
-              </tr>
-              <tr className="home-table__row">
-                <td className="home-table__cell">3</td>
-                <td className="home-table__cell home-table__cell--name">XRP</td>
-                <td className="home-table__cell">$13,496,868,721</td>
-                <td className="home-table__cell">$0.315107</td>
-                <td className="home-table__cell">$1,058,438,679</td>
-              </tr>
-              <tr className="home-table__row">
-                <td className="home-table__cell">4</td>
-                <td className="home-table__cell home-table__cell--name">
-                  Litecoin
-                </td>
-                <td className="home-table__cell">$5,846,135,332</td>
-                <td className="home-table__cell">$93.10</td>
-                <td className="home-table__cell">$2,722,809,484</td>
-              </tr>
-              <tr className="home-table__row">
-                <td className="home-table__cell">5</td>
-                <td className="home-table__cell home-table__cell--name">
-                  Bitcoin Cash
-                </td>
-                <td className="home-table__cell">$5,464,319,458</td>
-                <td className="home-table__cell">$305.14</td>
-                <td className="home-table__cell">$1,405,567,189</td>
-              </tr>
-              <tr className="home-table__row">
-                <td className="home-table__cell">6</td>
-                <td className="home-table__cell home-table__cell--name">
-                  Binance Coin
-                </td>
-                <td className="home-table__cell">$4,664,098,180</td>
-                <td className="home-table__cell">$29.99</td>
-                <td className="home-table__cell">$285,491,880</td>
-              </tr>
-              <tr className="home-table__row">
-                <td className="home-table__cell">7</td>
-                <td className="home-table__cell home-table__cell--name">
-                  Tether
-                </td>
-                <td className="home-table__cell">$4,024,559,911</td>
-                <td className="home-table__cell">$1.00</td>
-                <td className="home-table__cell">$18,940,955,009</td>
-              </tr>
-              <tr className="home-table__row">
-                <td className="home-table__cell">8</td>
-                <td className="home-table__cell home-table__cell--name">EOS</td>
-                <td className="home-table__cell">$3,940,127,037</td>
-                <td className="home-table__cell">$4.26</td>
-                <td className="home-table__cell">$1,785,793,728</td>
-              </tr>
-              <tr className="home-table__row">
-                <td className="home-table__cell">9</td>
-                <td className="home-table__cell home-table__cell--name">
-                  Bitcoin SV
-                </td>
-                <td className="home-table__cell">$3,069,678,692</td>
-                <td className="home-table__cell">$171.92</td>
-                <td className="home-table__cell">$486,421,164</td>
-              </tr>
-              <tr className="home-table__row">
-                <td className="home-table__cell">10</td>
-                <td className="home-table__cell home-table__cell--name">
-                  TRON
-                </td>
-                <td className="home-table__cell">$1,687,400,042</td>
-                <td className="home-table__cell">$0.025305</td>
-                <td className="home-table__cell">$1,041,176,604</td>
-              </tr>
-            </tbody>
+            <tbody className="home-table__body">{this.renderTopTen()}</tbody>
           </table>
         </div>
       </div>
@@ -118,4 +70,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default graphql(query)(Home);

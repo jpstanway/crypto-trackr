@@ -3,6 +3,7 @@ require("dotenv").config({ path: "./server/config.env" });
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const expressGraphQL = require("express-graphql");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
@@ -10,7 +11,6 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 require("./models");
-require("./services/api").getTopTen();
 require("./services/auth");
 
 const schema = require("./schema/schema");
@@ -28,6 +28,9 @@ const db = mongoose.connection
     console.log("Error connection to MongoDB cloud: ", error)
   )
   .once("open", () => console.log("Successfully connected to MongoDB!"));
+
+// CORS
+app.use(cors());
 
 // Body parser
 app.use(bodyParser.urlencoded({ extended: false }));
