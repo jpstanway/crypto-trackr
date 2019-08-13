@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = mongoose.model("User");
+const signupValidation = require("../validation/signup-validation");
+const loginValidation = require("../validation/login-validation");
 
 // Sessions
 passport.serializeUser((user, done) => {
@@ -34,14 +36,22 @@ passport.use(
 );
 
 // Signup + Login
-function signup({ email, password, req }) {
+function signup({ email, password, password2, req }) {
+  const { errors, isValid } = signupValidation({ email, password, password2 });
+
+  if (!isValid) {
+    return errors;
+  }
+
   const user = new User({ email, password });
-  if (!email || !password)
-    throw new Error("You must provide an email and password");
 
   return User.findOne({ email })
     .then(existingUser => {
-      if (existingUser) throw new Error("Email is already in use");
+      if (existingUser) {
+        errors.email = "Email already in use";
+        return errors;
+      }
+
       return user.save();
     })
     .then(user => {
@@ -55,6 +65,12 @@ function signup({ email, password, req }) {
 }
 
 function login({ email, password, req }) {
+  const { errors, isValid } = loginValidation({ email, password });
+
+  if (!isValid) {
+    return errors;
+  }
+
   return new Promise((resolve, reject) => {
     passport.authenticate("local", (err, user) => {
       if (!user) reject("Invalid credentials");
