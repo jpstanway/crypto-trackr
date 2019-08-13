@@ -10,6 +10,7 @@ export default gql`
       price
       circulating_supply
       logo_url
+      currency
     }
   }
 `;

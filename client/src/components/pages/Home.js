@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import query from "../../queries/GetTopTen";
+import convertToCurrency from "../../utils/convertToCurrency";
 
 class Home extends Component {
   renderTopTen() {
@@ -9,7 +10,7 @@ class Home extends Component {
     if (loading)
       return (
         <tr>
-          <td colspan="5" className="home-table__loading">
+          <td colSpan="5" className="home-table__loading">
             Loading...
           </td>
         </tr>
@@ -17,20 +18,33 @@ class Home extends Component {
 
     if (cryptos) {
       return cryptos.map(crypto => {
+        const {
+          id,
+          rank,
+          logo_url,
+          name,
+          market_cap,
+          price,
+          circulating_supply,
+          currency
+        } = crypto;
+
         return (
-          <tr key={crypto.id} className="home-table__row">
-            <td className="home-table__cell">{crypto.rank}</td>
+          <tr key={id} className="home-table__row">
+            <td className="home-table__cell">{rank}</td>
             <td className="home-table__cell home-table__cell--name">
-              <img
-                src={crypto.logo_url}
-                alt={crypto.name}
-                className="home-table__logo"
-              />
-              {crypto.name}
+              <img src={logo_url} alt={name} className="home-table__logo" />
+              {name}
             </td>
-            <td className="home-table__cell">${crypto.market_cap}</td>
-            <td className="home-table__cell">${crypto.price}</td>
-            <td className="home-table__cell">${crypto.circulating_supply}</td>
+            <td className="home-table__cell">
+              {convertToCurrency(market_cap, true)}
+            </td>
+            <td className="home-table__cell">
+              {convertToCurrency(price, true)}
+            </td>
+            <td className="home-table__cell">
+              {convertToCurrency(circulating_supply)} {currency}
+            </td>
           </tr>
         );
       });
