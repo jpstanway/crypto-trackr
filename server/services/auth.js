@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = mongoose.model("User");
-const signupValidation = require("../validation/signup-validation");
 const loginValidation = require("../validation/login-validation");
+const signUpValidation = require("../validation/signup-validation");
 
 // Sessions
 passport.serializeUser((user, done) => {
@@ -37,10 +37,10 @@ passport.use(
 
 // Signup + Login
 function signup({ email, password, password2, req }) {
-  const { errors, isValid } = signupValidation({ email, password, password2 });
+  const { errors, isValid } = signUpValidation({ email, password, password2 });
 
   if (!isValid) {
-    return errors;
+    throw new Error(errors.email || errors.password || errors.password2);
   }
 
   const user = new User({ email, password });
@@ -68,7 +68,7 @@ function login({ email, password, req }) {
   const { errors, isValid } = loginValidation({ email, password });
 
   if (!isValid) {
-    return errors;
+    throw new Error(errors.email || errors.password);
   }
 
   return new Promise((resolve, reject) => {

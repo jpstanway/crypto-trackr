@@ -99,6 +99,14 @@ body {
   .auth-form__btn {
     align-self: center;
     margin-top: 1rem; }
+  .auth-form__errors {
+    list-style: none;
+    margin-bottom: 1rem;
+    min-height: 1.6rem; }
+    .auth-form__errors li {
+      color: #f58e5c;
+      font-size: 1.3rem;
+      font-style: italic; }
   .auth-form--login {
     border-right: 1px solid #c6c6c6; }
     @media only screen and (max-width: 50em) {

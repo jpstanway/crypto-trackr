@@ -25,6 +25,18 @@
     margin-top: 1rem;
   }
 
+  &__errors {
+    list-style: none;
+    margin-bottom: 1rem;
+    min-height: 1.6rem;
+
+    li {
+      color: $color-tertiary-dark;
+      font-size: 1.3rem;
+      font-style: italic;
+    }
+  }
+
   &--login {
     border-right: $border-grey;
 
