@@ -3,6 +3,7 @@ const { gql } = require("apollo-server");
 module.exports = gql`
   type Query {
     allCryptos: [Crypto!]!
+    topTenCryptos: [Crypto!]!
     allUsers: [User!]!
     me: User
   }
@@ -35,7 +36,7 @@ module.exports = gql`
     symbol: String!
     circulating_supply: String!
     max_supply: String!
-    name: String!
+    name: String
     logo_url: String!
     market_cap: String!
     rank: String!

@@ -1,40 +1,39 @@
 require("dotenv").config({ path: "./config.env" });
 
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer } = require("apollo-server");
 const mongoose = require("mongoose");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-const User = require('./models/User');
+const User = require("./models/User");
 
 // env variables
-const nodeEnv = process.env.NODE_ENV;
-const mongoUri = process.env.MONGO_URI;
+const mongodbUri = process.env.MONGODB_URI;
 const jwtSecret = process.env.JWT_SECRET;
 
 // graphql
-const typeDefs = require('./graphql-schema/types');
-const resolvers = require('./graphql-schema/resolvers');
+const typeDefs = require("./graphql-schema/types");
+const resolvers = require("./graphql-schema/resolvers");
 
 // MongoDB connection
 mongoose
-  .connect(mongoUri, { useNewUrlParser: true })
-  .then(() => console.log("!!!--- Successfully connected to MongoDB ---!!!"))
-  .catch(err => console.log("Error connecting to MongoDB", err));
+  .connect(mongodbUri, { useNewUrlParser: true })
+  .then(() => console.log("***--- Successfully connected to MongoDB ---***"))
+  .catch(err => console.log("!!! Error connecting to MongoDB !!!", err));
 
 // server
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: async ({ req }) => {
-        const auth = req ? req.headers.authorization : null;
-        if (auth && auth.toLowerCase().startsWith('Bearer ')) {
-            const decodedToken = jwt.verify(auth.substring(7), jwtSecret);
-            const currentUser = await User.findById(decodedToken.id);
-            return { currentUser };
-        }
+  typeDefs,
+  resolvers,
+  context: async ({ req }) => {
+    const auth = req ? req.headers.authorization : null;
+    if (auth && auth.toLowerCase().startsWith("Bearer ")) {
+      const decodedToken = jwt.verify(auth.substring(7), jwtSecret);
+      const currentUser = await User.findById(decodedToken.id);
+      return { currentUser };
     }
+  }
 });
 
 server.listen().then(({ url }) => {
-    console.log(`Server running in ${nodeEnv} mode at ${url});
+  console.log(`Server running at ${url}`);
 });
