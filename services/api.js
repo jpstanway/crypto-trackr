@@ -1,20 +1,17 @@
 const axios = require("axios");
+const { API_URL, API_KEY } = process.env;
 
 const getAll = async () => {
-  const { API_URL, API_KEY } = process.env;
-
-  // query third party api for latest crypt updates
+  // query third party api for latest crypto updates
   const response = await axios.get(
     `${API_URL}/currencies/ticker?key=${API_KEY}`
   );
-  console.log(response);
+
   return response.data;
 };
 
 const getTopTen = async () => {
-  const { API_URL, API_KEY } = process.env;
-
-  // query third party api for latest crypt updates
+  // query third party api for latest crypto updates
   const response = await axios.get(
     `${API_URL}/currencies/ticker?key=${API_KEY}`
   );
@@ -23,4 +20,12 @@ const getTopTen = async () => {
   return await response.data.filter(crypto => crypto.rank <= 10);
 };
 
-module.exports = { getAll, getTopTen };
+const getCrypto = async currency => {
+  const response = await axios.get(
+    `${API_URL}/currencies/ticker?key=${API_KEY}&ids=${currency.toUpperCase()}`
+  );
+
+  return response.data[0];
+};
+
+module.exports = { getAll, getTopTen, getCrypto };

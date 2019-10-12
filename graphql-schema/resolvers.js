@@ -14,6 +14,9 @@ module.exports = {
     topTenCryptos: async () => {
       return await api.getTopTen();
     },
+    getCrypto: async (root, args) => {
+      return await api.getCrypto(args.currency);
+    },
     allUsers: () => {
       return User.find({});
     },

@@ -4,6 +4,7 @@ module.exports = gql`
   type Query {
     allCryptos: [Crypto!]!
     topTenCryptos: [Crypto!]!
+    getCrypto(currency: String!): Crypto
     allUsers: [User!]!
     me: User
   }
