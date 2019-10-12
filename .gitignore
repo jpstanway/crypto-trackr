@@ -3,4 +3,4 @@
 package-lock.json
 
 # env
-/server/config.env
+config.env

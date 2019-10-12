@@ -38,7 +38,7 @@ class MyPortfolio extends Component {
             </tbody>
             <tfoot className="portfolio-table__foot">
               <tr>
-                <td colspan="4">Total Value</td>
+                <td colSpan="4">Total Value</td>
                 <td>$10,250.00 USD</td>
               </tr>
             </tfoot>

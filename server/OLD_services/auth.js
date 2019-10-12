@@ -22,14 +22,14 @@ passport.use(
     User.findOne({ email: email.toLowerCase() }, (err, user) => {
       if (err) return done(err);
       if (!user) {
-        return done(null, false, { message: "Invalid email" });
+        return done(null, false, "Invalid credentials");
       }
       user.comparePassword(password, (err, isMatch) => {
         if (err) return done(err);
         if (isMatch) {
           return done(null, user);
         }
-        return done(null, false, { message: "Incorrect password" });
+        return done(null, false, "Incorrect credentials");
       });
     });
   })
@@ -47,16 +47,13 @@ function signup({ email, password, password2, req }) {
 
   return User.findOne({ email })
     .then(existingUser => {
-      if (existingUser) {
-        errors.email = "Email already in use";
-        return errors;
-      }
+      if (existingUser) throw new Error("Email already in use");
 
       return user.save();
     })
     .then(user => {
       return new Promise((resolve, reject) => {
-        req.login(user, err => {
+        req.logIn(user, err => {
           if (err) reject(err);
           resolve(user);
         });

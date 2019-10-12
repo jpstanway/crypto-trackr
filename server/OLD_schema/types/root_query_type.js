@@ -7,7 +7,7 @@ const api = require("../../services/api");
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    users: {
+    user: {
       type: UserType,
       resolve(parentValue, args, req) {
         return req.user;

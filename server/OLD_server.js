@@ -15,9 +15,12 @@ require("./services/auth");
 
 const schema = require("./schema/schema");
 const mongoURI = process.env.MONGO_URI;
+mongoose.Promise = global.Promise;
 
 // MongoDB connection
 mongoose.connect(mongoURI, {
+  authSource: "admin",
+  retryWrites: true,
   dbName: "CryptoPortfolioBuilder",
   useCreateIndex: true,
   useNewUrlParser: true

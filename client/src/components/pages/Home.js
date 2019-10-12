@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
-import query from "../../queries/GetTopTen";
+import getTopTen from "../../queries/getTopTen";
 import convertToCurrency from "../../utils/convertToCurrency";
 
 class Home extends Component {
   renderTopTen() {
-    const { loading, cryptos } = this.props.data;
+    const { loading, error, cryptos } = this.props.data;
 
     if (loading)
       return (
@@ -15,6 +15,16 @@ class Home extends Component {
           </td>
         </tr>
       );
+
+    if (error) {
+      return (
+        <tr>
+          <td colSpan="5" className="home-table__loading">
+            Error loading cryptocurrency stats
+          </td>
+        </tr>
+      );
+    }
 
     if (cryptos) {
       return cryptos.map(crypto => {
@@ -84,4 +94,4 @@ class Home extends Component {
   }
 }
 
-export default graphql(query)(Home);
+export default graphql(getTopTen)(Home);

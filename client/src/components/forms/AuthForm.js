@@ -43,6 +43,7 @@ class AuthForm extends Component {
           className="auth-form__input"
           placeholder="Email"
           onChange={this.onChange}
+          value={this.state.email}
         />
         <input
           type="password"
@@ -50,6 +51,7 @@ class AuthForm extends Component {
           className="auth-form__input"
           placeholder="Password"
           onChange={this.onChange}
+          value={this.state.password}
         />
         <input
           type="password"
@@ -60,6 +62,7 @@ class AuthForm extends Component {
           placeholder="Confirm password"
           disabled={disabled}
           onChange={this.onChange}
+          value={this.state.password2}
         />
         <button className="btn btn-form auth-form__btn">{formName}</button>
       </form>

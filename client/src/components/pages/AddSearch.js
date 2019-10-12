@@ -26,7 +26,7 @@ class AddSearch extends Component {
                 id="add-crypto"
                 className="crypto-card__checkbox"
               />
-              <label for="add-crypto" className="crypto-card__add">
+              <label htmlFor="add-crypto" className="crypto-card__add">
                 <i className="fas fa-plus fa-2x crypto-card__icon" />
                 <i className="fas fa-check fa-2x crypto-card__icon--check" />
               </label>

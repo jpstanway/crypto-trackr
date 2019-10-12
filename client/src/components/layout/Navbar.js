@@ -53,11 +53,11 @@ class Navbar extends Component {
             </li>
           </ul>
         </div>
-        <a href="#" className="mobile navigation__mobile-btn">
+        <button className="mobile navigation__mobile-btn">
           <div className="navigation__mobile-btn-box">
             <span className="navigation__mobile-btn-bar" />
           </div>
-        </a>
+        </button>
       </nav>
     );
   }

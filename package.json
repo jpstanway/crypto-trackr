@@ -2,31 +2,26 @@
   "name": "crypto-portfolio-builder",
   "version": "1.0.0",
   "description": "View current cryptocurrency values and create your own mock portfolio",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
+    "apollo-server": "^2.9.6",
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
-    "body-parser": "^1.19.0",
-    "connect-mongo": "^3.0.0",
-    "cors": "^2.8.5",
     "dotenv": "^8.0.0",
-    "express": "^4.17.1",
-    "express-graphql": "^0.9.0",
-    "express-session": "^1.16.2",
     "graphql": "^14.4.2",
-    "mongodb": "^3.3.0-beta2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.7",
-    "nodemon": "^1.19.1",
-    "passport": "^0.4.0",
+    "mongoose-unique-validator": "^2.0.3",
     "passport-local": "^1.0.0",
     "validator": "^11.1.0"
   },
   "devDependencies": {
+    "nodemon": "^1.19.1",
     "concurrently": "^4.1.1"
   },
   "scripts": {
-    "start": "node server/server",
-    "server": "nodemon server/server",
+    "start": "node server",
+    "server": "nodemon server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },

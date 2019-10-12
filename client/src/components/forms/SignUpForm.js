@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { graphql } from "react-apollo";
-import mutation from "../../mutations/SignUp";
+import query from "../queries/CurrentUser";
+import mutation from "../mutations/SignUp";
 import AuthForm from "../forms/AuthForm";
 
 class SignUpForm extends Component {
@@ -12,18 +12,18 @@ class SignUpForm extends Component {
   }
 
   onSubmit({ email, password, password2 }) {
-    this.props
-      .mutate({
-        variables: {
-          email,
-          password,
-          password2
-        }
-      })
-      .catch(res => {
-        const errors = res.graphQLErrors.map(error => error.message);
-        this.setState({ errors });
-      });
+    // this.props
+    //   .mutate({
+    //     variables: {
+    //       email,
+    //       password,
+    //       password2
+    //     }
+    //   })
+    //   .catch(res => {
+    //     const errors = res.graphQLErrors.map(error => error.message);
+    //     this.setState({ errors });
+    //   });
   }
 
   render() {
@@ -40,4 +40,4 @@ class SignUpForm extends Component {
   }
 }
 
-export default graphql(mutation)(SignUpForm);
+export default SignUpForm;
