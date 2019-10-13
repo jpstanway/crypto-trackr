@@ -1,68 +1,52 @@
 const { UserInputError } = require("apollo-server");
-const jwt = require("jsonwebtoken");
+const axios = require("axios");
+const { API_URL, API_KEY } = process.env;
 
-const User = require("../models/User");
-
-const api = require("../services/api");
-const validation = require("../services/validation/validation");
+const Crypto = require("../models/Crypto");
 
 module.exports = {
   Query: {
     allCryptos: async () => {
-      return await api.getAll();
+      // query third party api for latest crypto updates
+      const response = await axios.get(
+        `${API_URL}/currencies/ticker?key=${API_KEY}`
+      );
+
+      return response.data;
     },
-    topTenCryptos: async () => {
-      return await api.getTopTen();
+    getCryptoMetaData: async (root, args) => {
+      const currencyId = args.currencyId.toUpperCase();
+      const response = await axios.get(
+        `${API_URL}/currencies?key=${API_KEY}&ids=${currencyId}`
+      );
+
+      if (!response) {
+        throw new UserInputError("Crypto not found");
+      }
+
+      return response.data[0];
     },
-    getCrypto: async (root, args) => {
-      return await api.getCrypto(args.currency);
-    },
-    allUsers: () => {
-      return User.find({});
-    },
-    me: (root, args, context) => {
-      return context.currentUser;
+    getCryptoLikes: async (root, args) => {
+      try {
+        // get crypto from database
+        const crypto = await Crypto.find({ currency: args.currency });
+
+        // return length of likes array
+        return crypto[0].likes.length;
+      } catch (error) {
+        throw new Error(error.message);
+      }
     }
   },
   Mutation: {
-    signup: async (root, args) => {
-      // validation
-      const { errors, isValid } = validation.signupValidation({
-        email,
-        password,
-        password2
-      });
-
-      if (!isValid) {
-        throw new UserInputError(errors);
-      }
-
-      // new user object
-      const user = new User({
-        email: args.email,
-        password: args.password
-      });
+    addNewCrypto: async (root, args) => {
+      const cryptoObject = new Crypto({ ...args });
 
       try {
-        // save new user to database
-        return await user.save();
+        return await cryptoObject.save();
       } catch (error) {
-        throw new UserInputError(error.message, { invalidArgs: args });
+        throw new Error(error.message);
       }
-    },
-    login: async (root, args) => {
-      const user = await User.findOne({ email: args.email });
-
-      if (!user || !args.password) {
-        throw new UserInputError("wrong credentials");
-      }
-
-      const userTokenData = {
-        id: user._id,
-        email: user.email
-      };
-
-      return { value: jwt.sign(userTokenData, process.env.JWT_SECRET) };
     }
   }
 };

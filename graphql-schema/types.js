@@ -3,31 +3,13 @@ const { gql } = require("apollo-server");
 module.exports = gql`
   type Query {
     allCryptos: [Crypto!]!
-    topTenCryptos: [Crypto!]!
-    getCrypto(currency: String!): Crypto
-    allUsers: [User!]!
-    me: User
+    getCryptoMetaData(currencyId: String!): Crypto
+    getCryptoLikes(currency: String!): Int
   }
 
   type Mutation {
-    signup(email: String!, password: String!, password2: String!): Token!
-    login(email: String, password: String!): Token!
-    logout: User
-    changePassword(
-      email: String!
-      oldPassword: String!
-      newPassword: String!
-      newPassword2: String!
-    ): User!
-    deleteAccount(email: String!): User
-    addCrypto(name: String!, price: String!, amount: Float): Crypto!
-    updateCrypto(name: String!, price: String!, amount: Float): Crypto!
-    deleteCrypto(name: String!): Crypto
+    addNewCrypto(currency: String!, name: String!): Crypto
   }
-
-  # type Subscription {
-  # sub type here
-  # }
 
   type Crypto {
     id: ID!
@@ -38,22 +20,22 @@ module.exports = gql`
     circulating_supply: String!
     max_supply: String!
     name: String
-    logo_url: String!
+    logo_url: String
     market_cap: String!
     rank: String!
     high: String!
     high_timestamp: String!
-    amount: Float
-  }
-
-  type User {
-    id: ID!
-    email: String!
-    password: String!
-    portfolio: [Crypto]
-  }
-
-  type Token {
-    value: String!
+    website_url: String
+    blog_url: String
+    discord_url: String
+    facebook_url: String
+    github_url: String
+    medium_url: String
+    reddit_url: String
+    telegram_url: String
+    twitter_url: String
+    whitepaper_url: String
+    youtube_url: String
+    likes: [String]
   }
 `;
