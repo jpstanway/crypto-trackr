@@ -47,6 +47,23 @@ module.exports = {
       } catch (error) {
         throw new Error(error.message);
       }
+    },
+    updateCryptoLikes: async (root, args, context) => {
+      try {
+        const userIp = "testIp";
+        const crypto = await Crypto.find({ currency: args.currency });
+
+        if (crypto[0].likes.includes(userIp)) {
+          throw new Error("You have already liked this cryptocurrency");
+        } else {
+          crypto[0].likes = [...crypto[0].likes, userIp];
+          await crypto[0].save();
+        }
+
+        return crypto[0].likes.length;
+      } catch (error) {
+        throw new Error(error.message);
+      }
     }
   }
 };

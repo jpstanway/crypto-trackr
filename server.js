@@ -19,7 +19,17 @@ mongoose
 // server
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: context => ({
+    ...context,
+    userIp: () => {
+      const headers = context.req.headers;
+      if (!headers) return null;
+      const ipAddress = headers["x-forwarded-for"];
+      if (!ipAddress) return null;
+      return ipAddress;
+    }
+  })
 });
 
 server.listen().then(({ url }) => {
