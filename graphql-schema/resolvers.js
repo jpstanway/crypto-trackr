@@ -29,10 +29,10 @@ module.exports = {
     getCryptoLikes: async (root, args) => {
       try {
         // get crypto from database
-        const crypto = await Crypto.find({ currency: args.currency });
+        const crypto = await Crypto.findOne({ currency: args.currency });
 
         // return length of likes array
-        return crypto[0].likes.length;
+        return crypto.likes.length;
       } catch (error) {
         throw new Error(error.message);
       }
@@ -51,16 +51,23 @@ module.exports = {
     updateCryptoLikes: async (root, args, context) => {
       try {
         const userIp = "testIp";
-        const crypto = await Crypto.find({ currency: args.currency });
+        const crypto = await Crypto.findOne({ currency: args.currency });
 
-        if (crypto[0].likes.includes(userIp)) {
+        if (crypto.likes.includes(userIp)) {
           throw new Error("You have already liked this cryptocurrency");
         } else {
-          crypto[0].likes = [...crypto[0].likes, userIp];
-          await crypto[0].save();
+          crypto.likes = [...crypto.likes, userIp];
+          await crypto.save();
         }
 
-        return crypto[0].likes.length;
+        return crypto.likes.length;
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    },
+    removeCrypto: async (root, args) => {
+      try {
+        return await Crypto.findOneAndRemove({ currency: args.currency });
       } catch (error) {
         throw new Error(error.message);
       }
