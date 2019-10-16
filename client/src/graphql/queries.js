@@ -7,6 +7,7 @@ export const ALL_CRYPTOS = gql`
       currency
       rank
       name
+      logo_url
       market_cap
       price
       circulating_supply

@@ -17,16 +17,16 @@ module.exports = gql`
     id: ID!
     currency: String!
     price: String!
-    price_date: String!
-    symbol: String!
-    circulating_supply: String!
-    max_supply: String!
+    price_date: String
+    symbol: String
+    circulating_supply: String
+    max_supply: String
     name: String
     logo_url: String
-    market_cap: String!
+    market_cap: String
     rank: String!
-    high: String!
-    high_timestamp: String!
+    high: String
+    high_timestamp: String
     website_url: String
     blog_url: String
     discord_url: String
