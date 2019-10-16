@@ -1,10 +1,13 @@
 .btn {
   position: relative;
 
-  &:focus,
   &:active {
-    outline: none;
     top: 2px;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
   }
 }
 
@@ -19,4 +22,32 @@
   letter-spacing: 0.2rem;
   padding: 1.5rem 2.5rem;
   text-transform: uppercase;
+}
+
+.btn-large {
+  @include background-hover($color-tertiary-dark, $color-tertiary);
+  @include color-hover($color-white, $color-black);
+  border: 0;
+  box-shadow: $box-shadow-thin;
+  cursor: pointer;
+  font-family: $heading-font-family;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  margin-right: 1rem;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+}
+
+.btn-disabled {
+  @include background-hover($color-grey-dark, $color-grey-dark);
+  @include color-hover($color-white, $color-white);
+  cursor: not-allowed;
+}
+
+.home-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem;
 }

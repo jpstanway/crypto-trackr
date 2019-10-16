@@ -28,9 +28,10 @@ body {
 
 .btn {
   position: relative; }
-  .btn:focus, .btn:active {
-    outline: none;
+  .btn:active {
     top: 2px; }
+  .btn:active, .btn:focus {
+    outline: none; }
 
 .btn-form {
   background-color: #8e5cf5;
@@ -47,10 +48,51 @@ body {
   letter-spacing: 0.2rem;
   padding: 1.5rem 2.5rem;
   text-transform: uppercase; }
-  .btn-form:hover, .btn-form:focus {
+  .btn-form:hover, .btn-form:active {
     background-color: #d4c1fc; }
   .btn-form:hover {
     color: #2a2a2a; }
+
+.btn-large {
+  background-color: #f58e5c;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #fefefe;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 0;
+  box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
+  cursor: pointer;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  margin-right: 1rem;
+  padding: 1rem 2rem;
+  text-transform: uppercase; }
+  .btn-large:hover, .btn-large:active {
+    background-color: #fcd4c1; }
+  .btn-large:hover {
+    color: #2a2a2a; }
+
+.btn-disabled {
+  background-color: #7f7f7f;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #fefefe;
+  cursor: pointer;
+  transition: all 0.2s;
+  cursor: not-allowed; }
+  .btn-disabled:hover, .btn-disabled:active {
+    background-color: #7f7f7f; }
+  .btn-disabled:hover {
+    color: #fefefe; }
+
+.home-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10rem; }
 
 .crypto-card {
   border: 1px solid #eee;
@@ -137,7 +179,7 @@ body {
     border: 0;
     height: 100%;
     width: 100%; }
-    .search-box__btn:hover, .search-box__btn:focus {
+    .search-box__btn:hover, .search-box__btn:active {
       background-color: #c6c6c6; }
     .search-box__btn:focus {
       outline: none; }
@@ -274,7 +316,7 @@ body {
     display: flex;
     height: 100%;
     justify-content: center; }
-    .navigation__item:hover, .navigation__item:focus {
+    .navigation__item:hover, .navigation__item:active {
       background-color: #fcc1e9; }
   .navigation__link:visited, .navigation__link:link {
     color: #2a2a2a;
@@ -297,7 +339,7 @@ body {
     background-color: transparent;
     cursor: pointer;
     transition: all 0.2s; }
-    .navigation__mobile-nav-item:hover, .navigation__mobile-nav-item:focus {
+    .navigation__mobile-nav-item:hover, .navigation__mobile-nav-item:active {
       background-color: #fcc1e9; }
     .navigation__mobile-nav-item:not(:last-child) {
       border-bottom: 1px solid #c6c6c6; }
