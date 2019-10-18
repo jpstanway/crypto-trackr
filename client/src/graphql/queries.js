@@ -10,6 +10,7 @@ export const ALL_CRYPTOS = gql`
       logo_url
       market_cap
       price
+      price_date
       circulating_supply
     }
   }

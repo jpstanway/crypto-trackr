@@ -1,17 +1,11 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/react-hooks";
-
-import { ALL_CRYPTOS } from "../graphql/queries";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import convertToCurrency from "../utils/convertToCurrency";
 
-const Home = () => {
+const Home = props => {
   const [filter, setFilter] = useState({ min: 1, max: 10 });
-  const cryptos = useQuery(ALL_CRYPTOS);
-
-  if (cryptos.loading) {
-    return <div>loading...</div>;
-  }
 
   const handlePrev = () => {
     const prevFilter = {
@@ -37,6 +31,9 @@ const Home = () => {
         <h1 className="home-content__title heading-1">
           Current Top 10 Cryptocurrencies
         </h1>
+        <p style={{ textAlign: "center" }}>
+          <em>updated </em>
+        </p>
         <div className="home-content__content">
           <table className="home-table">
             <thead className="home-table__head">
@@ -51,7 +48,7 @@ const Home = () => {
               </tr>
             </thead>
             <tbody className="home-table__body">
-              {cryptos.data.allCryptos
+              {props.cryptos
                 .filter(
                   crypto =>
                     crypto.rank >= filter.min && crypto.rank <= filter.max
@@ -65,7 +62,9 @@ const Home = () => {
                         alt={crypto.name}
                         className="home-table__logo"
                       />
-                      {crypto.name}
+                      <Link to={`/currency/${crypto.currency}`}>
+                        {crypto.name}
+                      </Link>
                     </td>
                     <td className="home-table__cell">
                       {convertToCurrency(crypto.market_cap, true)}
@@ -100,4 +99,8 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapStateToProps = state => ({
+  cryptos: state.cryptos
+});
+
+export default connect(mapStateToProps)(Home);
