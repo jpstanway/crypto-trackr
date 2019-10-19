@@ -12,12 +12,21 @@ module.exports = {
         `${API_URL}/currencies/ticker?key=${API_KEY}`
       );
 
-      return response.data;
+      // filter out top 100 cryptos
+      return response.data.filter(crypto => crypto.rank <= 100);
+    },
+    getOneCrypto: async (root, args) => {
+      const currency = args.currency.toUpperCase();
+      const response = await axios.get(
+        `${API_URL}/currencies/ticker?key=${API_KEY}ids=${currency}`
+      );
+
+      return response.data[0];
     },
     getCryptoMetaData: async (root, args) => {
-      const currencyId = args.currencyId.toUpperCase();
+      const currency = args.currency.toUpperCase();
       const response = await axios.get(
-        `${API_URL}/currencies?key=${API_KEY}&ids=${currencyId}`
+        `${API_URL}/currencies?key=${API_KEY}&ids=${currency}`
       );
 
       if (!response) {

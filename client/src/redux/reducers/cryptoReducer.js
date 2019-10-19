@@ -1,15 +1,21 @@
-const cryptoReducer = (state = [], action) => {
+const initialState = {
+  allCryptos: [],
+  metadata: []
+};
+
+const cryptoReducer = (state = initialState, action) => {
   switch (action.type) {
     case "INITIALIZE_CRYPTOS":
-      return (state = action.payload);
+      return {
+        ...state,
+        allCryptos: action.payload
+      };
     default:
       return state;
   }
 };
 
 // action creators
-
-// all cryptos
 export const initializeCryptos = cryptos => {
   return async dispatch => {
     dispatch({
@@ -18,9 +24,5 @@ export const initializeCryptos = cryptos => {
     });
   };
 };
-
-// metadata
-
-// like crypto
 
 export default cryptoReducer;

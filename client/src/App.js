@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
-import { connect } from "react-redux";
 
 import "./App.css";
 
@@ -12,22 +11,19 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
 import { ALL_CRYPTOS } from "./graphql/queries";
-import { initializeCryptos } from "./redux/reducers/cryptoReducer";
 
-const App = props => {
-  const cryptos = useQuery(ALL_CRYPTOS);
+const App = () => {
+  const { data, loading } = useQuery(ALL_CRYPTOS);
 
-  if (cryptos.loading) {
+  if (loading) {
     return <div>loading...</div>;
-  } else {
-    props.initializeCryptos(cryptos.data.allCryptos);
   }
 
   return (
     <Router>
       <Navigation />
       <div className="container">
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" render={() => <Home data={data} />} />
         <Route path="/search" component={Search} />
         <Route path="/currency/:id" component={Crypto} />
       </div>
@@ -36,7 +32,4 @@ const App = props => {
   );
 };
 
-export default connect(
-  null,
-  { initializeCryptos }
-)(App);
+export default App;

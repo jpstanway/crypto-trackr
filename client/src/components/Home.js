@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 
 import convertToCurrency from "../utils/convertToCurrency";
 
-const Home = props => {
+const Home = ({ data }) => {
   const [filter, setFilter] = useState({ min: 1, max: 10 });
 
   const handlePrev = () => {
@@ -48,7 +47,7 @@ const Home = props => {
               </tr>
             </thead>
             <tbody className="home-table__body">
-              {props.cryptos
+              {data.allCryptos
                 .filter(
                   crypto =>
                     crypto.rank >= filter.min && crypto.rank <= filter.max
@@ -62,7 +61,14 @@ const Home = props => {
                         alt={crypto.name}
                         className="home-table__logo"
                       />
-                      <Link to={`/currency/${crypto.currency}`}>
+                      <Link
+                        to={{
+                          pathname: `/currency/${crypto.currency}`,
+                          state: {
+                            crypto
+                          }
+                        }}
+                      >
                         {crypto.name}
                       </Link>
                     </td>
@@ -99,8 +105,4 @@ const Home = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  cryptos: state.cryptos
-});
-
-export default connect(mapStateToProps)(Home);
+export default Home;

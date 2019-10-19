@@ -16,20 +16,29 @@ export const ALL_CRYPTOS = gql`
   }
 `;
 
+export const GET_ONE_CRYPTO = gql`
+  query getOne($currency: String!) {
+    getOneCrypto(currency: $currency) {
+      id
+      currency
+      rank
+      name
+      logo_url
+      market_cap
+      price
+      price_date
+      circulating_supply
+    }
+  }
+`;
+
 export const GET_CRYPTO_METADATA = gql`
   query cryptoMetadata($currency: String!) {
     getCryptoMetaData(currency: $currency) {
       website_url
-      blog_url
-      discord_url
-      facebook_url
       github_url
-      medium_url
       reddit_url
-      telegram_url
-      twitter_url
       whitepaper_url
-      youtube_url
     }
   }
 `;

@@ -3,7 +3,8 @@ const { gql } = require("apollo-server");
 module.exports = gql`
   type Query {
     allCryptos: [Crypto!]!
-    getCryptoMetaData(currencyId: String!): Crypto
+    getOneCrypto(currency: String!): Crypto
+    getCryptoMetaData(currency: String!): Crypto
     getCryptoLikes(currency: String!): Int
   }
 
@@ -18,7 +19,6 @@ module.exports = gql`
     currency: String!
     price: String!
     price_date: String
-    symbol: String
     circulating_supply: String
     max_supply: String
     name: String
@@ -28,16 +28,9 @@ module.exports = gql`
     high: String
     high_timestamp: String
     website_url: String
-    blog_url: String
-    discord_url: String
-    facebook_url: String
     github_url: String
-    medium_url: String
     reddit_url: String
-    telegram_url: String
-    twitter_url: String
     whitepaper_url: String
-    youtube_url: String
     likes: [String]
   }
 `;
