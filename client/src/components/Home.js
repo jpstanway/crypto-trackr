@@ -31,7 +31,7 @@ const Home = ({ data }) => {
           Current Top 10 Cryptocurrencies
         </h1>
         <p style={{ textAlign: "center" }}>
-          <em>updated </em>
+          <em>updated {data.allCryptos[0].price_date}</em>
         </p>
         <div className="home-content__content">
           <table className="home-table">
@@ -61,14 +61,7 @@ const Home = ({ data }) => {
                         alt={crypto.name}
                         className="home-table__logo"
                       />
-                      <Link
-                        to={{
-                          pathname: `/currency/${crypto.currency}`,
-                          state: {
-                            crypto
-                          }
-                        }}
-                      >
+                      <Link to={`/currency/${crypto.currency}`}>
                         {crypto.name}
                       </Link>
                     </td>

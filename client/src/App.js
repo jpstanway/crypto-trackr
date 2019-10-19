@@ -24,8 +24,11 @@ const App = () => {
       <Navigation />
       <div className="container">
         <Route exact path="/" render={() => <Home data={data} />} />
-        <Route path="/search" component={Search} />
-        <Route path="/currency/:id" component={Crypto} />
+        <Route path="/search" render={() => <Search data={data} />} />
+        <Route
+          path="/currency/:id"
+          render={props => <Crypto {...props} data={data} />}
+        />
       </div>
       <Footer />
     </Router>
