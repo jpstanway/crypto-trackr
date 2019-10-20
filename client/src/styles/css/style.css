@@ -75,6 +75,16 @@ body {
   .btn-large:hover {
     color: #2a2a2a; }
 
+.btn-like {
+  color: #7f7f7f;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  border: 0;
+  cursor: pointer; }
+  .btn-like:hover {
+    color: #c6c6c6; }
+
 .btn-disabled {
   background-color: #7f7f7f;
   cursor: pointer;
@@ -87,6 +97,13 @@ body {
     background-color: #7f7f7f; }
   .btn-disabled:hover {
     color: #fefefe; }
+
+.btn-group {
+  display: flex;
+  flex-direction: column; }
+  .btn-group__value {
+    color: #7f7f7f;
+    font-size: 1.5rem; }
 
 .home-btns {
   display: flex;
@@ -211,6 +228,13 @@ body {
   .home-table__logo {
     margin-right: 1rem;
     max-height: 2rem; }
+  .home-table__link {
+    color: #8e5cf5;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none; }
+    .home-table__link:hover {
+      color: #d4c1fc; }
   .home-table__loading {
     height: 40rem;
     text-align: center; }
@@ -397,13 +421,30 @@ body {
 .mobile-dropdown {
   top: 6rem; }
 
-.add-search-content {
+.search-content {
   margin: auto;
   max-width: 100rem;
   width: 80%; }
   @media only screen and (max-width: 37.5em) {
-    .add-search-content {
+    .search-content {
       width: 90%; } }
+
+.crypto-view-content {
+  margin: auto;
+  max-width: 100rem;
+  width: 80%; }
+  @media only screen and (max-width: 37.5em) {
+    .crypto-view-content {
+      width: 90%; } }
+  .crypto-view-content h1 {
+    color: #7f7f7f; }
+  .crypto-view-content a {
+    color: #8e5cf5;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none; }
+    .crypto-view-content a:hover {
+      color: #d4c1fc; }
 
 .home-content {
   left: 50%;
@@ -414,36 +455,5 @@ body {
   width: 80%; }
   @media only screen and (max-width: 37.5em) {
     .home-content__content {
-      overflow-x: scroll;
-      padding: 2rem 0; } }
-
-.login-signup-content {
-  align-content: center;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  height: 100%;
-  justify-content: center;
-  margin: auto;
-  max-width: 100rem;
-  width: 80%; }
-  @media only screen and (max-width: 75em) {
-    .login-signup-content {
-      width: 90%; } }
-  @media only screen and (max-width: 50em) {
-    .login-signup-content {
-      grid-template-columns: 100%; } }
-  @media only screen and (max-width: 25em) {
-    .login-signup-content {
-      width: 100%; } }
-
-.portfolio-content {
-  left: 50%;
-  max-width: 100rem;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%; }
-  @media only screen and (max-width: 37.5em) {
-    .portfolio-content__content {
       overflow-x: scroll;
       padding: 2rem 0; } }

@@ -2,7 +2,7 @@ import React from "react";
 
 const Search = () => (
   <main className="content">
-    <div className="add-search-content">
+    <div className="search-content">
       <h1 className="heading-1">Add/Search Cryptocurrencies</h1>
       <div className="search-box">
         <form action="" className="search-box__search">

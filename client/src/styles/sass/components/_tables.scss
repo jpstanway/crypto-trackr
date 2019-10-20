@@ -42,6 +42,11 @@
     max-height: 2rem;
   }
 
+  &__link {
+    @include color-hover($color-secondary-dark, $color-secondary);
+    text-decoration: none;
+  }
+
   &__loading {
     height: 40rem;
     text-align: center;

@@ -39,10 +39,27 @@
   text-transform: uppercase;
 }
 
+.btn-like {
+  @include color-hover($color-grey-dark, $color-grey);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
 .btn-disabled {
   @include background-hover($color-grey-dark, $color-grey-dark);
   @include color-hover($color-white, $color-white);
   cursor: not-allowed;
+}
+
+.btn-group {
+  display: flex;
+  flex-direction: column;
+
+  &__value {
+    color: $color-grey-dark;
+    font-size: 1.5rem;
+  }
 }
 
 .home-btns {

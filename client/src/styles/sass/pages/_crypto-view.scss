@@ -1,0 +1,18 @@
+.crypto-view-content {
+  margin: auto;
+  max-width: 100rem;
+  width: 80%;
+
+  @media only screen and (max-width: $screen-size-sm) {
+    width: 90%;
+  }
+
+  h1 {
+    color: $color-grey-dark;
+  }
+
+  a {
+    @include color-hover($color-secondary-dark, $color-secondary);
+    text-decoration: none;
+  }
+}

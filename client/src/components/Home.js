@@ -44,6 +44,7 @@ const Home = ({ data }) => {
                 <th className="home-table__heading">Market Cap</th>
                 <th className="home-table__heading">Price</th>
                 <th className="home-table__heading">Volume</th>
+                <th className="home-table__heading">&nbsp;</th>
               </tr>
             </thead>
             <tbody className="home-table__body">
@@ -61,7 +62,10 @@ const Home = ({ data }) => {
                         alt={crypto.name}
                         className="home-table__logo"
                       />
-                      <Link to={`/currency/${crypto.currency}`}>
+                      <Link
+                        className="home-table__link"
+                        to={`/currency/${crypto.currency}`}
+                      >
                         {crypto.name}
                       </Link>
                     </td>
@@ -73,6 +77,14 @@ const Home = ({ data }) => {
                     </td>
                     <td className="home-table__cell">
                       {convertToCurrency(crypto.circulating_supply, true)}
+                    </td>
+                    <td className="home-table__cell">
+                      <div className="btn-group">
+                        <button className="btn btn-like">
+                          <i className="fas fa-caret-up fa-2x"></i>
+                        </button>
+                        <span className="btn-group__value">0</span>
+                      </div>
                     </td>
                   </tr>
                 ))}
