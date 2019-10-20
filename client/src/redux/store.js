@@ -2,10 +2,10 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import cryptoReducer from "./reducers/cryptoReducer";
+import likesReducer from "./reducers/likesReducer";
 
 const rootReducer = combineReducers({
-  cryptos: cryptoReducer
+  likes: likesReducer
 });
 
 const store = createStore(

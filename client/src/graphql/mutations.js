@@ -11,9 +11,9 @@ export const ADD_NEW_CRYPTO = gql`
   }
 `;
 
-export const UPDATE_CRYPTO_LIKES = gql`
-  mutation updateLikes($currency: String!) {
-    updateCryptoLikes(currency: $currency)
+export const ADD_LIKE = gql`
+  mutation addLikeToCrypto($currency: String!, $name: String!) {
+    addLike(currency: $currency, name: $name)
   }
 `;
 

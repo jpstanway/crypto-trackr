@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import convertToCurrency from "../utils/convertToCurrency";
+import { SSL_OP_COOKIE_EXCHANGE } from "constants";
 
-const Home = ({ data }) => {
+const Home = ({ data, likeData }) => {
   const [filter, setFilter] = useState({ min: 1, max: 10 });
 
   const handlePrev = () => {
@@ -22,6 +24,12 @@ const Home = ({ data }) => {
     };
 
     setFilter(nextFilter);
+  };
+
+  const handleLikes = currency => {
+    const crypto = likeData.find(crypto => crypto.currency === currency);
+
+    return crypto ? crypto.likes.length : 0;
   };
 
   return (
@@ -83,7 +91,9 @@ const Home = ({ data }) => {
                         <button className="btn btn-like">
                           <i className="fas fa-caret-up fa-2x"></i>
                         </button>
-                        <span className="btn-group__value">0</span>
+                        <span className="btn-group__value">
+                          {handleLikes(crypto.currency)}
+                        </span>
                       </div>
                     </td>
                   </tr>
@@ -110,4 +120,8 @@ const Home = ({ data }) => {
   );
 };
 
-export default Home;
+const mapStateToProps = state => ({
+  likeData: state.likes
+});
+
+export default connect(mapStateToProps)(Home);

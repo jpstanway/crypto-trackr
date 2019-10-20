@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
+import { connect } from "react-redux";
 
 import "./App.css";
 
@@ -10,14 +11,18 @@ import Crypto from "./components/Crypto";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
-import { ALL_CRYPTOS } from "./graphql/queries";
+import { ALL_CRYPTOS, GET_CRYPTO_LIKES } from "./graphql/queries";
+import { initializeLikes } from "./redux/reducers/likesReducer";
 
-const App = () => {
+const App = props => {
   const { data, loading } = useQuery(ALL_CRYPTOS);
+  const likeData = useQuery(GET_CRYPTO_LIKES);
 
-  if (loading) {
+  if (loading || likeData.loading) {
     return <div>loading...</div>;
   }
+
+  props.initializeLikes(likeData.data.getCryptoLikes);
 
   return (
     <Router>
@@ -35,4 +40,7 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(
+  null,
+  { initializeLikes }
+)(App);

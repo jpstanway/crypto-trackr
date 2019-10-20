@@ -29,33 +29,30 @@ module.exports = {
     },
     getCryptoLikes: async (root, args) => {
       try {
-        // get crypto from database
-        const crypto = await Crypto.findOne({ currency: args.currency });
-
-        // return length of likes array
-        return crypto.likes.length;
+        // get all crypto like data from database
+        return await Crypto.find();
       } catch (error) {
         throw new Error(error.message);
       }
     }
   },
   Mutation: {
-    addNewCrypto: async (root, args) => {
-      const cryptoObject = new Crypto({ ...args });
-
-      try {
-        return await cryptoObject.save();
-      } catch (error) {
-        throw new Error(error.message);
-      }
-    },
-    updateCryptoLikes: async (root, args, context) => {
+    addLike: async (root, args, context) => {
       try {
         const userIp = "testIp";
-        const crypto = await Crypto.findOne({ currency: args.currency });
 
+        // search database for crypto
+        let crypto = await Crypto.findOne({ currency: args.currency });
+
+        // if it doesnt exist yet, create new
+        if (!crypto) {
+          const cryptoObject = new Crypto({ ...args });
+          crypto = await cryptoObject.save();
+        }
+
+        // update likes array in database (unless already liked by ip) and return new value
         if (crypto.likes.includes(userIp)) {
-          throw new Error("You have already liked this cryptocurrency");
+          throw new Error("You have already liked this cryptocurrency!");
         } else {
           crypto.likes = [...crypto.likes, userIp];
           await crypto.save();
@@ -68,6 +65,7 @@ module.exports = {
     },
     removeCrypto: async (root, args) => {
       try {
+        // search database for crypto and remove
         return await Crypto.findOneAndRemove({ currency: args.currency });
       } catch (error) {
         throw new Error(error.message);

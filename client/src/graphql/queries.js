@@ -27,7 +27,12 @@ export const GET_CRYPTO_METADATA = gql`
 `;
 
 export const GET_CRYPTO_LIKES = gql`
-  query cryptoLikes($currency: String!) {
-    getCryptoLikes(currency: $currency)
+  query {
+    getCryptoLikes {
+      id
+      currency
+      name
+      likes
+    }
   }
 `;
