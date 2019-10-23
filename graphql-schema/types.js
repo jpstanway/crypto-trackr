@@ -8,7 +8,7 @@ module.exports = gql`
   }
 
   type Mutation {
-    addLike(currency: String!, name: String!): Int
+    addLike(currency: String!, name: String!): Crypto
     removeCrypto(currency: String!): Crypto
   }
 

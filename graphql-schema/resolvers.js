@@ -58,7 +58,7 @@ module.exports = {
           await crypto.save();
         }
 
-        return crypto.likes.length;
+        return crypto;
       } catch (error) {
         throw new Error(error.message);
       }

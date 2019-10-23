@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { useMutation } from "@apollo/react-hooks";
 
 import convertToCurrency from "../utils/convertToCurrency";
-import { SSL_OP_COOKIE_EXCHANGE } from "constants";
 
-const Home = ({ data, likeData }) => {
+import { ADD_LIKE } from "../graphql/mutations";
+import { updateLikes } from "../redux/reducers/likesReducer";
+
+const Home = ({ data: { allCryptos }, likeData, updateLikes }) => {
   const [filter, setFilter] = useState({ min: 1, max: 10 });
+  const [addLike] = useMutation(ADD_LIKE, {
+    onCompleted: data => {
+      updateLikes(data.addLike);
+    },
+    onError: error => {
+      console.error(error);
+      window.alert("You have already liked this crypto!");
+    }
+  });
 
   const handlePrev = () => {
     const prevFilter = {
@@ -26,7 +38,16 @@ const Home = ({ data, likeData }) => {
     setFilter(nextFilter);
   };
 
-  const handleLikes = currency => {
+  const handleLikes = async ({ currency, name }) => {
+    await addLike({
+      variables: {
+        currency,
+        name
+      }
+    });
+  };
+
+  const renderLikes = currency => {
     const crypto = likeData.find(crypto => crypto.currency === currency);
 
     return crypto ? crypto.likes.length : 0;
@@ -39,7 +60,7 @@ const Home = ({ data, likeData }) => {
           Current Top 10 Cryptocurrencies
         </h1>
         <p style={{ textAlign: "center" }}>
-          <em>updated {data.allCryptos[0].price_date}</em>
+          <em>updated {allCryptos[0].price_date}</em>
         </p>
         <div className="home-content__content">
           <table className="home-table">
@@ -56,7 +77,7 @@ const Home = ({ data, likeData }) => {
               </tr>
             </thead>
             <tbody className="home-table__body">
-              {data.allCryptos
+              {allCryptos
                 .filter(
                   crypto =>
                     crypto.rank >= filter.min && crypto.rank <= filter.max
@@ -88,11 +109,14 @@ const Home = ({ data, likeData }) => {
                     </td>
                     <td className="home-table__cell">
                       <div className="btn-group">
-                        <button className="btn btn-like">
+                        <button
+                          onClick={() => handleLikes(crypto)}
+                          className="btn btn-like"
+                        >
                           <i className="fas fa-caret-up fa-2x"></i>
                         </button>
                         <span className="btn-group__value">
-                          {handleLikes(crypto.currency)}
+                          {renderLikes(crypto.currency)}
                         </span>
                       </div>
                     </td>
@@ -124,4 +148,7 @@ const mapStateToProps = state => ({
   likeData: state.likes
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(
+  mapStateToProps,
+  { updateLikes }
+)(Home);
