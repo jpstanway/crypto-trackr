@@ -75,6 +75,13 @@ body {
   .btn-large:hover {
     color: #2a2a2a; }
 
+.btn-back {
+  margin-bottom: 5rem; }
+  .btn-back a {
+    color: #f58e5c !important; }
+    .btn-back a:hover {
+      color: #fcd4c1 !important; }
+
 .btn-like {
   color: #7f7f7f;
   cursor: pointer;
@@ -202,7 +209,7 @@ body {
       outline: none; }
 
 .notification {
-  background-color: #d4c1fc;
+  background-color: #fcc1e9;
   border: 1px solid #7f7f7f;
   border-radius: 4px;
   color: #7f7f7f;

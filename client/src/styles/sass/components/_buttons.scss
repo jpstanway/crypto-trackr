@@ -39,6 +39,18 @@
   text-transform: uppercase;
 }
 
+.btn-back {
+  margin-bottom: 5rem;
+
+  a {
+    color: $color-tertiary-dark !important;
+
+    &:hover {
+      color: $color-tertiary !important;
+    }
+  }
+}
+
 .btn-like {
   @include color-hover($color-grey-dark, $color-grey);
   background: transparent;

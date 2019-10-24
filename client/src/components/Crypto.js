@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
+import { Link } from "react-router-dom";
 
 import convertToCurrency from "../utils/convertToCurrency";
 
@@ -26,6 +27,11 @@ const Crypto = props => {
   return (
     <main className="content">
       <div className="crypto-view-content">
+        <div className="btn btn-back">
+          <Link to="/">
+            <i className="fas fa-arrow-left"></i> go back
+          </Link>
+        </div>
         <h1>
           <img src={logo_url} alt={name} style={{ maxWidth: "50px" }} /> {name}
         </h1>
