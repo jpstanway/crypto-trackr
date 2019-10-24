@@ -6,12 +6,18 @@ import { useMutation } from "@apollo/react-hooks";
 import convertToCurrency from "../utils/convertToCurrency";
 
 import { ADD_LIKE } from "../graphql/mutations";
-import { updateLikes } from "../redux/reducers/likesReducer";
+import { addCrypto, updateLikes } from "../redux/reducers/likesReducer";
 
-const Home = ({ data: { allCryptos }, likeData, updateLikes }) => {
+const Home = ({ data: { allCryptos }, likeData, addCrypto, updateLikes }) => {
   const [filter, setFilter] = useState({ min: 1, max: 10 });
   const [addLike] = useMutation(ADD_LIKE, {
     onCompleted: data => {
+      // check if crypto exists in store before attempting to update
+      if (!likeData.find(crypto => crypto.currency === data.addLike.currency)) {
+        // add new if it does not
+        addCrypto(data.addLike);
+      }
+      // update likes if it does
       updateLikes(data.addLike);
     },
     onError: error => {
@@ -150,5 +156,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { updateLikes }
+  { addCrypto, updateLikes }
 )(Home);

@@ -2,6 +2,8 @@ const cryptoReducer = (state = [], action) => {
   switch (action.type) {
     case "INITIALIZE_LIKE_DATA":
       return (state = action.payload);
+    case "ADD_CRYPTO":
+      return (state = [...state, action.payload]);
     case "UPDATE_LIKES":
       return state.map(crypto =>
         crypto.currency === action.payload.currency
@@ -19,6 +21,15 @@ export const initializeLikes = data => {
     dispatch({
       type: "INITIALIZE_LIKE_DATA",
       payload: data
+    });
+  };
+};
+
+export const addCrypto = crypto => {
+  return async dispatch => {
+    dispatch({
+      type: "ADD_CRYPTO",
+      payload: crypto
     });
   };
 };
