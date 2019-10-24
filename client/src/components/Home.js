@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { useMutation } from "@apollo/react-hooks";
 
+import Notification from "./Notification";
+
 import convertToCurrency from "../utils/convertToCurrency";
 
 import { ADD_LIKE } from "../graphql/mutations";
@@ -10,6 +12,7 @@ import { addCrypto, updateLikes } from "../redux/reducers/likesReducer";
 
 const Home = ({ data: { allCryptos }, likeData, addCrypto, updateLikes }) => {
   const [filter, setFilter] = useState({ min: 1, max: 10 });
+  const [notification, setNotification] = useState("");
   const [addLike] = useMutation(ADD_LIKE, {
     onCompleted: data => {
       // check if crypto exists in store before attempting to update
@@ -22,7 +25,11 @@ const Home = ({ data: { allCryptos }, likeData, addCrypto, updateLikes }) => {
     },
     onError: error => {
       console.error(error);
-      window.alert("You have already liked this crypto!");
+      setNotification("You have already liked this crypto!");
+
+      setTimeout(() => {
+        setNotification("");
+      }, 5000);
     }
   });
 
@@ -62,6 +69,7 @@ const Home = ({ data: { allCryptos }, likeData, addCrypto, updateLikes }) => {
   return (
     <main className="content">
       <div className="home-content">
+        <Notification notification={notification} />
         <h1 className="home-content__title heading-1">
           Current Top 10 Cryptocurrencies
         </h1>

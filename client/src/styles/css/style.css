@@ -201,6 +201,15 @@ body {
     .search-box__btn:focus {
       outline: none; }
 
+.notification {
+  background-color: #d4c1fc;
+  border: 1px solid #7f7f7f;
+  border-radius: 4px;
+  color: #7f7f7f;
+  padding: 2rem;
+  text-align: center;
+  width: 100%; }
+
 .home-table {
   border-collapse: collapse;
   color: #2a2a2a;
