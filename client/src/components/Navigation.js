@@ -7,17 +7,17 @@ const Navigation = () => (
     <ul className="navigation__menu">
       <li className="navigation__item">
         <Link to="/" className="navigation__link">
-          Home
+          Crypto Tracker
         </Link>
       </li>
-      <li className="navigation__item">
+      {/* <li className="navigation__item">
         <Link to="/search" className="navigation__link">
           Search
         </Link>
-      </li>
+      </li> */}
     </ul>
 
-    <div className="mobile navigation__mobile-nav">
+    {/* <div className="mobile navigation__mobile-nav">
       <ul className="navigation__mobile-nav-menu">
         <li className="navigation__mobile-nav-item">
           <Link to="/" className="navigation__mobile-nav-link">
@@ -35,7 +35,7 @@ const Navigation = () => (
       <div className="navigation__mobile-btn-box">
         <span className="navigation__mobile-btn-bar"></span>
       </div>
-    </a>
+    </a> */}
   </nav>
 );
 

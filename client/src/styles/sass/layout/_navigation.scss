@@ -37,13 +37,13 @@
       font-size: 1.8rem;
     }
 
-    @media only screen and (max-width: $screen-size-md) {
-      display: none;
-    }
+    // @media only screen and (max-width: $screen-size-md) {
+    //   display: none;
+    // }
   }
 
   &__item {
-    @include background-hover(transparent, $color-complement);
+    // @include background-hover(transparent, $color-complement);
     align-items: center;
     display: flex;
     height: 100%;

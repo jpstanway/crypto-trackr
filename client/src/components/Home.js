@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { useMutation } from "@apollo/react-hooks";
 
 import Notification from "./Notification";
+import Search from "./Search";
 
 import convertToCurrency from "../utils/convertToCurrency";
 
@@ -12,6 +13,7 @@ import { addCrypto, updateLikes } from "../redux/reducers/likesReducer";
 
 const Home = ({ data: { allCryptos }, likeData, addCrypto, updateLikes }) => {
   const [filter, setFilter] = useState({ min: 1, max: 10 });
+  const [search, setSearch] = useState("");
   const [notification, setNotification] = useState("");
   const [addLike] = useMutation(ADD_LIKE, {
     onCompleted: data => {
@@ -70,6 +72,7 @@ const Home = ({ data: { allCryptos }, likeData, addCrypto, updateLikes }) => {
     <main className="content">
       <div className="home-content">
         <Notification notification={notification} />
+        <Search search={search} setSearch={setSearch} />
         <h1 className="home-content__title heading-1">
           Current Top 10 Cryptocurrencies
         </h1>
@@ -92,10 +95,15 @@ const Home = ({ data: { allCryptos }, likeData, addCrypto, updateLikes }) => {
             </thead>
             <tbody className="home-table__body">
               {allCryptos
-                .filter(
-                  crypto =>
-                    crypto.rank >= filter.min && crypto.rank <= filter.max
-                )
+                .filter(crypto => {
+                  if (search) {
+                    return crypto.name
+                      .toLowerCase()
+                      .includes(search.toLowerCase());
+                  }
+
+                  return crypto.rank >= filter.min && crypto.rank <= filter.max;
+                })
                 .map(crypto => (
                   <tr key={crypto.currency} className="home-table__row">
                     <td className="home-table__cell">{crypto.rank}</td>

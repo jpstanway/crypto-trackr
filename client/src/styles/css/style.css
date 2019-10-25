@@ -345,19 +345,11 @@ body {
         display: flex;
         justify-content: center;
         font-size: 1.8rem; } }
-    @media only screen and (max-width: 50em) {
-      .navigation__menu {
-        display: none; } }
   .navigation__item {
-    background-color: transparent;
-    cursor: pointer;
-    transition: all 0.2s;
     align-items: center;
     display: flex;
     height: 100%;
     justify-content: center; }
-    .navigation__item:hover, .navigation__item:active {
-      background-color: #fcc1e9; }
   .navigation__link:visited, .navigation__link:link {
     color: #2a2a2a;
     padding: 1rem;
