@@ -3,7 +3,7 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 43.8em) {
     html {
       font-size: 55%; } }
 
@@ -175,7 +175,7 @@ body {
       font-style: italic; }
   .auth-form--login {
     border-right: 1px solid #c6c6c6; }
-    @media only screen and (max-width: 50em) {
+    @media only screen and (max-width: 62.5em) {
       .auth-form--login {
         border-bottom: 1px solid #c6c6c6;
         border-right: 0; } }
@@ -222,10 +222,10 @@ body {
   color: #2a2a2a;
   font-size: 2rem;
   table-layout: fixed; }
-  @media only screen and (max-width: 75em) {
+  @media only screen and (max-width: 81.3em) {
     .home-table {
       font-size: 1.6rem; } }
-  @media only screen and (max-width: 62.5em) {
+  @media only screen and (max-width: 68.8em) {
     .home-table {
       font-size: 2rem; } }
   .home-table__head {
@@ -284,7 +284,7 @@ body {
     font-weight: 700;
     padding: 1rem; }
 
-@media only screen and (min-width: 50em) {
+@media only screen and (min-width: 62.5em) {
   .home-table,
   .portfolio-table {
     width: 100%; } }
@@ -304,7 +304,7 @@ body {
   display: grid;
   grid-template-rows: minmax(94vh, 1fr) min-content;
   margin-left: 30rem; }
-  @media only screen and (max-width: 62.5em) {
+  @media only screen and (max-width: 68.8em) {
     .container {
       grid-template-rows: minmax(86vh, 1fr) min-content;
       margin-left: 0;
@@ -320,12 +320,12 @@ body {
   width: 30rem;
   z-index: 9999;
   /* MOBILE STYLING */ }
-  @media only screen and (max-width: 62.5em) {
+  @media only screen and (max-width: 68.8em) {
     .navigation {
       align-items: stretch;
       height: 6rem;
       width: 100%; } }
-  @media only screen and (max-width: 50em) {
+  @media only screen and (max-width: 62.5em) {
     .navigation {
       align-items: center;
       justify-content: flex-end;
@@ -339,7 +339,7 @@ body {
     text-align: center;
     text-transform: uppercase;
     width: 100%; }
-    @media only screen and (max-width: 62.5em) {
+    @media only screen and (max-width: 68.8em) {
       .navigation__menu {
         align-items: center;
         display: flex;
@@ -422,7 +422,7 @@ body {
 
 .mobile {
   display: none; }
-  @media only screen and (max-width: 50em) {
+  @media only screen and (max-width: 62.5em) {
     .mobile {
       display: initial; } }
 
@@ -433,7 +433,7 @@ body {
   margin: auto;
   max-width: 100rem;
   width: 80%; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 43.8em) {
     .search-content {
       width: 90%; } }
 
@@ -441,7 +441,7 @@ body {
   margin: auto;
   max-width: 100rem;
   width: 80%; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 43.8em) {
     .crypto-view-content {
       width: 90%; } }
   .crypto-view-content h1 {
@@ -461,7 +461,7 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 80%; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 43.8em) {
     .home-content__content {
       overflow-x: scroll;
       padding: 2rem 0; } }
