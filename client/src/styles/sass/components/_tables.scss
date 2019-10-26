@@ -51,52 +51,7 @@
     height: 40rem;
     text-align: center;
   }
-}
 
-.portfolio-table {
-  box-shadow: $box-shadow-thin;
-  border: $border-grey-dark;
-  border-collapse: collapse;
-  table-layout: fixed;
-  text-align: center;
-
-  &__head {
-    border-bottom: $border-grey-dark;
-  }
-
-  &__heading {
-    padding: 1rem;
-
-    &:not(:last-child) {
-      border-right: $border-grey-dark;
-    }
-  }
-
-  &__row {
-    border-bottom: $border-grey;
-  }
-
-  &__cell {
-    padding: 1.5rem;
-
-    &:not(:last-child) {
-      border-right: $border-grey;
-    }
-  }
-
-  &__remove {
-    @include color-hover($color-tertiary-dark, $color-tertiary);
-  }
-
-  &__foot td {
-    border-right: $border-grey-dark;
-    font-weight: 700;
-    padding: 1rem;
-  }
-}
-
-.home-table,
-.portfolio-table {
   @media only screen and (min-width: $screen-size-md) {
     width: 100%;
   }

@@ -1,9 +1,6 @@
 .home-content {
-  left: 50%;
+  margin: auto;
   max-width: 100rem;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
   width: 80%;
 
   &__content {

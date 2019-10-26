@@ -26,6 +26,14 @@ body {
   margin-top: 2rem;
   text-align: center; }
 
+.heading-3 {
+  color: #7f7f7f;
+  font-family: "Ubuntu Mono", monospace;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  text-align: center;
+  text-transform: uppercase; }
+
 .btn {
   position: relative; }
   .btn:active {
@@ -76,7 +84,7 @@ body {
     color: #2a2a2a; }
 
 .btn-back {
-  margin-bottom: 5rem; }
+  margin: 5rem 0; }
   .btn-back a {
     color: #f58e5c !important; }
     .btn-back a:hover {
@@ -187,8 +195,6 @@ body {
     border: 1px solid #eee;
     border-radius: 2px;
     box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
-    display: grid;
-    grid-template-columns: 80% 1fr;
     height: 5rem; }
   .search-box__input {
     border: 0;
@@ -254,45 +260,12 @@ body {
   .home-table__loading {
     height: 40rem;
     text-align: center; }
-
-.portfolio-table {
-  box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
-  border: 1px solid #7f7f7f;
-  border-collapse: collapse;
-  table-layout: fixed;
-  text-align: center; }
-  .portfolio-table__head {
-    border-bottom: 1px solid #7f7f7f; }
-  .portfolio-table__heading {
-    padding: 1rem; }
-    .portfolio-table__heading:not(:last-child) {
-      border-right: 1px solid #7f7f7f; }
-  .portfolio-table__row {
-    border-bottom: 1px solid #c6c6c6; }
-  .portfolio-table__cell {
-    padding: 1.5rem; }
-    .portfolio-table__cell:not(:last-child) {
-      border-right: 1px solid #c6c6c6; }
-  .portfolio-table__remove {
-    color: #f58e5c;
-    cursor: pointer;
-    transition: all 0.2s; }
-    .portfolio-table__remove:hover {
-      color: #fcd4c1; }
-  .portfolio-table__foot td {
-    border-right: 1px solid #7f7f7f;
-    font-weight: 700;
-    padding: 1rem; }
-
-@media only screen and (min-width: 62.5em) {
-  .home-table,
-  .portfolio-table {
-    width: 100%; } }
+  @media only screen and (min-width: 62.5em) {
+    .home-table {
+      width: 100%; } }
 
 .content {
-  background-color: #fefefe;
-  padding: 5rem;
-  position: relative; }
+  background-color: #fefefe; }
 
 .footer {
   color: #2a2a2a;
@@ -455,11 +428,8 @@ body {
       color: #d4c1fc; }
 
 .home-content {
-  left: 50%;
+  margin: auto;
   max-width: 100rem;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
   width: 80%; }
   @media only screen and (max-width: 43.8em) {
     .home-content__content {
