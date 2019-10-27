@@ -1,11 +1,29 @@
 import { gql } from "apollo-boost";
 
-export const ADD_NEW_CRYPTO = gql`
-  mutation newCrypto($currency: String!, $name: String!) {
-    addNewCrypto(currency: $currency, name: $name) {
+export const ADD_OR_UPDATE_CRYPTO = gql`
+  mutation addOrUpdateCrypto(
+    $currency: String!
+    $name: String!
+    $rank: String!
+    $market_cap: String!
+    $price: String!
+    $circulating_supply: String!
+  ) {
+    addCrypto(
+      currency: $currency
+      name: $name
+      rank: $rank
+      market_cap: $market_cap
+      price: $price
+      circulating_supply: $circulating_supply
+    ) {
       id
       currency
       name
+      rank
+      market_cap
+      price
+      circulating_supply
       likes
     }
   }

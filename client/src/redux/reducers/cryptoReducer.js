@@ -1,6 +1,6 @@
 const cryptoReducer = (state = [], action) => {
   switch (action.type) {
-    case "INITIALIZE_LIKE_DATA":
+    case "INITIALIZE_SAVED_DATA":
       return (state = action.payload);
     case "ADD_CRYPTO":
       return (state = [...state, action.payload]);
@@ -16,10 +16,10 @@ const cryptoReducer = (state = [], action) => {
 };
 
 // action creators
-export const initializeLikes = data => {
+export const initializeSavedData = data => {
   return async dispatch => {
     dispatch({
-      type: "INITIALIZE_LIKE_DATA",
+      type: "INITIALIZE_SAVED_DATA",
       payload: data
     });
   };

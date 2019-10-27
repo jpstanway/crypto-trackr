@@ -11,24 +11,32 @@ import Crypto from "./components/Crypto";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
-import { ALL_CRYPTOS, GET_CRYPTO_LIKES } from "./graphql/queries";
-import { initializeLikes } from "./redux/reducers/likesReducer";
+import { ALL_CRYPTOS, GET_SAVED_CRYPTO_DATA } from "./graphql/queries";
+import { initializeSavedData } from "./redux/reducers/cryptoReducer";
 
 const App = props => {
   const { data, loading } = useQuery(ALL_CRYPTOS);
-  const likeData = useQuery(GET_CRYPTO_LIKES);
+  const savedData = useQuery(GET_SAVED_CRYPTO_DATA);
 
-  if (loading || likeData.loading) {
+  if (savedData.loading) {
     return <div>loading...</div>;
   }
 
-  props.initializeLikes(likeData.data.getCryptoLikes);
+  props.initializeSavedData(savedData.data.getCryptoData);
+
+  // if (loading) {
+  //   return <div>loading crypto data...</div>;
+  // }
 
   return (
     <Router>
       <Navigation />
       <div className="container">
-        <Route exact path="/" render={() => <Home data={data} />} />
+        <Route
+          exact
+          path="/"
+          render={() => <Home data={data} loading={loading} />}
+        />
         <Route path="/search" render={() => <Search data={data} />} />
         <Route
           path="/currency/:id"
@@ -42,5 +50,5 @@ const App = props => {
 
 export default connect(
   null,
-  { initializeLikes }
+  { initializeSavedData }
 )(App);

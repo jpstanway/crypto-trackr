@@ -4,10 +4,18 @@ module.exports = gql`
   type Query {
     allCryptos: [Crypto!]!
     getCryptoMetaData(currency: String!): Crypto
-    getCryptoLikes: [Crypto]
+    getCryptoData: [Crypto]
   }
 
   type Mutation {
+    addCrypto(
+      currency: String!
+      name: String!
+      rank: String!
+      market_cap: String!
+      price: String!
+      circulating_supply: String!
+    ): Crypto!
     addLike(currency: String!, name: String!): Crypto
     removeCrypto(currency: String!): Crypto
   }

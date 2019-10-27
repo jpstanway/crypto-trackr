@@ -10,9 +10,6 @@ const Search = ({ search, setSearch }) => (
         value={search}
         onChange={({ target }) => setSearch(target.value)}
       />
-      {/* <button className="search-box__btn">
-        <i className="fas fa-search"></i>
-      </button> */}
     </form>
   </div>
 );

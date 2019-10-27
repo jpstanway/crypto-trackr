@@ -26,12 +26,16 @@ export const GET_CRYPTO_METADATA = gql`
   }
 `;
 
-export const GET_CRYPTO_LIKES = gql`
+export const GET_SAVED_CRYPTO_DATA = gql`
   query {
-    getCryptoLikes {
+    getCryptoData {
       id
       currency
       name
+      rank
+      market_cap
+      price
+      circulating_supply
       likes
     }
   }

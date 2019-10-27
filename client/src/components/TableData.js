@@ -7,19 +7,21 @@ import Like from "./Like";
 
 import convertToCurrency from "../utils/convertToCurrency";
 import { ADD_LIKE } from "../graphql/mutations";
-import { addCrypto, updateLikes } from "../redux/reducers/likesReducer";
+import { addCrypto, updateLikes } from "../redux/reducers/cryptoReducer";
 
 const TableData = ({
   cryptosToShow,
   setNotification,
-  likeData,
+  savedCryptos,
   addCrypto,
   updateLikes
 }) => {
   const [addLike] = useMutation(ADD_LIKE, {
     onCompleted: data => {
       // check if crypto exists in store before attempting to update
-      if (!likeData.find(crypto => crypto.currency === data.addLike.currency)) {
+      if (
+        !savedCryptos.find(crypto => crypto.currency === data.addLike.currency)
+      ) {
         // add new if it does not
         addCrypto(data.addLike);
       }
@@ -27,7 +29,6 @@ const TableData = ({
       updateLikes(data.addLike);
     },
     onError: error => {
-      console.error(error);
       setNotification("You have already liked this crypto!");
 
       setTimeout(() => {
@@ -91,7 +92,7 @@ const TableData = ({
 };
 
 const mapStateToProps = state => ({
-  likeData: state.likes
+  savedCryptos: state.savedCryptos
 });
 
 export default connect(

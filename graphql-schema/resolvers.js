@@ -27,9 +27,9 @@ module.exports = {
 
       return response.data[0];
     },
-    getCryptoLikes: async (root, args) => {
+    getCryptoData: async (root, args) => {
       try {
-        // get all crypto like data from database
+        // get all saved crypto data from database
         return await Crypto.find();
       } catch (error) {
         throw new Error(error.message);
@@ -37,6 +37,26 @@ module.exports = {
     }
   },
   Mutation: {
+    addCrypto: async (root, args) => {
+      const updateObject = {
+        ...args
+      };
+
+      try {
+        // search database for crypto
+        // if it already exists, update
+        // if it does not exist, create new document
+        const crypto = await Crypto.findOneAndUpdate(
+          { currency: args.currency },
+          updateObject,
+          { new: true, upsert: true }
+        );
+
+        return await crypto.save();
+      } catch (error) {
+        throw new Error(error.message);
+      }
+    },
     addLike: async (root, args, context) => {
       try {
         const userIp = "testIp";
@@ -44,7 +64,7 @@ module.exports = {
         // search database for crypto
         let crypto = await Crypto.findOne({ currency: args.currency });
 
-        // if it doesnt exist yet, create new
+        // if it doesnt exist yet on the database, create new
         if (!crypto) {
           const cryptoObject = new Crypto({ ...args });
           crypto = await cryptoObject.save();
