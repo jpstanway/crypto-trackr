@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { useMutation } from "@apollo/react-hooks";
+
+import { ADD_OR_UPDATE_CRYPTOS } from "../graphql/mutations";
 
 import Notification from "./Notification";
 import Search from "./Search";
@@ -11,9 +14,18 @@ const Home = ({ data: { allCryptos }, loading, savedCryptos }) => {
   const [search, setSearch] = useState("");
   const [notification, setNotification] = useState("");
   const [cryptosToShow, setCryptosToShow] = useState([]);
+  const [addOrUpdateCryptos] = useMutation(ADD_OR_UPDATE_CRYPTOS);
 
   useEffect(() => {
-    if (!loading) {
+    if (loading) {
+      // while api data is loading, render first 10 saved cryptos from database
+      setCryptosToShow(
+        savedCryptos.filter(
+          crypto => crypto.rank >= filter.min && crypto.rank <= filter.max
+        )
+      );
+    } else {
+      // after loading completes, render api data
       setCryptosToShow(
         allCryptos.filter(crypto => {
           if (search) {
@@ -23,14 +35,19 @@ const Home = ({ data: { allCryptos }, loading, savedCryptos }) => {
           return crypto.rank >= filter.min && crypto.rank <= filter.max;
         })
       );
-    }
 
-    setCryptosToShow(
-      savedCryptos.filter(
-        crypto => crypto.rank >= filter.min && crypto.rank <= filter.max
-      )
-    );
-  }, [allCryptos, loading, savedCryptos, search, filter]);
+      // update first 10 cryptos in database
+
+      const cryptosToSave = allCryptos
+        .filter(crypto => crypto.rank <= 10)
+        .map(crypto => {
+          const { id, __typename, price_date, ...otherProps } = crypto;
+          return otherProps;
+        });
+
+      addOrUpdateCryptos({ variables: { cryptosToSave } });
+    }
+  }, [allCryptos, loading, savedCryptos, search, filter, addOrUpdateCryptos]);
 
   return (
     <main className="content">
@@ -50,9 +67,7 @@ const Home = ({ data: { allCryptos }, loading, savedCryptos }) => {
             cryptosToShow={cryptosToShow}
             setNotification={setNotification}
           />
-          {loading ? (
-            <div></div>
-          ) : (
+          {loading ? null : (
             <Buttons
               filter={filter}
               setFilter={setFilter}

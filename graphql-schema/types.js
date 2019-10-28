@@ -8,14 +8,7 @@ module.exports = gql`
   }
 
   type Mutation {
-    addCrypto(
-      currency: String!
-      name: String!
-      rank: String!
-      market_cap: String!
-      price: String!
-      circulating_supply: String!
-    ): Crypto!
+    addCryptos(cryptosToSave: [CryptoInput]!): [Crypto]
     addLike(currency: String!, name: String!): Crypto
     removeCrypto(currency: String!): Crypto
   }
@@ -37,5 +30,15 @@ module.exports = gql`
     reddit_url: String
     whitepaper_url: String
     likes: [String]
+  }
+
+  input CryptoInput {
+    currency: String!
+    price: String!
+    circulating_supply: String!
+    name: String!
+    logo_url: String
+    market_cap: String!
+    rank: String!
   }
 `;

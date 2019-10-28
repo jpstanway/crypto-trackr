@@ -24,10 +24,6 @@ const App = props => {
 
   props.initializeSavedData(savedData.data.getCryptoData);
 
-  // if (loading) {
-  //   return <div>loading crypto data...</div>;
-  // }
-
   return (
     <Router>
       <Navigation />

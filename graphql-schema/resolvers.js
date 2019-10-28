@@ -37,25 +37,27 @@ module.exports = {
     }
   },
   Mutation: {
-    addCrypto: async (root, args) => {
-      const updateObject = {
-        ...args
-      };
+    addCryptos: async (root, args) => {
+      const { cryptosToSave } = args;
+      console.log(cryptosToSave);
+      // const updateObject = {
+      //   ...args
+      // };
 
-      try {
-        // search database for crypto
-        // if it already exists, update
-        // if it does not exist, create new document
-        const crypto = await Crypto.findOneAndUpdate(
-          { currency: args.currency },
-          updateObject,
-          { new: true, upsert: true }
-        );
+      // try {
+      //   // search database for crypto
+      //   // if it already exists, update
+      //   // if it does not exist, create new document
+      //   const crypto = await Crypto.findOneAndUpdate(
+      //     { currency: args.currency },
+      //     updateObject,
+      //     { new: true, upsert: true }
+      //   );
 
-        return await crypto.save();
-      } catch (error) {
-        throw new Error(error.message);
-      }
+      //   return await crypto.save();
+      // } catch (error) {
+      //   throw new Error(error.message);
+      // }
     },
     addLike: async (root, args, context) => {
       try {
