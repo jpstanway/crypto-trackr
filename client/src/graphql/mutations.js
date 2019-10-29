@@ -8,6 +8,7 @@ export const ADD_OR_UPDATE_CRYPTOS = gql`
       rank
       price
       market_cap
+      logo_url
       circulating_supply
     }
   }

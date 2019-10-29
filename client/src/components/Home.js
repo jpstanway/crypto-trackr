@@ -37,7 +37,6 @@ const Home = ({ data: { allCryptos }, loading, savedCryptos }) => {
       );
 
       // update first 10 cryptos in database
-
       const cryptosToSave = allCryptos
         .filter(crypto => crypto.rank <= 10)
         .map(crypto => {

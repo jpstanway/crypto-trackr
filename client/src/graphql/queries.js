@@ -33,6 +33,7 @@ export const GET_SAVED_CRYPTO_DATA = gql`
       currency
       name
       rank
+      logo_url
       market_cap
       price
       circulating_supply

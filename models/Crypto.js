@@ -6,6 +6,7 @@ const cryptoSchema = new mongoose.Schema({
   likes: [String],
   rank: String,
   market_cap: String,
+  logo_url: String,
   price: String,
   circulating_supply: String
 });
