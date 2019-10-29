@@ -11,7 +11,7 @@ import Buttons from "./Buttons";
 
 import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
 
-const Home = ({ data: { allCryptos }, loading, savedCryptos }) => {
+const Home = ({ data: { allCryptos }, savedCryptos, loading }) => {
   const [filter, setFilter] = useState({ min: 1, max: 10 });
   const [search, setSearch] = useState("");
   const [notification, setNotification] = useState("");
@@ -91,7 +91,8 @@ const Home = ({ data: { allCryptos }, loading, savedCryptos }) => {
 };
 
 const mapStateToProps = state => ({
-  savedCryptos: state.savedCryptos
+  savedCryptos: state.savedCryptos,
+  loading: state.loading
 });
 
 export default connect(mapStateToProps)(Home);

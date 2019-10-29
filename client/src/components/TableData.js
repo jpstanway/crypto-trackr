@@ -14,7 +14,8 @@ const TableData = ({
   setNotification,
   savedCryptos,
   addCrypto,
-  updateLikes
+  updateLikes,
+  loading
 }) => {
   const [addLike] = useMutation(ADD_LIKE, {
     onCompleted: data => {
@@ -66,7 +67,9 @@ const TableData = ({
                 className="home-table__logo"
               />
               <Link
-                className="home-table__link"
+                className={`home-table__link ${
+                  loading ? "home-table__link--disabled" : ""
+                }`}
                 to={`/currency/${crypto.currency}`}
               >
                 {crypto.name}
@@ -82,7 +85,7 @@ const TableData = ({
               {convertToCurrency(crypto.circulating_supply, true)}
             </td>
             <td className="home-table__cell">
-              <Like crypto={crypto} addLike={addLike} />
+              {loading ? "" : <Like crypto={crypto} addLike={addLike} />}
             </td>
           </tr>
         ))}
@@ -92,7 +95,8 @@ const TableData = ({
 };
 
 const mapStateToProps = state => ({
-  savedCryptos: state.savedCryptos
+  savedCryptos: state.savedCryptos,
+  loading: state.loading
 });
 
 export default connect(

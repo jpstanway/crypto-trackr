@@ -6,18 +6,22 @@ import { connect } from "react-redux";
 import "./App.css";
 
 import Home from "./components/Home";
-import Search from "./components/Search";
 import Crypto from "./components/Crypto";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
 import { ALL_CRYPTOS, GET_SAVED_CRYPTO_DATA } from "./graphql/queries";
 import { initializeSavedData } from "./redux/reducers/cryptoReducer";
+import { toggleLoading } from "./redux/reducers/updateReducer";
 
 import halfCircleIcon from "./styles/imgs/Animated_loading_half-circle.gif";
 
 const App = props => {
-  const { data, loading } = useQuery(ALL_CRYPTOS);
+  const { data } = useQuery(ALL_CRYPTOS, {
+    onCompleted: () => {
+      props.toggleLoading();
+    }
+  });
   const savedData = useQuery(GET_SAVED_CRYPTO_DATA);
 
   if (savedData.loading) {
@@ -34,12 +38,7 @@ const App = props => {
     <Router>
       <Navigation />
       <div className="container">
-        <Route
-          exact
-          path="/"
-          render={() => <Home data={data} loading={loading} />}
-        />
-        <Route path="/search" render={() => <Search data={data} />} />
+        <Route exact path="/" render={() => <Home data={data} />} />
         <Route
           path="/currency/:id"
           render={props => <Crypto {...props} data={data} />}
@@ -52,5 +51,5 @@ const App = props => {
 
 export default connect(
   null,
-  { initializeSavedData }
+  { initializeSavedData, toggleLoading }
 )(App);

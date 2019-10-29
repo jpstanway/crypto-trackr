@@ -264,6 +264,9 @@ body {
     text-decoration: none; }
     .home-table__link:hover {
       color: #d4c1fc; }
+    .home-table__link--disabled {
+      color: #2a2a2a;
+      pointer-events: none; }
   .home-table__loading {
     height: 40rem;
     text-align: center; }

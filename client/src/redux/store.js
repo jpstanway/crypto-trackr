@@ -3,9 +3,11 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import cryptoReducer from "./reducers/cryptoReducer";
+import updateReducer from "./reducers/updateReducer";
 
 const rootReducer = combineReducers({
-  savedCryptos: cryptoReducer
+  savedCryptos: cryptoReducer,
+  loading: updateReducer
 });
 
 const store = createStore(

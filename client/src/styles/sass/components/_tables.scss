@@ -45,6 +45,11 @@
   &__link {
     @include color-hover($color-secondary-dark, $color-secondary);
     text-decoration: none;
+
+    &--disabled {
+      color: $color-black;
+      pointer-events: none;
+    }
   }
 
   &__loading {
