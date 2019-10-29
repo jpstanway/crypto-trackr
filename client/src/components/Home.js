@@ -9,6 +9,8 @@ import Search from "./Search";
 import TableData from "./TableData";
 import Buttons from "./Buttons";
 
+import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
+
 const Home = ({ data: { allCryptos }, loading, savedCryptos }) => {
   const [filter, setFilter] = useState({ min: 1, max: 10 });
   const [search, setSearch] = useState("");
@@ -56,11 +58,20 @@ const Home = ({ data: { allCryptos }, loading, savedCryptos }) => {
         <h1 className="home-content__title heading-1">
           Current Top 10 Cryptocurrencies
         </h1>
-        <p style={{ textAlign: "center" }}>
-          <em>
-            {loading ? "updating..." : `updated ${allCryptos[0].price_date}`}
-          </em>
-        </p>
+        <div className="home-content__updating">
+          {loading ? (
+            <p>
+              <img
+                className="home-content__update-icon"
+                src={halfCircleIcon}
+                alt="updating icon"
+              />
+              <em> updating...</em>
+            </p>
+          ) : (
+            <em>updated {allCryptos[0].price_date}</em>
+          )}
+        </div>
         <div className="home-content__content">
           <TableData
             cryptosToShow={cryptosToShow}

@@ -3,6 +3,15 @@
   max-width: 100rem;
   width: 80%;
 
+  &__updating {
+    text-align: center;
+  }
+
+  &__update-icon {
+    width: 15px;
+    height: 15px;
+  }
+
   &__content {
     @include table-scroll($screen-size-sm);
   }

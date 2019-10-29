@@ -214,6 +214,12 @@ body {
     .search-box__btn:focus {
       outline: none; }
 
+.loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
 .notification {
   background-color: #fcc1e9;
   border: 1px solid #7f7f7f;
@@ -432,6 +438,11 @@ body {
   margin: auto;
   max-width: 100rem;
   width: 80%; }
+  .home-content__updating {
+    text-align: center; }
+  .home-content__update-icon {
+    width: 15px;
+    height: 15px; }
   @media only screen and (max-width: 43.8em) {
     .home-content__content {
       overflow-x: scroll;
