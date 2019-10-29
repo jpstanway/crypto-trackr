@@ -6,8 +6,11 @@ import { connect } from "react-redux";
 import Like from "./Like";
 
 import convertToCurrency from "../utils/convertToCurrency";
+
 import { ADD_LIKE } from "../graphql/mutations";
+
 import { addCrypto, updateLikes } from "../redux/reducers/cryptoReducer";
+import { setNotification } from "../redux/reducers/notificationReducer";
 
 const TableData = ({
   cryptosToShow,
@@ -29,12 +32,8 @@ const TableData = ({
       // update likes if it does
       updateLikes(data.addLike);
     },
-    onError: error => {
+    onError: () => {
       setNotification("You have already liked this crypto!");
-
-      setTimeout(() => {
-        setNotification("");
-      }, 5000);
     }
   });
 
@@ -101,5 +100,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addCrypto, updateLikes }
+  { addCrypto, updateLikes, setNotification }
 )(TableData);

@@ -14,7 +14,6 @@ import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
 const Home = ({ data: { allCryptos }, savedCryptos, loading }) => {
   const [filter, setFilter] = useState({ min: 1, max: 10 });
   const [search, setSearch] = useState("");
-  const [notification, setNotification] = useState("");
   const [cryptosToShow, setCryptosToShow] = useState([]);
   const [addOrUpdateCryptos] = useMutation(ADD_OR_UPDATE_CRYPTOS);
 
@@ -53,7 +52,7 @@ const Home = ({ data: { allCryptos }, savedCryptos, loading }) => {
   return (
     <main className="content">
       <div className="home-content">
-        <Notification notification={notification} />
+        <Notification />
         <Search search={search} setSearch={setSearch} />
         <h1 className="home-content__title heading-1">
           Current Top 10 Cryptocurrencies
@@ -73,10 +72,7 @@ const Home = ({ data: { allCryptos }, savedCryptos, loading }) => {
           )}
         </div>
         <div className="home-content__content">
-          <TableData
-            cryptosToShow={cryptosToShow}
-            setNotification={setNotification}
-          />
+          <TableData cryptosToShow={cryptosToShow} />
           {loading ? null : (
             <Buttons
               filter={filter}
