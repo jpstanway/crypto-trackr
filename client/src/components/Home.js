@@ -11,18 +11,19 @@ import Buttons from "./Buttons";
 
 import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
 
-const Home = ({ data: { allCryptos }, savedCryptos, loading }) => {
-  const [filter, setFilter] = useState({ min: 1, max: 10 });
+const Home = ({ data: { allCryptos }, cryptos }) => {
   const [search, setSearch] = useState("");
   const [cryptosToShow, setCryptosToShow] = useState([]);
   const [addOrUpdateCryptos] = useMutation(ADD_OR_UPDATE_CRYPTOS);
 
   useEffect(() => {
-    if (loading) {
+    if (cryptos.loading) {
       // while api data is loading, render first 10 saved cryptos from database
       setCryptosToShow(
-        savedCryptos.filter(
-          crypto => crypto.rank >= filter.min && crypto.rank <= filter.max
+        cryptos.savedCryptos.filter(
+          crypto =>
+            crypto.rank >= cryptos.filter.min &&
+            crypto.rank <= cryptos.filter.max
         )
       );
     } else {
@@ -33,7 +34,10 @@ const Home = ({ data: { allCryptos }, savedCryptos, loading }) => {
             return crypto.name.toLowerCase().includes(search.toLowerCase());
           }
 
-          return crypto.rank >= filter.min && crypto.rank <= filter.max;
+          return (
+            crypto.rank >= cryptos.filter.min &&
+            crypto.rank <= cryptos.filter.max
+          );
         })
       );
 
@@ -47,7 +51,7 @@ const Home = ({ data: { allCryptos }, savedCryptos, loading }) => {
 
       addOrUpdateCryptos({ variables: { cryptosToSave } });
     }
-  }, [allCryptos, loading, savedCryptos, search, filter, addOrUpdateCryptos]);
+  }, [allCryptos, cryptos, search, addOrUpdateCryptos]);
 
   return (
     <main className="content">
@@ -58,7 +62,7 @@ const Home = ({ data: { allCryptos }, savedCryptos, loading }) => {
           Current Top 10 Cryptocurrencies
         </h1>
         <div className="home-content__updating">
-          {loading ? (
+          {cryptos.loading ? (
             <p>
               <img
                 className="home-content__update-icon"
@@ -73,13 +77,7 @@ const Home = ({ data: { allCryptos }, savedCryptos, loading }) => {
         </div>
         <div className="home-content__content">
           <TableData cryptosToShow={cryptosToShow} />
-          {loading ? null : (
-            <Buttons
-              filter={filter}
-              setFilter={setFilter}
-              allCryptos={allCryptos}
-            />
-          )}
+          {cryptos.loading ? null : <Buttons allCryptos={allCryptos} />}
         </div>
       </div>
     </main>
@@ -87,8 +85,7 @@ const Home = ({ data: { allCryptos }, savedCryptos, loading }) => {
 };
 
 const mapStateToProps = state => ({
-  savedCryptos: state.savedCryptos,
-  loading: state.loading
+  cryptos: state.cryptos
 });
 
 export default connect(mapStateToProps)(Home);

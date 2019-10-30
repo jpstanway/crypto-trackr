@@ -1,15 +1,54 @@
-const cryptoReducer = (state = [], action) => {
+const initialState = {
+  savedCryptos: [],
+  loading: true,
+  filter: {
+    min: 1,
+    max: 10
+  }
+};
+
+const cryptoReducer = (state = initialState, action) => {
   switch (action.type) {
     case "INITIALIZE_SAVED_DATA":
-      return (state = action.payload);
+      return {
+        ...state,
+        savedCryptos: action.payload
+      };
+    case "TOGGLE_LOADING":
+      return {
+        ...state,
+        loading: !state.loading
+      };
     case "ADD_CRYPTO":
-      return (state = [...state, action.payload]);
+      return {
+        ...state,
+        savedCryptos: [...state.savedCryptos, action.payload]
+      };
     case "UPDATE_LIKES":
-      return state.map(crypto =>
-        crypto.currency === action.payload.currency
-          ? { ...crypto, likes: action.payload.likes }
-          : crypto
-      );
+      return {
+        ...state,
+        savedCryptos: state.savedCryptos.map(crypto =>
+          crypto.currency === action.payload.currency
+            ? { ...crypto, likes: action.payload.likes }
+            : crypto
+        )
+      };
+    case "PREVIOUS_CRYPTOS":
+      return {
+        ...state,
+        filter: {
+          min: state.filter.min - 10,
+          max: state.filter.max - 10
+        }
+      };
+    case "NEXT_CRYPTOS":
+      return {
+        ...state,
+        filter: {
+          min: state.filter.min + 10,
+          max: state.filter.max + 10
+        }
+      };
     default:
       return state;
   }
@@ -39,6 +78,30 @@ export const updateLikes = crypto => {
     dispatch({
       type: "UPDATE_LIKES",
       payload: crypto
+    });
+  };
+};
+
+export const toggleLoading = () => {
+  return async dispatch => {
+    dispatch({
+      type: "TOGGLE_LOADING"
+    });
+  };
+};
+
+export const previousCryptos = () => {
+  return async dispatch => {
+    dispatch({
+      type: "PREVIOUS_CRYPTOS"
+    });
+  };
+};
+
+export const nextCryptos = () => {
+  return async dispatch => {
+    dispatch({
+      type: "NEXT_CRYPTOS"
     });
   };
 };

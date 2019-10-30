@@ -11,8 +11,10 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 
 import { ALL_CRYPTOS, GET_SAVED_CRYPTO_DATA } from "./graphql/queries";
-import { initializeSavedData } from "./redux/reducers/cryptoReducer";
-import { toggleLoading } from "./redux/reducers/updateReducer";
+import {
+  initializeSavedData,
+  toggleLoading
+} from "./redux/reducers/cryptoReducer";
 
 import halfCircleIcon from "./styles/imgs/Animated_loading_half-circle.gif";
 

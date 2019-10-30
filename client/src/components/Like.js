@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const Like = ({ addLike, crypto, savedCryptos }) => {
+const Like = ({ addLike, crypto, cryptos }) => {
   const handleLikes = async ({ currency, name }) => {
     await addLike({
       variables: {
@@ -12,7 +12,9 @@ const Like = ({ addLike, crypto, savedCryptos }) => {
   };
 
   const renderLikes = currency => {
-    const crypto = savedCryptos.find(crypto => crypto.currency === currency);
+    const crypto = cryptos.savedCryptos.find(
+      crypto => crypto.currency === currency
+    );
 
     return crypto ? crypto.likes.length : 0;
   };
@@ -28,7 +30,7 @@ const Like = ({ addLike, crypto, savedCryptos }) => {
 };
 
 const mapStateToProps = state => ({
-  savedCryptos: state.savedCryptos
+  cryptos: state.cryptos
 });
 
 export default connect(mapStateToProps)(Like);

@@ -15,16 +15,17 @@ import { setNotification } from "../redux/reducers/notificationReducer";
 const TableData = ({
   cryptosToShow,
   setNotification,
-  savedCryptos,
+  cryptos,
   addCrypto,
-  updateLikes,
-  loading
+  updateLikes
 }) => {
   const [addLike] = useMutation(ADD_LIKE, {
     onCompleted: data => {
       // check if crypto exists in store before attempting to update
       if (
-        !savedCryptos.find(crypto => crypto.currency === data.addLike.currency)
+        !cryptos.savedCryptos.find(
+          crypto => crypto.currency === data.addLike.currency
+        )
       ) {
         // add new if it does not
         addCrypto(data.addLike);
@@ -67,7 +68,7 @@ const TableData = ({
               />
               <Link
                 className={`home-table__link ${
-                  loading ? "home-table__link--disabled" : ""
+                  cryptos.loading ? "home-table__link--disabled" : ""
                 }`}
                 to={`/currency/${crypto.currency}`}
               >
@@ -84,7 +85,11 @@ const TableData = ({
               {convertToCurrency(crypto.circulating_supply, true)}
             </td>
             <td className="home-table__cell">
-              {loading ? "" : <Like crypto={crypto} addLike={addLike} />}
+              {cryptos.loading ? (
+                ""
+              ) : (
+                <Like crypto={crypto} addLike={addLike} />
+              )}
             </td>
           </tr>
         ))}
@@ -94,8 +99,7 @@ const TableData = ({
 };
 
 const mapStateToProps = state => ({
-  savedCryptos: state.savedCryptos,
-  loading: state.loading
+  cryptos: state.cryptos
 });
 
 export default connect(

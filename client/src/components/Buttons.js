@@ -1,39 +1,34 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const Buttons = ({ filter, setFilter, allCryptos }) => {
+import { previousCryptos, nextCryptos } from "../redux/reducers/cryptoReducer";
+
+const Buttons = ({ allCryptos, cryptos, previousCryptos, nextCryptos }) => {
   const handlePrev = () => {
-    const prevFilter = {
-      min: filter.min - 10,
-      max: filter.max - 10
-    };
-
-    setFilter(prevFilter);
+    previousCryptos();
   };
 
   const handleNext = () => {
-    const nextFilter = {
-      min: filter.min + 10,
-      max: filter.max + 10
-    };
-
-    setFilter(nextFilter);
+    nextCryptos();
   };
 
   return (
     <div className="home-btns">
       <button
         onClick={handlePrev}
-        className={`btn btn-large ${filter.min === 1 ? "btn-disabled" : ""}`}
-        disabled={filter.min === 1}
+        className={`btn btn-large ${
+          cryptos.filter.min === 1 ? "btn-disabled" : ""
+        }`}
+        disabled={cryptos.filter.min === 1}
       >
         prev 10
       </button>
       <button
         onClick={handleNext}
         className={`btn btn-large ${
-          filter.max === allCryptos.length ? "btn-disabled" : ""
+          cryptos.filter.max === allCryptos.length ? "btn-disabled" : ""
         }`}
-        disabled={filter.max === allCryptos.length}
+        disabled={cryptos.filter.max === allCryptos.length}
       >
         next 10
       </button>
@@ -41,4 +36,11 @@ const Buttons = ({ filter, setFilter, allCryptos }) => {
   );
 };
 
-export default Buttons;
+const mapStateToProps = state => ({
+  cryptos: state.cryptos
+});
+
+export default connect(
+  mapStateToProps,
+  { previousCryptos, nextCryptos }
+)(Buttons);
