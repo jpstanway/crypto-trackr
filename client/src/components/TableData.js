@@ -23,7 +23,7 @@ const TableData = ({
     onCompleted: data => {
       // check if crypto exists in store before attempting to update
       if (
-        !cryptos.savedCryptos.find(
+        !cryptos.cryptoData.find(
           crypto => crypto.currency === data.addLike.currency
         )
       ) {

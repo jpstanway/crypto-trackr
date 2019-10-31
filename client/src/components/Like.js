@@ -12,7 +12,7 @@ const Like = ({ addLike, crypto, cryptos }) => {
   };
 
   const renderLikes = currency => {
-    const crypto = cryptos.savedCryptos.find(
+    const crypto = cryptos.cryptoData.find(
       crypto => crypto.currency === currency
     );
 

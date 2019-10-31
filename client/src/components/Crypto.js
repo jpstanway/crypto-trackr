@@ -1,9 +1,11 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+import Loading from "./Loading";
 
 import convertToCurrency from "../utils/convertToCurrency";
-import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
 
 import { GET_CRYPTO_METADATA } from "../graphql/queries";
 
@@ -16,17 +18,13 @@ const Crypto = props => {
     rank,
     market_cap,
     circulating_supply
-  } = props.data.allCryptos.find(crypto => crypto.currency === currency);
+  } = props.cryptos.cryptoData.find(crypto => crypto.currency === currency);
   const { data, loading } = useQuery(GET_CRYPTO_METADATA, {
     variables: { currency }
   });
 
   if (loading) {
-    return (
-      <div className="loading-icon">
-        <img src={halfCircleIcon} alt="loading icon" />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
@@ -97,4 +95,8 @@ const Crypto = props => {
   );
 };
 
-export default Crypto;
+const mapStateToProps = state => ({
+  cryptos: state.cryptos
+});
+
+export default connect(mapStateToProps)(Crypto);

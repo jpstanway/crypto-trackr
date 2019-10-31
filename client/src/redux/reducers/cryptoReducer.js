@@ -1,5 +1,5 @@
 const initialState = {
-  savedCryptos: [],
+  cryptoData: [],
   loading: true,
   filter: {
     min: 0,
@@ -10,17 +10,17 @@ const initialState = {
 
 const cryptoReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "INITIALIZE_SAVED_DATA":
+    case "INITIALIZE_CRYPTO_DATA":
       return {
         ...state,
-        savedCryptos: action.payload
+        cryptoData: action.payload
       };
     case "UPDATE_CRYPTO_DATA":
       return {
         ...state,
-        savedCryptos: action.payload.map(crypto => {
+        cryptoData: action.payload.map(crypto => {
           // search initial saved cryptos for match
-          const savedCrypto = state.savedCryptos.find(
+          const savedCrypto = state.cryptoData.find(
             c => c.currency === crypto.currency
           );
           // if crypto exists on database, combine likes array with api data
@@ -35,12 +35,12 @@ const cryptoReducer = (state = initialState, action) => {
     case "ADD_CRYPTO":
       return {
         ...state,
-        savedCryptos: [...state.savedCryptos, action.payload]
+        cryptoData: [...state.cryptoData, action.payload]
       };
     case "UPDATE_LIKES":
       return {
         ...state,
-        savedCryptos: state.savedCryptos.map(crypto =>
+        cryptoData: state.cryptoData.map(crypto =>
           crypto.currency === action.payload.currency
             ? { ...crypto, likes: action.payload.likes }
             : crypto
@@ -66,7 +66,7 @@ const cryptoReducer = (state = initialState, action) => {
       return {
         ...state,
         sortByRank: !state.sortByRank,
-        savedCryptos: action.payload
+        cryptoData: action.payload
       };
     default:
       return state;
@@ -74,19 +74,19 @@ const cryptoReducer = (state = initialState, action) => {
 };
 
 // action creators
-export const updateCryptoData = data => {
+export const initializeCryptoData = data => {
   return async dispatch => {
     dispatch({
-      type: "UPDATE_CRYPTO_DATA",
+      type: "INITIALIZE_CRYPTO_DATA",
       payload: data
     });
   };
 };
 
-export const initializeSavedData = data => {
+export const updateCryptoData = data => {
   return async dispatch => {
     dispatch({
-      type: "INITIALIZE_SAVED_DATA",
+      type: "UPDATE_CRYPTO_DATA",
       payload: data
     });
   };

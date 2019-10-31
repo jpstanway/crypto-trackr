@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { previousCryptos, nextCryptos } from "../redux/reducers/cryptoReducer";
 
-const Buttons = ({ allCryptos, cryptos, previousCryptos, nextCryptos }) => {
+const Buttons = ({ cryptos, previousCryptos, nextCryptos }) => {
   const handlePrev = () => {
     previousCryptos();
   };
@@ -26,9 +26,11 @@ const Buttons = ({ allCryptos, cryptos, previousCryptos, nextCryptos }) => {
       <button
         onClick={handleNext}
         className={`btn btn-large ${
-          cryptos.filter.max === allCryptos.length - 1 ? "btn-disabled" : ""
+          cryptos.filter.max === cryptos.cryptoData.length - 1
+            ? "btn-disabled"
+            : ""
         }`}
-        disabled={cryptos.filter.max === allCryptos.length - 1}
+        disabled={cryptos.filter.max === cryptos.cryptoData.length - 1}
       >
         next 10
       </button>

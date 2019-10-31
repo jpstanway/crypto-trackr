@@ -12,7 +12,7 @@ import Buttons from "./Buttons";
 
 import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
 
-const Home = ({ data: { allCryptos }, cryptos, toggleSort }) => {
+const Home = ({ cryptos, toggleSort }) => {
   const [search, setSearch] = useState("");
   const [cryptosToShow, setCryptosToShow] = useState([]);
   const [addOrUpdateCryptos] = useMutation(ADD_OR_UPDATE_CRYPTOS);
@@ -21,14 +21,14 @@ const Home = ({ data: { allCryptos }, cryptos, toggleSort }) => {
     if (cryptos.loading) {
       // while api data is loading, render first 10 saved cryptos from database
       setCryptosToShow(
-        cryptos.savedCryptos
+        cryptos.cryptoData
           .filter(crypto => crypto.rank >= 1 && crypto.rank <= 10)
           .sort((a, b) => a.rank - b.rank)
       );
     } else {
       // after loading completes, render api data
       setCryptosToShow(
-        cryptos.savedCryptos.filter((crypto, index) => {
+        cryptos.cryptoData.filter((crypto, index) => {
           if (search) {
             return crypto.name.toLowerCase().includes(search.toLowerCase());
           }
@@ -38,25 +38,23 @@ const Home = ({ data: { allCryptos }, cryptos, toggleSort }) => {
       );
 
       // update first 10 cryptos in database
-      const cryptosToSave = allCryptos
+      const cryptosToSave = cryptos.cryptoData
         .filter(crypto => crypto.rank <= 10)
         .map(crypto => {
-          const { id, __typename, price_date, ...otherProps } = crypto;
+          const { id, __typename, price_date, likes, ...otherProps } = crypto;
           return otherProps;
         });
 
       addOrUpdateCryptos({ variables: { cryptosToSave } });
     }
-  }, [allCryptos, cryptos, search, addOrUpdateCryptos]);
+  }, [cryptos, search, addOrUpdateCryptos]);
 
   const handleSort = val => {
     let data;
     if (val === "likes") {
-      data = cryptos.savedCryptos.sort(
-        (a, b) => b.likes.length - a.likes.length
-      );
+      data = cryptos.cryptoData.sort((a, b) => b.likes.length - a.likes.length);
     } else {
-      data = cryptos.savedCryptos.sort((a, b) => a.rank - b.rank);
+      data = cryptos.cryptoData.sort((a, b) => a.rank - b.rank);
     }
     toggleSort(data);
   };
@@ -80,7 +78,7 @@ const Home = ({ data: { allCryptos }, cryptos, toggleSort }) => {
               <em> updating...</em>
             </p>
           ) : (
-            <em>updated {allCryptos[0].price_date}</em>
+            <em>updated {cryptos.cryptoData[0].price_date}</em>
           )}
         </div>
         <div className="home-content__sort">
@@ -114,7 +112,7 @@ const Home = ({ data: { allCryptos }, cryptos, toggleSort }) => {
         </div>
         <div className="home-content__content">
           <TableData cryptosToShow={cryptosToShow} />
-          {cryptos.loading ? null : <Buttons allCryptos={allCryptos} />}
+          {cryptos.loading ? null : <Buttons />}
         </div>
       </div>
     </main>
