@@ -17,18 +17,18 @@ const Buttons = ({ allCryptos, cryptos, previousCryptos, nextCryptos }) => {
       <button
         onClick={handlePrev}
         className={`btn btn-large ${
-          cryptos.filter.min === 1 ? "btn-disabled" : ""
+          cryptos.filter.min === 0 ? "btn-disabled" : ""
         }`}
-        disabled={cryptos.filter.min === 1}
+        disabled={cryptos.filter.min === 0}
       >
         prev 10
       </button>
       <button
         onClick={handleNext}
         className={`btn btn-large ${
-          cryptos.filter.max === allCryptos.length ? "btn-disabled" : ""
+          cryptos.filter.max === allCryptos.length - 1 ? "btn-disabled" : ""
         }`}
-        disabled={cryptos.filter.max === allCryptos.length}
+        disabled={cryptos.filter.max === allCryptos.length - 1}
       >
         next 10
       </button>

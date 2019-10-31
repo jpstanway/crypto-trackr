@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 
 import convertToCurrency from "../utils/convertToCurrency";
+import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
 
 import { GET_CRYPTO_METADATA } from "../graphql/queries";
 
@@ -21,7 +22,11 @@ const Crypto = props => {
   });
 
   if (loading) {
-    return <div>loading...</div>;
+    return (
+      <div className="loading-icon">
+        <img src={halfCircleIcon} alt="loading icon" />
+      </div>
+    );
   }
 
   return (
