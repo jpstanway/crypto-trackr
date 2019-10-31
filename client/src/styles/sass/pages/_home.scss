@@ -4,6 +4,7 @@
   width: 80%;
 
   &__updating {
+    color: $color-grey-dark;
     text-align: center;
   }
 
@@ -14,5 +15,16 @@
 
   &__content {
     @include table-scroll($screen-size-sm);
+  }
+
+  &__sort {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  &__selector {
+    color: $color-black;
+    margin-left: 10px;
   }
 }

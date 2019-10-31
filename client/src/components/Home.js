@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useMutation } from "@apollo/react-hooks";
 
 import { ADD_OR_UPDATE_CRYPTOS } from "../graphql/mutations";
+import { toggleSort } from "../redux/reducers/cryptoReducer";
 
 import Notification from "./Notification";
 import Search from "./Search";
@@ -11,7 +12,7 @@ import Buttons from "./Buttons";
 
 import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
 
-const Home = ({ data: { allCryptos }, cryptos }) => {
+const Home = ({ data: { allCryptos }, cryptos, toggleSort }) => {
   const [search, setSearch] = useState("");
   const [cryptosToShow, setCryptosToShow] = useState([]);
   const [addOrUpdateCryptos] = useMutation(ADD_OR_UPDATE_CRYPTOS);
@@ -20,24 +21,19 @@ const Home = ({ data: { allCryptos }, cryptos }) => {
     if (cryptos.loading) {
       // while api data is loading, render first 10 saved cryptos from database
       setCryptosToShow(
-        cryptos.savedCryptos.filter(
-          crypto =>
-            crypto.rank >= cryptos.filter.min &&
-            crypto.rank <= cryptos.filter.max
-        )
+        cryptos.savedCryptos
+          .filter(crypto => crypto.rank >= 1 && crypto.rank <= 10)
+          .sort((a, b) => a.rank - b.rank)
       );
     } else {
       // after loading completes, render api data
       setCryptosToShow(
-        allCryptos.filter(crypto => {
+        cryptos.savedCryptos.filter((crypto, index) => {
           if (search) {
             return crypto.name.toLowerCase().includes(search.toLowerCase());
           }
 
-          return (
-            crypto.rank >= cryptos.filter.min &&
-            crypto.rank <= cryptos.filter.max
-          );
+          return index >= cryptos.filter.min && index <= cryptos.filter.max;
         })
       );
 
@@ -52,6 +48,18 @@ const Home = ({ data: { allCryptos }, cryptos }) => {
       addOrUpdateCryptos({ variables: { cryptosToSave } });
     }
   }, [allCryptos, cryptos, search, addOrUpdateCryptos]);
+
+  const handleSort = val => {
+    let data;
+    if (val === "likes") {
+      data = cryptos.savedCryptos.sort(
+        (a, b) => b.likes.length - a.likes.length
+      );
+    } else {
+      data = cryptos.savedCryptos.sort((a, b) => a.rank - b.rank);
+    }
+    toggleSort(data);
+  };
 
   return (
     <main className="content">
@@ -75,6 +83,35 @@ const Home = ({ data: { allCryptos }, cryptos }) => {
             <em>updated {allCryptos[0].price_date}</em>
           )}
         </div>
+        <div className="home-content__sort">
+          Sort by:
+          <div className="home-content__selector">
+            <input
+              type="radio"
+              id="rank"
+              name="sort"
+              value="rank"
+              onChange={({ target }) => handleSort(target.value)}
+              checked={cryptos.sortByRank}
+            />
+            <label htmlFor="rank">
+              <em>rank</em>
+            </label>
+          </div>
+          <div className="home-content__selector">
+            <input
+              type="radio"
+              id="likes"
+              name="sort"
+              value="likes"
+              onChange={({ target }) => handleSort(target.value)}
+              checked={!cryptos.sortByRank}
+            />
+            <label htmlFor="likes">
+              <em>likes</em>
+            </label>
+          </div>
+        </div>
         <div className="home-content__content">
           <TableData cryptosToShow={cryptosToShow} />
           {cryptos.loading ? null : <Buttons allCryptos={allCryptos} />}
@@ -88,4 +125,7 @@ const mapStateToProps = state => ({
   cryptos: state.cryptos
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(
+  mapStateToProps,
+  { toggleSort }
+)(Home);

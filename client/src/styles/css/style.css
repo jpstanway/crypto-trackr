@@ -442,6 +442,7 @@ body {
   max-width: 100rem;
   width: 80%; }
   .home-content__updating {
+    color: #7f7f7f;
     text-align: center; }
   .home-content__update-icon {
     width: 15px;
@@ -450,3 +451,10 @@ body {
     .home-content__content {
       overflow-x: scroll;
       padding: 2rem 0; } }
+  .home-content__sort {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; }
+  .home-content__selector {
+    color: #2a2a2a;
+    margin-left: 10px; }

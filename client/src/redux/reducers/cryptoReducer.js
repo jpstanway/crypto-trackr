@@ -2,9 +2,10 @@ const initialState = {
   savedCryptos: [],
   loading: true,
   filter: {
-    min: 1,
-    max: 10
-  }
+    min: 0,
+    max: 9
+  },
+  sortByRank: true
 };
 
 const cryptoReducer = (state = initialState, action) => {
@@ -13,6 +14,18 @@ const cryptoReducer = (state = initialState, action) => {
       return {
         ...state,
         savedCryptos: action.payload
+      };
+    case "UPDATE_CRYPTO_DATA":
+      return {
+        ...state,
+        savedCryptos: action.payload.map(crypto => {
+          // search initial saved cryptos for match
+          const savedCrypto = state.savedCryptos.find(
+            c => c.currency === crypto.currency
+          );
+          // if crypto exists on database, combine likes array with api data
+          return { ...crypto, likes: savedCrypto ? savedCrypto.likes : [] };
+        })
       };
     case "TOGGLE_LOADING":
       return {
@@ -49,12 +62,27 @@ const cryptoReducer = (state = initialState, action) => {
           max: state.filter.max + 10
         }
       };
+    case "TOGGLE_SORT":
+      return {
+        ...state,
+        sortByRank: !state.sortByRank,
+        savedCryptos: action.payload
+      };
     default:
       return state;
   }
 };
 
 // action creators
+export const updateCryptoData = data => {
+  return async dispatch => {
+    dispatch({
+      type: "UPDATE_CRYPTO_DATA",
+      payload: data
+    });
+  };
+};
+
 export const initializeSavedData = data => {
   return async dispatch => {
     dispatch({
@@ -102,6 +130,15 @@ export const nextCryptos = () => {
   return async dispatch => {
     dispatch({
       type: "NEXT_CRYPTOS"
+    });
+  };
+};
+
+export const toggleSort = data => {
+  return async dispatch => {
+    dispatch({
+      type: "TOGGLE_SORT",
+      payload: data
     });
   };
 };

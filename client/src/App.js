@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 
 import { ALL_CRYPTOS, GET_SAVED_CRYPTO_DATA } from "./graphql/queries";
 import {
+  updateCryptoData,
   initializeSavedData,
   toggleLoading
 } from "./redux/reducers/cryptoReducer";
@@ -20,7 +21,8 @@ import halfCircleIcon from "./styles/imgs/Animated_loading_half-circle.gif";
 
 const App = props => {
   const { data } = useQuery(ALL_CRYPTOS, {
-    onCompleted: () => {
+    onCompleted: data => {
+      props.updateCryptoData(data.allCryptos);
       props.toggleLoading();
     }
   });
@@ -53,5 +55,5 @@ const App = props => {
 
 export default connect(
   null,
-  { initializeSavedData, toggleLoading }
+  { initializeSavedData, updateCryptoData, toggleLoading }
 )(App);
