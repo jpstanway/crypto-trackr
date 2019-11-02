@@ -12,22 +12,20 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.7",
     "mongoose-unique-validator": "^2.0.3",
-    "passport-local": "^1.0.0",
-    "react-redux": "^7.1.1",
-    "redux": "^4.0.4",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0",
     "validator": "^11.1.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1",
-    "concurrently": "^4.1.1"
+    "concurrently": "^4.1.1",
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.1"
   },
   "scripts": {
-    "start": "node server",
+    "start": "cross-env NODE_ENV=production node server",
     "server": "nodemon server",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "client": "npm start --prefix ../client",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\"",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
   },
   "repository": {
     "type": "git",
@@ -38,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/jpstanway/crypto-portfolio-builder/issues"
   },
-  "homepage": "https://github.com/jpstanway/crypto-portfolio-builder#readme"
+  "homepage": "https://github.com/jpstanway/crypto-portfolio-builder#readme",
+  "jest": {
+    "testEnvironment": "node"
+  }
 }

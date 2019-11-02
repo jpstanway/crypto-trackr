@@ -4,7 +4,11 @@ const { ApolloServer } = require("apollo-server");
 const mongoose = require("mongoose");
 
 // env variables
-const mongodbUri = process.env.MONGODB_URI;
+let mongodbUri = process.env.MONGODB_URI;
+
+if (process.env.NODE_ENV === "test") {
+  mongodbUri = process.env.TEST_MONGODB_URI;
+}
 
 // graphql
 const typeDefs = require("./graphql-schema/types");
@@ -19,17 +23,17 @@ mongoose
 // server
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
-  context: context => ({
-    ...context,
-    userIp: () => {
-      const headers = context.req.headers;
-      if (!headers) return null;
-      const ipAddress = headers["x-forwarded-for"];
-      if (!ipAddress) return null;
-      return ipAddress;
-    }
-  })
+  resolvers
+  // context: context => ({
+  //   ...context,
+  //   userIp: () => {
+  //     const headers = context.req.headers;
+  //     if (!headers) return null;
+  //     const ipAddress = headers["x-forwarded-for"];
+  //     if (!ipAddress) return null;
+  //     return ipAddress;
+  //   }
+  // })
 });
 
 server.listen().then(({ url }) => {
