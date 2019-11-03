@@ -15,6 +15,18 @@ module.exports = {
       // filter out top 100 cryptos
       return response.data.filter(crypto => crypto.rank <= 100);
     },
+    getSingleCrypto: async (root, args) => {
+      const currency = args.currency.toUpperCase();
+      const response = await axios.get(
+        `${API_URL}/currencies/ticker?key=${API_KEY}&ids=${currency}`
+      );
+
+      if (!response) {
+        throw new UserInputError("Crypto not found");
+      }
+
+      return response.data[0];
+    },
     getCryptoMetaData: async (root, args) => {
       const currency = args.currency.toUpperCase();
       const response = await axios.get(

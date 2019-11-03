@@ -3,6 +3,7 @@ const { gql } = require("apollo-server");
 module.exports = gql`
   type Query {
     allCryptos: [Crypto!]!
+    getSingleCrypto(currency: String!): [Crypto!]!
     getCryptoMetaData(currency: String!): Crypto!
     getCryptoData: [Crypto]
   }
