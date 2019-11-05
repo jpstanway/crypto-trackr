@@ -5,9 +5,9 @@ import { useMutation } from "@apollo/react-hooks";
 import { ADD_OR_UPDATE_CRYPTOS } from "../graphql/mutations";
 import { toggleSort } from "../redux/reducers/cryptoReducer";
 
-import Notification from "./Notification";
-import Search from "./Search";
-import TableData from "./TableData";
+import Notification from "./notification/Notification";
+import Search from "./search/Search";
+import TableData from "./table-data/TableData";
 import Buttons from "./Buttons";
 
 import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";

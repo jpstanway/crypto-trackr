@@ -1,12 +1,12 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, fireEvent } from "@testing-library/react";
-import { Provider } from "react-redux";
-import store from "../redux/store";
 
-import Like from "./Like";
+import { Like } from "./Like";
 
 test("clicking like button calls event handler", () => {
+  const mockHandler = jest.fn();
+  const cryptos = { cryptoData: [] };
   const crypto = [
     {
       currency: "BTC",
@@ -20,16 +20,12 @@ test("clicking like button calls event handler", () => {
     }
   ];
 
-  const mockHandler = jest.fn();
-
-  const { getByTestId } = render(
-    <Provider store={store}>
-      <Like crypto={crypto} addLike={mockHandler} />
-    </Provider>
+  const component = render(
+    <Like crypto={crypto} addLike={mockHandler} cryptos={cryptos} />
   );
+  const button = component.container.getElementsByClassName("btn-like");
 
-  const button = getByTestId("like");
-  fireEvent.click(button);
+  fireEvent.click(button[0]);
 
   expect(mockHandler.mock.calls.length).toBe(1);
 });

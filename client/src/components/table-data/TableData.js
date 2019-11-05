@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 import { connect } from "react-redux";
 
-import Like from "./Like";
+import Like from "../like/Like";
 
-import convertToCurrency from "../utils/convertToCurrency";
+import convertToCurrency from "../../utils/convertToCurrency";
 
-import { ADD_LIKE } from "../graphql/mutations";
+import { ADD_LIKE } from "../../graphql/mutations";
 
-import { addCrypto, updateLikes } from "../redux/reducers/cryptoReducer";
-import { setNotification } from "../redux/reducers/notificationReducer";
+import { addCrypto, updateLikes } from "../../redux/reducers/cryptoReducer";
+import { setNotification } from "../../redux/reducers/notificationReducer";
 
-const TableData = ({
+export const TableData = ({
   cryptosToShow,
   setNotification,
   cryptos,

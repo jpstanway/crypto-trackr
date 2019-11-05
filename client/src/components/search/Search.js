@@ -9,7 +9,6 @@ const Search = ({ search, setSearch }) => (
         placeholder="Search cryptocurrencies..."
         value={search}
         onChange={({ target }) => setSearch(target.value)}
-        data-testid="search"
       />
     </form>
   </div>

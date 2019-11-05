@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const Notification = ({ notification }) => {
+export const Notification = ({ notification }) => {
   const show = {
     display: notification ? "block" : "none"
   };

@@ -1,13 +1,12 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import TableData from "./TableData";
-import store from "../redux/store";
+import { TableData } from "./TableData";
 
 test("render home component with table data", () => {
+  const cryptos = { loading: true };
   const cryptosToShow = [
     {
       currency: "BTC",
@@ -22,11 +21,9 @@ test("render home component with table data", () => {
   ];
 
   const component = render(
-    <Provider store={store}>
-      <Router>
-        <TableData cryptosToShow={cryptosToShow} />
-      </Router>
-    </Provider>
+    <Router>
+      <TableData cryptosToShow={cryptosToShow} cryptos={cryptos} />
+    </Router>
   );
 
   expect(component.container).toHaveTextContent("Bitcoin");
