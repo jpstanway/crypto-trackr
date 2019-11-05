@@ -82,7 +82,7 @@ const TableData = ({
               {convertToCurrency(crypto.price, true)}
             </td>
             <td className="home-table__cell">
-              {convertToCurrency(crypto.circulating_supply, true)}
+              {convertToCurrency(crypto.circulating_supply, false)}
             </td>
             <td className="home-table__cell">
               {cryptos.loading ? (

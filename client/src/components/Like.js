@@ -21,7 +21,11 @@ const Like = ({ addLike, crypto, cryptos }) => {
 
   return (
     <div className="btn-group">
-      <button onClick={() => handleLikes(crypto)} className="btn btn-like">
+      <button
+        onClick={() => handleLikes(crypto)}
+        className="btn btn-like"
+        data-testid="like"
+      >
         <i className="fas fa-caret-up fa-2x"></i>
       </button>
       <span className="btn-group__value">{renderLikes(crypto.currency)}</span>
