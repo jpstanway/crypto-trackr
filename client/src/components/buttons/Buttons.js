@@ -1,9 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { previousCryptos, nextCryptos } from "../redux/reducers/cryptoReducer";
+import {
+  previousCryptos,
+  nextCryptos
+} from "../../redux/reducers/cryptoReducer";
 
-const Buttons = ({ cryptos, previousCryptos, nextCryptos }) => {
+export const Buttons = ({ cryptos, previousCryptos, nextCryptos }) => {
   const handlePrev = () => {
     previousCryptos();
   };

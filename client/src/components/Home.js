@@ -3,16 +3,16 @@ import { connect } from "react-redux";
 import { useMutation } from "@apollo/react-hooks";
 
 import { ADD_OR_UPDATE_CRYPTOS } from "../graphql/mutations";
-import { toggleSort } from "../redux/reducers/cryptoReducer";
 
 import Notification from "./notification/Notification";
 import Search from "./search/Search";
 import TableData from "./table-data/TableData";
-import Buttons from "./Buttons";
+import Buttons from "./buttons/Buttons";
+import Sort from "./sort/Sort";
 
 import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
 
-const Home = ({ cryptos, toggleSort }) => {
+const Home = ({ cryptos }) => {
   const [search, setSearch] = useState("");
   const [cryptosToShow, setCryptosToShow] = useState([]);
   const [addOrUpdateCryptos] = useMutation(ADD_OR_UPDATE_CRYPTOS);
@@ -49,16 +49,6 @@ const Home = ({ cryptos, toggleSort }) => {
     }
   }, [cryptos, search, addOrUpdateCryptos]);
 
-  const handleSort = val => {
-    let data;
-    if (val === "likes") {
-      data = cryptos.cryptoData.sort((a, b) => b.likes.length - a.likes.length);
-    } else {
-      data = cryptos.cryptoData.sort((a, b) => a.rank - b.rank);
-    }
-    toggleSort(data);
-  };
-
   return (
     <main className="content">
       <div className="home-content">
@@ -81,35 +71,7 @@ const Home = ({ cryptos, toggleSort }) => {
             <em>updated {cryptos.cryptoData[0].price_date}</em>
           )}
         </div>
-        <div className="home-content__sort">
-          Sort by:
-          <div className="home-content__selector">
-            <input
-              type="radio"
-              id="rank"
-              name="sort"
-              value="rank"
-              onChange={({ target }) => handleSort(target.value)}
-              checked={cryptos.sortByRank}
-            />
-            <label htmlFor="rank">
-              <em>rank</em>
-            </label>
-          </div>
-          <div className="home-content__selector">
-            <input
-              type="radio"
-              id="likes"
-              name="sort"
-              value="likes"
-              onChange={({ target }) => handleSort(target.value)}
-              checked={!cryptos.sortByRank}
-            />
-            <label htmlFor="likes">
-              <em>likes</em>
-            </label>
-          </div>
-        </div>
+        <Sort />
         <div className="home-content__content">
           <TableData cryptosToShow={cryptosToShow} />
           {cryptos.loading ? null : <Buttons />}
@@ -123,7 +85,4 @@ const mapStateToProps = state => ({
   cryptos: state.cryptos
 });
 
-export default connect(
-  mapStateToProps,
-  { toggleSort }
-)(Home);
+export default connect(mapStateToProps)(Home);
