@@ -17,4 +17,11 @@ describe("<Sort />", () => {
     expect(component.container).toHaveTextContent("rank");
     expect(component.container).toHaveTextContent("likes");
   });
+
+  test("toggle radio buttons", () => {
+    const button = component.getByLabelText("likes");
+    fireEvent.click(button);
+
+    expect(mockHandler.mock.calls.length).toBe(1);
+  });
 });
