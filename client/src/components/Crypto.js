@@ -58,8 +58,9 @@ const Crypto = props => {
             <strong>Market Cap: </strong> {convertToCurrency(market_cap, true)}
           </li>
           <li>
-            <strong>Volume: </strong>{" "}
-            {convertToCurrency(circulating_supply, true)}
+            <strong>Circulating Supply: </strong>{" "}
+            {convertToCurrency(circulating_supply, false)}{" "}
+            {currency.toUpperCase()}
           </li>
           <li>
             <strong>Community: </strong>{" "}

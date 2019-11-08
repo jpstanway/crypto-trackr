@@ -52,7 +52,7 @@ export const TableData = ({
           <th className="home-table__heading">Name</th>
           <th className="home-table__heading">Market Cap</th>
           <th className="home-table__heading">Price</th>
-          <th className="home-table__heading">Volume</th>
+          <th className="home-table__heading">Circulating Supply</th>
           <th className="home-table__heading">&nbsp;</th>
         </tr>
       </thead>
@@ -82,7 +82,8 @@ export const TableData = ({
               {convertToCurrency(crypto.price, true)}
             </td>
             <td className="home-table__cell">
-              {convertToCurrency(crypto.circulating_supply, false)}
+              {convertToCurrency(crypto.circulating_supply, false)}{" "}
+              {crypto.currency}
             </td>
             <td className="home-table__cell">
               {cryptos.loading ? (

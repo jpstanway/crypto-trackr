@@ -74,7 +74,7 @@ const Home = ({ cryptos }) => {
         <Sort />
         <div className="home-content__content">
           <TableData cryptosToShow={cryptosToShow} />
-          {cryptos.loading ? null : <Buttons />}
+          {cryptos.loading || search ? null : <Buttons />}
         </div>
       </div>
     </main>

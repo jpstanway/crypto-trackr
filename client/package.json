@@ -27,10 +27,14 @@
     "compile:sass": "node-sass src/styles/sass/main.scss src/styles/css/style.comp.css",
     "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" src/styles/css/style.comp.css -o src/styles/css/style.prefix.css",
     "compress:css": "node-sass src/styles/css/style.prefix.css src/styles/css/style.css --output-style compressed",
-    "build:css": "npm-run-all compile:sass prefix:css compress:css"
+    "build:css": "npm-run-all compile:sass prefix:css compress:css",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "globals": {
+      "cy": true
+    }
   },
   "browserslist": {
     "production": [
@@ -48,6 +52,8 @@
     "@testing-library/jest-dom": "^4.2.3",
     "@testing-library/react": "^9.3.2",
     "autoprefixer": "^9.6.1",
+    "babel-eslint": "^10.0.1",
+    "cypress": "^3.6.0",
     "node-sass": "^4.12.0",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^6.1.3"
