@@ -1,0 +1,19 @@
+{
+  "name": "crypto-trackr",
+  "version": "1.0.0",
+  "description": "tracks latest crypto market data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpstanway/crypto-trackr.git"
+  },
+  "author": "Jordan Stanway",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jpstanway/crypto-trackr/issues"
+  },
+  "homepage": "https://github.com/jpstanway/crypto-trackr#readme"
+}
