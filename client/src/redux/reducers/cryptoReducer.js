@@ -3,7 +3,8 @@ const initialState = {
   loading: true,
   filter: {
     min: 0,
-    max: 9
+    max: 49,
+    viewAll: false
   },
   sortByRank: true
 };
@@ -50,16 +51,16 @@ const cryptoReducer = (state = initialState, action) => {
       return {
         ...state,
         filter: {
-          min: state.filter.min - 10,
-          max: state.filter.max - 10
+          min: state.filter.min - 50,
+          max: state.filter.max - 50
         }
       };
     case "NEXT_CRYPTOS":
       return {
         ...state,
         filter: {
-          min: state.filter.min + 10,
-          max: state.filter.max + 10
+          min: state.filter.min + 50,
+          max: state.filter.max + 50
         }
       };
     case "TOGGLE_SORT":
@@ -67,6 +68,16 @@ const cryptoReducer = (state = initialState, action) => {
         ...state,
         sortByRank: !state.sortByRank,
         cryptoData: action.payload
+      };
+
+    case "TOGGLE_VIEW_ALL":
+      return {
+        ...state,
+        filter: {
+          min: 0,
+          max: state.filter.viewAll ? 49 : state.cryptoData.length,
+          viewAll: !state.filter.viewAll
+        }
       };
     default:
       return state;
@@ -139,6 +150,14 @@ export const toggleSort = data => {
     dispatch({
       type: "TOGGLE_SORT",
       payload: data
+    });
+  };
+};
+
+export const toggleViewAll = () => {
+  return async dispatch => {
+    dispatch({
+      type: "TOGGLE_VIEW_ALL"
     });
   };
 };

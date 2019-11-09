@@ -3,43 +3,50 @@ import { connect } from "react-redux";
 
 import {
   previousCryptos,
-  nextCryptos
+  nextCryptos,
+  toggleViewAll
 } from "../../redux/reducers/cryptoReducer";
 
-export const Buttons = ({ cryptos, previousCryptos, nextCryptos }) => {
-  const handlePrev = () => {
-    previousCryptos();
-  };
-
-  const handleNext = () => {
-    nextCryptos();
-  };
-
-  return (
-    <div className="home-btns">
-      <button
-        onClick={handlePrev}
-        className={`btn btn-large ${
-          cryptos.filter.min === 0 ? "btn-disabled" : ""
-        }`}
-        disabled={cryptos.filter.min === 0}
-      >
-        prev 10
-      </button>
-      <button
-        onClick={handleNext}
-        className={`btn btn-large ${
-          cryptos.filter.max === cryptos.cryptoData.length - 1
-            ? "btn-disabled"
-            : ""
-        }`}
-        disabled={cryptos.filter.max === cryptos.cryptoData.length - 1}
-      >
-        next 10
-      </button>
+export const Buttons = ({
+  cryptos,
+  previousCryptos,
+  nextCryptos,
+  toggleViewAll
+}) => (
+  <div className="home-btns">
+    {cryptos.filter.viewAll ? (
+      ""
+    ) : (
+      <div>
+        <button
+          onClick={() => previousCryptos()}
+          className={`btn btn-large ${
+            cryptos.filter.min === 0 ? "btn-disabled" : ""
+          }`}
+          disabled={cryptos.filter.min === 0}
+        >
+          prev 50
+        </button>
+        <button
+          onClick={() => nextCryptos()}
+          className={`btn btn-large ${
+            cryptos.filter.max === cryptos.cryptoData.length - 1
+              ? "btn-disabled"
+              : ""
+          }`}
+          disabled={cryptos.filter.max === cryptos.cryptoData.length - 1}
+        >
+          next 50
+        </button>
+      </div>
+    )}
+    <div className="btn btn-back">
+      <a href="#content" onClick={() => toggleViewAll()}>
+        {cryptos.filter.viewAll ? "view less" : "view all"}
+      </a>
     </div>
-  );
-};
+  </div>
+);
 
 const mapStateToProps = state => ({
   cryptos: state.cryptos
@@ -47,5 +54,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { previousCryptos, nextCryptos }
+  { previousCryptos, nextCryptos, toggleViewAll }
 )(Buttons);

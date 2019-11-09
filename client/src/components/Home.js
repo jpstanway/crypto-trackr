@@ -19,10 +19,10 @@ const Home = ({ cryptos }) => {
 
   useEffect(() => {
     if (cryptos.loading) {
-      // while api data is loading, render first 10 saved cryptos from database
+      // while api data is loading, render first 50 saved cryptos from database
       setCryptosToShow(
         cryptos.cryptoData
-          .filter(crypto => crypto.rank >= 1 && crypto.rank <= 10)
+          .filter(crypto => crypto.rank >= 1 && crypto.rank <= 50)
           .sort((a, b) => a.rank - b.rank)
       );
     } else {
@@ -30,16 +30,21 @@ const Home = ({ cryptos }) => {
       setCryptosToShow(
         cryptos.cryptoData.filter((crypto, index) => {
           if (search) {
-            return crypto.name.toLowerCase().includes(search.toLowerCase());
+            return (
+              crypto.name
+                .toLowerCase()
+                .startsWith(search.toLowerCase().substr(0, 1)) &&
+              crypto.name.toLowerCase().includes(search.toLowerCase())
+            );
           }
 
           return index >= cryptos.filter.min && index <= cryptos.filter.max;
         })
       );
 
-      // update first 10 cryptos in database
+      // update first 50 cryptos in database
       const cryptosToSave = cryptos.cryptoData
-        .filter(crypto => crypto.rank <= 10)
+        .filter(crypto => crypto.rank <= 50)
         .map(crypto => {
           const { id, __typename, price_date, likes, ...otherProps } = crypto;
           return otherProps;
@@ -50,12 +55,12 @@ const Home = ({ cryptos }) => {
   }, [cryptos, search, addOrUpdateCryptos]);
 
   return (
-    <main className="content">
+    <main id="content" className="content">
       <div className="home-content">
         <Notification />
         <Search search={search} setSearch={setSearch} />
         <h1 className="home-content__title heading-1">
-          Current Top 10 Cryptocurrencies
+          Current Top Cryptocurrencies
         </h1>
         <div className="home-content__updating">
           {cryptos.loading ? (

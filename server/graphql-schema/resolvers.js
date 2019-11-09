@@ -10,7 +10,8 @@ module.exports = {
       // query third party api for latest crypto updates
       const response = await axios.get(`${url}/currencies/ticker?key=${key}`);
 
-      return response.data;
+      // filter the first 2k results
+      return response.data.filter(crypto => crypto.rank <= 2000);
     },
     getSingleCrypto: async (root, args, context) => {
       const { url, key } = context.apiInfo;
