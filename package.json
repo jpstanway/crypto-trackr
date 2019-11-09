@@ -4,7 +4,7 @@
   "description": "tracks latest crypto market data",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node server.js --prefix server"
+    "start": "node server.js --prefix server"
   },
   "repository": {
     "type": "git",
@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/jpstanway/crypto-trackr/issues"
   },
-  "homepage": "https://github.com/jpstanway/crypto-trackr#readme",
-  "devDependencies": {
-    "cross-env": "^6.0.3"
-  }
+  "homepage": "https://github.com/jpstanway/crypto-trackr#readme"
 }
