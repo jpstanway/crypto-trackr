@@ -36,7 +36,12 @@ const Crypto = props => {
           </Link>
         </div>
         <h1>
-          <img src={logo_url} alt={name} style={{ maxWidth: "50px" }} /> {name}
+          {logo_url ? (
+            <img src={logo_url} alt={name} style={{ maxWidth: "50px" }} />
+          ) : (
+            ""
+          )}{" "}
+          {name}
         </h1>
         <h3>
           <a

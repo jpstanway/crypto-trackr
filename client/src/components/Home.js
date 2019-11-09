@@ -68,7 +68,12 @@ const Home = ({ cryptos }) => {
               <em> updating...</em>
             </p>
           ) : (
-            <em>updated {cryptos.cryptoData[0].price_date}</em>
+            <em>
+              updated{" "}
+              {new Date(cryptos.cryptoData[0].price_date).toLocaleDateString(
+                "en-US"
+              )}
+            </em>
           )}
         </div>
         <Sort />

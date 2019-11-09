@@ -61,11 +61,15 @@ export const TableData = ({
           <tr key={crypto.currency} className="home-table__row">
             <td className="home-table__cell">{crypto.rank}</td>
             <td className="home-table__cell home-table__cell--name">
-              <img
-                src={crypto.logo_url}
-                alt={crypto.name}
-                className="home-table__logo"
-              />
+              {crypto.logo_url ? (
+                <img
+                  src={crypto.logo_url}
+                  alt={crypto.name}
+                  className="home-table__logo"
+                />
+              ) : (
+                ""
+              )}
               <Link
                 className={`home-table__link ${
                   cryptos.loading ? "home-table__link--disabled" : ""

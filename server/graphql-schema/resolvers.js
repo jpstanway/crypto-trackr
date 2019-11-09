@@ -1,24 +1,22 @@
 const { UserInputError } = require("apollo-server");
 const axios = require("axios");
-const { API_URL, API_KEY } = process.env;
 
 const Crypto = require("../models/Crypto");
 
 module.exports = {
   Query: {
-    allCryptos: async () => {
+    allCryptos: async (root, args, context) => {
+      const { url, key } = context.apiInfo;
       // query third party api for latest crypto updates
-      const response = await axios.get(
-        `${API_URL}/currencies/ticker?key=${API_KEY}`
-      );
+      const response = await axios.get(`${url}/currencies/ticker?key=${key}`);
 
-      // filter out top 100 cryptos
-      return response.data.filter(crypto => crypto.rank <= 100);
+      return response.data;
     },
-    getSingleCrypto: async (root, args) => {
+    getSingleCrypto: async (root, args, context) => {
+      const { url, key } = context.apiInfo;
       const currency = args.currency.toUpperCase();
       const response = await axios.get(
-        `${API_URL}/currencies/ticker?key=${API_KEY}&ids=${currency}`
+        `${url}/currencies/ticker?key=${key}&ids=${currency}`
       );
 
       if (!response) {
@@ -27,10 +25,11 @@ module.exports = {
 
       return response.data[0];
     },
-    getCryptoMetaData: async (root, args) => {
+    getCryptoMetaData: async (root, args, context) => {
+      const { url, key } = context.apiInfo;
       const currency = args.currency.toUpperCase();
       const response = await axios.get(
-        `${API_URL}/currencies?key=${API_KEY}&ids=${currency}`
+        `${url}/currencies?key=${key}&ids=${currency}`
       );
 
       if (!response) {
@@ -72,7 +71,7 @@ module.exports = {
     },
     addLike: async (root, args, context) => {
       try {
-        const userIp = "testIp";
+        const userIp = context.userIp();
 
         // search database for crypto
         let crypto = await Crypto.findOne({ currency: args.currency });
