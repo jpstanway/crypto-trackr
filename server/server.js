@@ -1,9 +1,11 @@
-require("dotenv").config({ path: "./config.env" });
-
 const { ApolloServer } = require("apollo-server");
 const mongoose = require("mongoose");
 
 // env variables
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config({ path: "./config.env" });
+}
+
 let mongodbUri = process.env.MONGODB_URI;
 
 if (process.env.NODE_ENV === "test") {
