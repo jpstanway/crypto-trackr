@@ -3,7 +3,7 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 43.8em) {
     html {
       font-size: 55%; } }
 
@@ -25,6 +25,14 @@ body {
   margin-bottom: 3rem;
   margin-top: 2rem;
   text-align: center; }
+
+.heading-3 {
+  color: #7f7f7f;
+  font-family: "Ubuntu Mono", monospace;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  text-align: center;
+  text-transform: uppercase; }
 
 .btn {
   position: relative; }
@@ -74,6 +82,13 @@ body {
     background-color: #fcd4c1; }
   .btn-large:hover {
     color: #2a2a2a; }
+
+.btn-back {
+  margin: 5rem 0; }
+  .btn-back a {
+    color: #f58e5c !important; }
+    .btn-back a:hover {
+      color: #fcd4c1 !important; }
 
 .btn-like {
   color: #7f7f7f;
@@ -168,7 +183,7 @@ body {
       font-style: italic; }
   .auth-form--login {
     border-right: 1px solid #c6c6c6; }
-    @media only screen and (max-width: 50em) {
+    @media only screen and (max-width: 62.5em) {
       .auth-form--login {
         border-bottom: 1px solid #c6c6c6;
         border-right: 0; } }
@@ -180,8 +195,6 @@ body {
     border: 1px solid #eee;
     border-radius: 2px;
     box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
-    display: grid;
-    grid-template-columns: 80% 1fr;
     height: 5rem; }
   .search-box__input {
     border: 0;
@@ -201,15 +214,31 @@ body {
     .search-box__btn:focus {
       outline: none; }
 
+.loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.notification {
+  background-color: #fcc1e9;
+  border: 1px solid #7f7f7f;
+  border-radius: 4px;
+  color: #7f7f7f;
+  margin-top: 2rem;
+  padding: 2rem;
+  text-align: center;
+  width: 100%; }
+
 .home-table {
   border-collapse: collapse;
   color: #2a2a2a;
   font-size: 2rem;
   table-layout: fixed; }
-  @media only screen and (max-width: 75em) {
+  @media only screen and (max-width: 81.3em) {
     .home-table {
       font-size: 1.6rem; } }
-  @media only screen and (max-width: 62.5em) {
+  @media only screen and (max-width: 68.8em) {
     .home-table {
       font-size: 2rem; } }
   .home-table__head {
@@ -235,48 +264,18 @@ body {
     text-decoration: none; }
     .home-table__link:hover {
       color: #d4c1fc; }
+    .home-table__link--disabled {
+      color: #2a2a2a;
+      pointer-events: none; }
   .home-table__loading {
     height: 40rem;
     text-align: center; }
-
-.portfolio-table {
-  box-shadow: 0 1px 0.5px rgba(42, 42, 42, 0.25);
-  border: 1px solid #7f7f7f;
-  border-collapse: collapse;
-  table-layout: fixed;
-  text-align: center; }
-  .portfolio-table__head {
-    border-bottom: 1px solid #7f7f7f; }
-  .portfolio-table__heading {
-    padding: 1rem; }
-    .portfolio-table__heading:not(:last-child) {
-      border-right: 1px solid #7f7f7f; }
-  .portfolio-table__row {
-    border-bottom: 1px solid #c6c6c6; }
-  .portfolio-table__cell {
-    padding: 1.5rem; }
-    .portfolio-table__cell:not(:last-child) {
-      border-right: 1px solid #c6c6c6; }
-  .portfolio-table__remove {
-    color: #f58e5c;
-    cursor: pointer;
-    transition: all 0.2s; }
-    .portfolio-table__remove:hover {
-      color: #fcd4c1; }
-  .portfolio-table__foot td {
-    border-right: 1px solid #7f7f7f;
-    font-weight: 700;
-    padding: 1rem; }
-
-@media only screen and (min-width: 50em) {
-  .home-table,
-  .portfolio-table {
-    width: 100%; } }
+  @media only screen and (min-width: 62.5em) {
+    .home-table {
+      width: 100%; } }
 
 .content {
-  background-color: #fefefe;
-  padding: 5rem;
-  position: relative; }
+  background-color: #fefefe; }
 
 .footer {
   color: #2a2a2a;
@@ -288,7 +287,7 @@ body {
   display: grid;
   grid-template-rows: minmax(94vh, 1fr) min-content;
   margin-left: 30rem; }
-  @media only screen and (max-width: 62.5em) {
+  @media only screen and (max-width: 68.8em) {
     .container {
       grid-template-rows: minmax(86vh, 1fr) min-content;
       margin-left: 0;
@@ -304,12 +303,12 @@ body {
   width: 30rem;
   z-index: 9999;
   /* MOBILE STYLING */ }
-  @media only screen and (max-width: 62.5em) {
+  @media only screen and (max-width: 68.8em) {
     .navigation {
       align-items: stretch;
       height: 6rem;
       width: 100%; } }
-  @media only screen and (max-width: 50em) {
+  @media only screen and (max-width: 62.5em) {
     .navigation {
       align-items: center;
       justify-content: flex-end;
@@ -323,25 +322,17 @@ body {
     text-align: center;
     text-transform: uppercase;
     width: 100%; }
-    @media only screen and (max-width: 62.5em) {
+    @media only screen and (max-width: 68.8em) {
       .navigation__menu {
         align-items: center;
         display: flex;
         justify-content: center;
         font-size: 1.8rem; } }
-    @media only screen and (max-width: 50em) {
-      .navigation__menu {
-        display: none; } }
   .navigation__item {
-    background-color: transparent;
-    cursor: pointer;
-    transition: all 0.2s;
     align-items: center;
     display: flex;
     height: 100%;
     justify-content: center; }
-    .navigation__item:hover, .navigation__item:active {
-      background-color: #fcc1e9; }
   .navigation__link:visited, .navigation__link:link {
     color: #2a2a2a;
     padding: 1rem;
@@ -414,32 +405,56 @@ body {
 
 .mobile {
   display: none; }
-  @media only screen and (max-width: 50em) {
+  @media only screen and (max-width: 62.5em) {
     .mobile {
       display: initial; } }
 
 .mobile-dropdown {
   top: 6rem; }
 
-.add-search-content {
+.search-content {
   margin: auto;
   max-width: 100rem;
   width: 80%; }
-  @media only screen and (max-width: 37.5em) {
-    .add-search-content {
+  @media only screen and (max-width: 43.8em) {
+    .search-content {
       width: 90%; } }
 
-.crypto-view-content h1 {
-  color: #8e5cf5; }
+.crypto-view-content {
+  margin: auto;
+  max-width: 100rem;
+  width: 80%; }
+  @media only screen and (max-width: 43.8em) {
+    .crypto-view-content {
+      width: 90%; } }
+  .crypto-view-content h1 {
+    color: #7f7f7f; }
+  .crypto-view-content a {
+    color: #8e5cf5;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none; }
+    .crypto-view-content a:hover {
+      color: #d4c1fc; }
 
 .home-content {
-  left: 50%;
+  margin: auto;
   max-width: 100rem;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
   width: 80%; }
-  @media only screen and (max-width: 37.5em) {
+  .home-content__updating {
+    color: #7f7f7f;
+    text-align: center; }
+  .home-content__update-icon {
+    width: 15px;
+    height: 15px; }
+  @media only screen and (max-width: 43.8em) {
     .home-content__content {
       overflow-x: scroll;
       padding: 2rem 0; } }
+  .home-content__sort {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; }
+  .home-content__selector {
+    color: #2a2a2a;
+    margin-left: 10px; }

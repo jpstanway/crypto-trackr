@@ -6,7 +6,7 @@ const Navigation = () => (
     <ul className="navigation__menu">
       <li className="navigation__item">
         <Link to="/" className="navigation__link">
-          Crypto Tracker
+          Crypto Trackr
         </Link>
       </li>
     </ul>
