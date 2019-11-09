@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jpstanway/crypto-trackr/issues"
   },
-  "homepage": "https://github.com/jpstanway/crypto-trackr#readme"
+  "homepage": "https://github.com/jpstanway/crypto-trackr#readme",
+  "devDependencies": {
+    "cross-env": "^6.0.3"
+  }
 }
