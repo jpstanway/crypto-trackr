@@ -1,4 +1,4 @@
-const { UserInputError } = require("apollo-server");
+const { UserInputError } = require("apollo-server-express");
 const axios = require("axios");
 
 const Crypto = require("../models/Crypto");
