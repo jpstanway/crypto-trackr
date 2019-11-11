@@ -30,7 +30,9 @@ const resolvers = require("./graphql-schema/resolvers");
 mongoose
   .connect(mongodbUri, { useNewUrlParser: true })
   .then(() => console.log("***--- Successfully connected to MongoDB ---***"))
-  .catch(err => console.log("!!! Error connecting to MongoDB !!!", err));
+  .catch(err =>
+    console.log("!!! Error connecting to MongoDB !!!", err, mongodbUri)
+  );
 
 // server
 if (process.env.NODE_ENV === "production") {
