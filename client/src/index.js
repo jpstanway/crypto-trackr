@@ -8,7 +8,7 @@ import store from "./redux/store";
 import App from "./App";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql"
+  uri: "/graphql"
 });
 
 ReactDOM.render(
