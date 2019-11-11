@@ -48,7 +48,8 @@ const server = new ApolloServer({
     userIp: () => {
       const headers = context.req.headers;
       if (!headers) return null;
-      const ipAddress = headers["X-Forwarded-For"] || headers["origin"];
+      const ipAddress =
+        headers["X-Forwarded-For"] || context.req.connection.remoteAddress;
       if (!ipAddress) return null;
       return ipAddress;
     },
