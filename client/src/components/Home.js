@@ -4,7 +4,6 @@ import { useMutation } from "@apollo/react-hooks";
 
 import { ADD_OR_UPDATE_CRYPTOS } from "../graphql/mutations";
 
-import Notification from "./notification/Notification";
 import Search from "./search/Search";
 import TableData from "./table-data/TableData";
 import Buttons from "./buttons/Buttons";
@@ -57,7 +56,6 @@ const Home = ({ cryptos }) => {
   return (
     <main id="content" className="content">
       <div className="home-content">
-        <Notification />
         <Search search={search} setSearch={setSearch} />
         <h1 className="home-content__title heading-1">
           Current Top Cryptocurrencies
