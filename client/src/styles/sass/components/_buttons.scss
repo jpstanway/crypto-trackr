@@ -56,6 +56,10 @@
   background: transparent;
   border: 0;
   cursor: pointer;
+
+  &--liked {
+    @include color-hover($color-red, $color-red-light);
+  }
 }
 
 .btn-disabled {

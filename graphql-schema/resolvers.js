@@ -87,6 +87,7 @@ module.exports = {
         if (crypto.likes.includes(userIp)) {
           throw new Error("You have already liked this cryptocurrency!");
         } else {
+          // add ip to likes array and save
           crypto.likes = [...crypto.likes, userIp];
           await crypto.save();
         }

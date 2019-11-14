@@ -6,7 +6,8 @@ const initialState = {
     max: 49,
     viewAll: false
   },
-  sortByRank: true
+  sortByRank: true,
+  userLikedCryptos: []
 };
 
 const cryptoReducer = (state = initialState, action) => {
@@ -78,6 +79,11 @@ const cryptoReducer = (state = initialState, action) => {
           max: state.filter.viewAll ? 49 : state.cryptoData.length,
           viewAll: !state.filter.viewAll
         }
+      };
+    case "SET_USER_LIKED_CRYPTOS":
+      return {
+        ...state,
+        userLikedCryptos: action.payload
       };
     default:
       return state;
@@ -158,6 +164,15 @@ export const toggleViewAll = () => {
   return async dispatch => {
     dispatch({
       type: "TOGGLE_VIEW_ALL"
+    });
+  };
+};
+
+export const setUserLikedCryptos = cryptos => {
+  return async dispatch => {
+    dispatch({
+      type: "SET_USER_LIKED_CRYPTOS",
+      payload: cryptos
     });
   };
 };

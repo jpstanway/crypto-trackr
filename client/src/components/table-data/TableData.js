@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 import { connect } from "react-redux";
@@ -9,16 +9,28 @@ import convertToCurrency from "../../utils/convertToCurrency";
 
 import { ADD_LIKE } from "../../graphql/mutations";
 
-import { addCrypto, updateLikes } from "../../redux/reducers/cryptoReducer";
-import { setNotification } from "../../redux/reducers/notificationReducer";
+import {
+  addCrypto,
+  updateLikes,
+  setUserLikedCryptos
+} from "../../redux/reducers/cryptoReducer";
 
 export const TableData = ({
   cryptosToShow,
-  setNotification,
   cryptos,
   addCrypto,
-  updateLikes
+  updateLikes,
+  setUserLikedCryptos
 }) => {
+  useEffect(() => {
+    const likedCryptoData = localStorage.getItem("cryptoTrackrApp");
+
+    if (likedCryptoData) {
+      const likedCryptos = JSON.parse(likedCryptoData);
+      setUserLikedCryptos(likedCryptos);
+    }
+  }, [setUserLikedCryptos]);
+
   const [addLike] = useMutation(ADD_LIKE, {
     onCompleted: data => {
       // check if crypto exists in store before attempting to update
@@ -32,9 +44,6 @@ export const TableData = ({
       }
       // update likes if it does
       updateLikes(data.addLike);
-    },
-    onError: () => {
-      setNotification("You have already liked this crypto!");
     }
   });
 
@@ -107,7 +116,8 @@ const mapStateToProps = state => ({
   cryptos: state.cryptos
 });
 
-export default connect(
-  mapStateToProps,
-  { addCrypto, updateLikes, setNotification }
-)(TableData);
+export default connect(mapStateToProps, {
+  addCrypto,
+  updateLikes,
+  setUserLikedCryptos
+})(TableData);

@@ -97,6 +97,12 @@ body {
   cursor: pointer; }
   .btn-like:hover {
     color: #c6c6c6; }
+  .btn-like--liked {
+    color: #ff0000;
+    cursor: pointer;
+    transition: all 0.2s; }
+    .btn-like--liked:hover {
+      color: #ff6969; }
 
 .btn-disabled {
   background-color: #7f7f7f;

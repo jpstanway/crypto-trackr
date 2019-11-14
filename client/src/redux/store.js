@@ -3,11 +3,9 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import cryptoReducer from "./reducers/cryptoReducer";
-import notificationReducer from "./reducers/notificationReducer";
 
 const rootReducer = combineReducers({
-  cryptos: cryptoReducer,
-  notification: notificationReducer
+  cryptos: cryptoReducer
 });
 
 const store = createStore(

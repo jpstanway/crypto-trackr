@@ -56,7 +56,8 @@ const server = new ApolloServer({
     apiInfo: {
       url: process.env.API_URL,
       key: process.env.API_KEY
-    }
+    },
+    jwtSecret: process.env.JWT_SECRET
   })
 });
 

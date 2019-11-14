@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
-export const Like = ({ addLike, crypto, cryptos }) => {
-  const [disabled, setDisabled] = useState(false);
+import { setUserLikedCryptos } from "../../redux/reducers/cryptoReducer";
+
+import localStorageHandler from "../../utils/localStorageHandler";
+
+export const Like = ({ addLike, crypto, cryptos, setUserLikedCryptos }) => {
+  const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    if (cryptos.userLikedCryptos.indexOf(crypto.currency) > -1) {
+      setLiked(true);
+    }
+  }, [crypto, cryptos]);
 
   const handleLikes = async ({ currency, name }) => {
+    // fire addLike mutation
     await addLike({
       variables: {
         currency,
@@ -20,7 +31,10 @@ export const Like = ({ addLike, crypto, cryptos }) => {
         }
       }
     });
-    setDisabled(true);
+
+    // add to users liked cryptos in localstorage
+    const likedCryptos = localStorageHandler(currency);
+    setUserLikedCryptos(likedCryptos);
   };
 
   const renderLikes = currency => {
@@ -35,8 +49,8 @@ export const Like = ({ addLike, crypto, cryptos }) => {
     <div className="btn-group">
       <button
         onClick={() => handleLikes(crypto)}
-        className="btn btn-like"
-        disabled={disabled}
+        className={`btn btn-like ${liked ? "btn-like--liked" : ""}`}
+        disabled={liked}
       >
         <i className="fas fa-caret-up fa-2x"></i>
       </button>
@@ -49,4 +63,4 @@ const mapStateToProps = state => ({
   cryptos: state.cryptos
 });
 
-export default connect(mapStateToProps)(Like);
+export default connect(mapStateToProps, { setUserLikedCryptos })(Like);
