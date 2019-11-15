@@ -18,10 +18,3 @@
     background-color: $hoverColor;
   }
 }
-
-@mixin table-scroll($breakpoint) {
-  @media only screen and (max-width: $breakpoint) {
-    overflow-x: scroll;
-    padding: 2rem 0;
-  }
-}

@@ -194,7 +194,8 @@ body {
 
 .search-box {
   margin: 7rem auto;
-  max-width: 60rem; }
+  max-width: 60rem;
+  width: 100%; }
   .search-box__search {
     border: 1px solid #eee;
     border-radius: 2px;
@@ -246,6 +247,9 @@ body {
   @media only screen and (max-width: 68.8em) {
     .home-table {
       font-size: 2rem; } }
+  @media only screen and (min-width: 62.5em) {
+    .home-table {
+      width: 100%; } }
   .home-table__head {
     border-bottom: 1px solid #7f7f7f; }
   .home-table__row:not(:last-child) {
@@ -275,12 +279,10 @@ body {
   .home-table__loading {
     height: 40rem;
     text-align: center; }
-  @media only screen and (min-width: 62.5em) {
-    .home-table {
-      width: 100%; } }
 
 .content {
-  background-color: #fefefe; }
+  background-color: #fefefe;
+  width: 100%; }
 
 .footer {
   color: #2a2a2a;
@@ -417,14 +419,6 @@ body {
 .mobile-dropdown {
   top: 6rem; }
 
-.search-content {
-  margin: auto;
-  max-width: 100rem;
-  width: 80%; }
-  @media only screen and (max-width: 43.8em) {
-    .search-content {
-      width: 90%; } }
-
 .crypto-view-content {
   margin: auto;
   max-width: 100rem;
@@ -445,17 +439,17 @@ body {
 .home-content {
   margin: auto;
   max-width: 100rem;
+  padding: 3rem;
   width: 80%; }
+  @media only screen and (max-width: 62.5em) {
+    .home-content {
+      width: 100%; } }
   .home-content__updating {
     color: #7f7f7f;
     text-align: center; }
   .home-content__update-icon {
     width: 15px;
     height: 15px; }
-  @media only screen and (max-width: 43.8em) {
-    .home-content__content {
-      overflow-x: scroll;
-      padding: 2rem 0; } }
   .home-content__sort {
     display: flex;
     align-items: center;
@@ -463,3 +457,17 @@ body {
   .home-content__selector {
     color: #2a2a2a;
     margin-left: 10px; }
+  @media only screen and (max-width: 62.5em) {
+    .home-content__content {
+      width: 70rem;
+      margin: auto;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      position: relative;
+      white-space: nowrap; } }
+  @media only screen and (max-width: 43.8em) {
+    .home-content__content {
+      width: 50rem; } }
+  @media only screen and (max-width: 31.3em) {
+    .home-content__content {
+      width: 32.5rem; } }

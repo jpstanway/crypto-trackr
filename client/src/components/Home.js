@@ -79,9 +79,13 @@ const Home = ({ cryptos }) => {
             </em>
           )}
         </div>
-        <Sort />
+        <div className="home-content__sort">
+          <Sort />
+        </div>
         <div className="home-content__content">
           <TableData cryptosToShow={cryptosToShow} />
+        </div>
+        <div className="home-content__buttons">
           {cryptos.loading || search ? null : <Buttons />}
         </div>
       </div>
