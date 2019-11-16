@@ -8,6 +8,8 @@ import Search from "./search/Search";
 import TableData from "./table-data/TableData";
 import Buttons from "./buttons/Buttons";
 import Sort from "./sort/Sort";
+import ViewAllButton from "./buttons/ViewAllButton";
+import BackToTopButton from "./buttons/BackToTopButton";
 
 import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
 
@@ -79,8 +81,9 @@ const Home = ({ cryptos }) => {
             </em>
           )}
         </div>
-        <div className="home-content__sort">
+        <div className="home-content__buttons--top">
           <Sort />
+          {cryptos.filter.viewAll ? <ViewAllButton /> : ""}
         </div>
         <div className="home-content__content">
           <TableData cryptosToShow={cryptosToShow} />
@@ -88,6 +91,7 @@ const Home = ({ cryptos }) => {
         <div className="home-content__buttons">
           {cryptos.loading || search ? null : <Buttons />}
         </div>
+        {cryptos.filter.viewAll ? <BackToTopButton /> : ""}
       </div>
     </main>
   );

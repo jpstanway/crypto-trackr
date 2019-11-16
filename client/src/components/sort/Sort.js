@@ -51,7 +51,4 @@ const mapStateToProps = state => ({
   cryptos: state.cryptos
 });
 
-export default connect(
-  mapStateToProps,
-  { toggleSort }
-)(Sort);
+export default connect(mapStateToProps, { toggleSort })(Sort);

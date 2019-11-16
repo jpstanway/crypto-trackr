@@ -3,16 +3,12 @@ import { connect } from "react-redux";
 
 import {
   previousCryptos,
-  nextCryptos,
-  toggleViewAll
+  nextCryptos
 } from "../../redux/reducers/cryptoReducer";
 
-export const Buttons = ({
-  cryptos,
-  previousCryptos,
-  nextCryptos,
-  toggleViewAll
-}) => (
+import ViewAllButton from "./ViewAllButton";
+
+export const Buttons = ({ cryptos, previousCryptos, nextCryptos }) => (
   <div className="home-btns">
     {cryptos.filter.viewAll ? (
       ""
@@ -40,11 +36,7 @@ export const Buttons = ({
         </button>
       </div>
     )}
-    <div className="btn btn-back">
-      <a href="#content" onClick={() => toggleViewAll()}>
-        {cryptos.filter.viewAll ? "view less" : "view all"}
-      </a>
-    </div>
+    <ViewAllButton />
   </div>
 );
 
@@ -52,7 +44,6 @@ const mapStateToProps = state => ({
   cryptos: state.cryptos
 });
 
-export default connect(
-  mapStateToProps,
-  { previousCryptos, nextCryptos, toggleViewAll }
-)(Buttons);
+export default connect(mapStateToProps, { previousCryptos, nextCryptos })(
+  Buttons
+);
