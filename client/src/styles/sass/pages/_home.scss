@@ -1,7 +1,7 @@
 .home-content {
   margin: auto;
   max-width: 100rem;
-  padding: 3rem;
+  padding: 2rem;
   width: 80%;
 
   @media only screen and (max-width: $screen-size-md) {
@@ -10,6 +10,7 @@
 
   &__updating {
     color: $color-grey-dark;
+    padding: 2rem;
     text-align: center;
   }
 
@@ -22,6 +23,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 5px;
+    padding-left: 2.5rem;
   }
 
   &__selector {
@@ -31,20 +33,12 @@
 
   &__content {
     @media only screen and (max-width: $screen-size-md) {
-      width: 70rem;
+      width: 80vw;
       margin: auto;
       overflow-x: scroll;
       overflow-y: hidden;
       position: relative;
       white-space: nowrap;
-    }
-
-    @media only screen and (max-width: $screen-size-sm) {
-      width: 50rem;
-    }
-
-    @media only screen and (max-width: $screen-size-xs) {
-      width: 32.5rem;
     }
   }
 }

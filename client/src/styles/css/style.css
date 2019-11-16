@@ -439,13 +439,14 @@ body {
 .home-content {
   margin: auto;
   max-width: 100rem;
-  padding: 3rem;
+  padding: 2rem;
   width: 80%; }
   @media only screen and (max-width: 62.5em) {
     .home-content {
       width: 100%; } }
   .home-content__updating {
     color: #7f7f7f;
+    padding: 2rem;
     text-align: center; }
   .home-content__update-icon {
     width: 15px;
@@ -453,21 +454,16 @@ body {
   .home-content__sort {
     display: flex;
     align-items: center;
-    margin-bottom: 5px; }
+    margin-bottom: 5px;
+    padding-left: 2.5rem; }
   .home-content__selector {
     color: #2a2a2a;
     margin-left: 10px; }
   @media only screen and (max-width: 62.5em) {
     .home-content__content {
-      width: 70rem;
+      width: 80vw;
       margin: auto;
       overflow-x: scroll;
       overflow-y: hidden;
       position: relative;
       white-space: nowrap; } }
-  @media only screen and (max-width: 43.8em) {
-    .home-content__content {
-      width: 50rem; } }
-  @media only screen and (max-width: 31.3em) {
-    .home-content__content {
-      width: 32.5rem; } }
