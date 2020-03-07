@@ -1,11 +1,15 @@
 import React from "react";
 
-const Footer = () => (
-  <footer className="footer">
-    <p className="footer__copyright">
-      &copy; 2019 Crypto Trackr. All rights reserved.
-    </p>
-  </footer>
-);
+const Footer = () => {
+  const date = new Date();
+
+  return (
+    <footer className="footer">
+      <p className="footer__copyright">
+        &copy; {date.getFullYear()} Crypto Trackr. All rights reserved.
+      </p>
+    </footer>
+  );
+};
 
 export default Footer;
