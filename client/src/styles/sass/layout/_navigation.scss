@@ -2,17 +2,11 @@
   align-items: center;
   background-color: $color-primary;
   display: flex;
-  height: 100%;
+  height: 6rem;
   justify-content: center;
   position: fixed;
-  width: 30rem;
+  width: 100%;
   z-index: 9999;
-
-  @media only screen and (max-width: $screen-size-lg) {
-    align-items: stretch;
-    height: 6rem;
-    width: 100%;
-  }
 
   @media only screen and (max-width: $screen-size-md) {
     align-items: center;

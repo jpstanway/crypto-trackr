@@ -22,6 +22,7 @@
 
   &__row:not(:last-child) {
     border-bottom: $border-grey-light;
+    height: 6rem;
   }
 
   &__heading {
