@@ -1,6 +1,6 @@
 import React from "react";
 
-import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
+import halfCircleIcon from "../../styles/imgs/Animated_loading_half-circle.gif";
 
 const Loading = () => (
   <div className="loading-icon">

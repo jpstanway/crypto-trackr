@@ -7,10 +7,10 @@ import "./App.css";
 
 import Home from "./components/home/Home";
 import Crypto from "./components/crypto/Crypto";
-import Navigation from "./components/Navigation";
-import Footer from "./components/Footer";
+import Navigation from "./components/navigation/Navigation";
+import Footer from "./components/footer/Footer";
 
-import Loading from "./components/Loading";
+import Loading from "./components/loading/Loading";
 
 import { ALL_CRYPTOS, GET_SAVED_CRYPTO_DATA } from "./graphql/queries";
 import {
