@@ -1,0 +1,60 @@
+.tabbed-container {
+  margin-top: 5rem;
+
+  &__tabs {
+    display: flex;
+  }
+
+  &__tab:not(:last-child) {
+    margin-right: 1rem;
+  }
+
+  &__btn {
+    background: $color-grey-light;
+    border: 1px solid $color-grey;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+      background: $color-grey;
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    &--active {
+      background: $color-grey;
+    }
+  }
+
+  &__data {
+    display: none;
+    font-size: 2rem;
+    padding: 1rem 0rem;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__price-change {
+    color: darken($color-primary-dark, 40%);
+    margin-left: 1rem;
+
+    &--negative {
+      color: darken($color-tertiary-dark, 40%);
+    }
+  }
+
+  &__price-change-pct {
+    color: darken($color-primary-dark, 20%);
+    margin-left: 1rem;
+
+    &--negative {
+      color: darken($color-tertiary-dark, 20%);
+    }
+  }
+}
