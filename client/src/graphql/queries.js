@@ -12,6 +12,26 @@ export const ALL_CRYPTOS = gql`
       price
       price_date
       circulating_supply
+      daily {
+        price_change
+        price_change_pct
+      }
+      weekly {
+        price_change
+        price_change_pct
+      }
+      monthly {
+        price_change
+        price_change_pct
+      }
+      yearly {
+        price_change
+        price_change_pct
+      }
+      ytd {
+        price_change
+        price_change_pct
+      }
     }
   }
 `;
@@ -38,6 +58,26 @@ export const GET_SAVED_CRYPTO_DATA = gql`
       price
       circulating_supply
       likes
+      daily {
+        price_change
+        price_change_pct
+      }
+      weekly {
+        price_change
+        price_change_pct
+      }
+      monthly {
+        price_change
+        price_change_pct
+      }
+      yearly {
+        price_change
+        price_change_pct
+      }
+      ytd {
+        price_change
+        price_change_pct
+      }
     }
   }
 `;

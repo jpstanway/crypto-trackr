@@ -3,13 +3,15 @@ import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Loading from "./Loading";
+import Loading from "../loading/Loading";
+import TabbedContainer from "../tabbed-container/TabbedContainer";
 
-import convertToCurrency from "../utils/convertToCurrency";
+import { organizeTrendData } from "./Crypto.utils";
+import convertToCurrency from "../../utils/convertToCurrency";
 
-import { GET_CRYPTO_METADATA } from "../graphql/queries";
+import { GET_CRYPTO_METADATA } from "../../graphql/queries";
 
-const Crypto = props => {
+const Crypto = (props) => {
   const currency = props.match.params.id;
   const {
     name,
@@ -17,11 +19,18 @@ const Crypto = props => {
     logo_url,
     rank,
     market_cap,
-    circulating_supply
-  } = props.cryptos.cryptoData.find(crypto => crypto.currency === currency);
+    circulating_supply,
+    daily,
+    weekly,
+    monthly,
+    yearly,
+    ytd,
+  } = props.cryptos.cryptoData.find((crypto) => crypto.currency === currency);
   const { data, loading } = useQuery(GET_CRYPTO_METADATA, {
-    variables: { currency }
+    variables: { currency },
   });
+
+  const trends = organizeTrendData([daily, weekly, monthly, yearly, ytd]);
 
   if (loading) {
     return <Loading />;
@@ -96,13 +105,14 @@ const Crypto = props => {
             )}
           </li>
         </ul>
+        <TabbedContainer trends={trends} />
       </div>
     </main>
   );
 };
 
-const mapStateToProps = state => ({
-  cryptos: state.cryptos
+const mapStateToProps = (state) => ({
+  cryptos: state.cryptos,
 });
 
 export default connect(mapStateToProps)(Crypto);

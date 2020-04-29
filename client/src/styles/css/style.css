@@ -160,6 +160,41 @@ body {
   .crypto-card__info {
     list-style: none; }
 
+.tabbed-container {
+  margin-top: 5rem; }
+  .tabbed-container__tabs {
+    display: flex; }
+  .tabbed-container__tab:not(:last-child) {
+    margin-right: 1rem; }
+  .tabbed-container__btn {
+    background: #eee;
+    border: 1px solid #c6c6c6;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 0.5rem 1rem; }
+    .tabbed-container__btn:hover {
+      background: #c6c6c6; }
+    .tabbed-container__btn:active, .tabbed-container__btn:focus {
+      outline: none; }
+    .tabbed-container__btn--active {
+      background: #c6c6c6; }
+  .tabbed-container__data {
+    display: none;
+    font-size: 2rem;
+    padding: 1rem 0rem; }
+    .tabbed-container__data--active {
+      display: block; }
+  .tabbed-container__price-change {
+    color: #087d2e;
+    margin-left: 1rem; }
+    .tabbed-container__price-change--negative {
+      color: #7d2e08; }
+  .tabbed-container__price-change-pct {
+    color: #0edd52;
+    margin-left: 1rem; }
+    .tabbed-container__price-change-pct--negative {
+      color: #dd520e; }
+
 .auth-form {
   display: flex;
   flex-direction: column;

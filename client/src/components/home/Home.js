@@ -2,16 +2,22 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useMutation } from "@apollo/react-hooks";
 
-import { ADD_OR_UPDATE_CRYPTOS } from "../graphql/mutations";
+import { ADD_OR_UPDATE_CRYPTOS } from "../../graphql/mutations";
 
-import Search from "./search/Search";
-import TableData from "./table-data/TableData";
-import Buttons from "./buttons/Buttons";
-import Sort from "./sort/Sort";
-import ViewAllButton from "./buttons/ViewAllButton";
-import BackToTopButton from "./buttons/BackToTopButton";
+import {
+  showMostRecentData,
+  showNewData,
+  getCryptosToSave,
+} from "./Home.utils";
 
-import halfCircleIcon from "../styles/imgs/Animated_loading_half-circle.gif";
+import Search from "../search/Search";
+import TableData from "../table-data/TableData";
+import Buttons from "../buttons/Buttons";
+import Sort from "../sort/Sort";
+import ViewAllButton from "../buttons/ViewAllButton";
+import BackToTopButton from "../buttons/BackToTopButton";
+
+import halfCircleIcon from "../../styles/imgs/Animated_loading_half-circle.gif";
 
 const Home = ({ cryptos }) => {
   const [search, setSearch] = useState("");
@@ -20,37 +26,14 @@ const Home = ({ cryptos }) => {
 
   useEffect(() => {
     if (cryptos.loading) {
-      // while api data is loading, render first 50 saved cryptos from database
-      setCryptosToShow(
-        cryptos.cryptoData
-          .filter(crypto => crypto.rank >= 1 && crypto.rank <= 50)
-          .sort((a, b) => a.rank - b.rank)
-      );
+      // show most recent data from db
+      setCryptosToShow(showMostRecentData(cryptos.cryptoData));
     } else {
-      // after loading completes, render api data
-      setCryptosToShow(
-        cryptos.cryptoData.filter((crypto, index) => {
-          if (search) {
-            return (
-              crypto.name
-                .toLowerCase()
-                .startsWith(search.toLowerCase().substr(0, 1)) &&
-              crypto.name.toLowerCase().includes(search.toLowerCase())
-            );
-          }
+      // show updated data from api
+      setCryptosToShow(showNewData(cryptos, search));
 
-          return index >= cryptos.filter.min && index <= cryptos.filter.max;
-        })
-      );
-
-      // update first 50 cryptos in database
-      const cryptosToSave = cryptos.cryptoData
-        .filter(crypto => crypto.rank <= 50)
-        .map(crypto => {
-          const { id, __typename, price_date, likes, ...otherProps } = crypto;
-          return otherProps;
-        });
-
+      // update cryptos in db with new data
+      const cryptosToSave = getCryptosToSave(cryptos.cryptoData);
       addOrUpdateCryptos({ variables: { cryptosToSave } });
     }
   }, [cryptos, search, addOrUpdateCryptos]);
@@ -97,8 +80,8 @@ const Home = ({ cryptos }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  cryptos: state.cryptos
+const mapStateToProps = (state) => ({
+  cryptos: state.cryptos,
 });
 
 export default connect(mapStateToProps)(Home);

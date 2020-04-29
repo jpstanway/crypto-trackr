@@ -3,6 +3,16 @@ const axios = require("axios");
 
 const Crypto = require("../models/Crypto");
 
+function changeProperties(data) {
+  // change certain property names so graphql can read them
+  const cryptoObj = data;
+  cryptoObj.daily = cryptoObj["1d"];
+  cryptoObj.weekly = cryptoObj["7d"];
+  cryptoObj.monthly = cryptoObj["30d"];
+  cryptoObj.yearly = cryptoObj["365d"];
+  return cryptoObj;
+}
+
 module.exports = {
   Query: {
     allCryptos: async (root, args, context) => {
@@ -11,7 +21,11 @@ module.exports = {
       const response = await axios.get(`${url}/currencies/ticker?key=${key}`);
 
       // filter the first 2k results
-      return response.data.filter(crypto => crypto.rank <= 2000);
+      return response.data.filter((crypto) => {
+        if (crypto.rank <= 2000) {
+          return changeProperties(crypto);
+        }
+      });
     },
     getSingleCrypto: async (root, args, context) => {
       const { url, key } = context.apiInfo;
@@ -24,7 +38,7 @@ module.exports = {
         throw new UserInputError("Crypto not found");
       }
 
-      return response.data[0];
+      return changeProperties(response.data[0]);
     },
     getCryptoMetaData: async (root, args, context) => {
       const { url, key } = context.apiInfo;
@@ -46,14 +60,23 @@ module.exports = {
       } catch (error) {
         throw new Error(error.message);
       }
-    }
+    },
   },
   Mutation: {
     addCryptos: async (root, args) => {
       const { cryptosToSave } = args;
+
       try {
         for (let i = 0; i < cryptosToSave.length; i++) {
-          const updateObject = { ...cryptosToSave[i] };
+          // create update object
+          const updateObject = {
+            ...cryptosToSave[i],
+            daily: { ...cryptosToSave[i].daily },
+            weekly: { ...cryptosToSave[i].weekly },
+            monthly: { ...cryptosToSave[i].monthly },
+            yearly: { ...cryptosToSave[i].yearly },
+            ytd: { ...cryptosToSave[i].ytd },
+          };
 
           // search database for crypto
           // if it already exists, update
@@ -104,6 +127,6 @@ module.exports = {
       } catch (error) {
         throw new Error(error.message);
       }
-    }
-  }
+    },
+  },
 };
