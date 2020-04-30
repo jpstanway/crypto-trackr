@@ -1,3 +1,5 @@
+import { updateData, updateCryptoLikes } from "./cryptoReducer.utils";
+
 const initialState = {
   cryptoData: [],
   loading: true,
@@ -20,14 +22,7 @@ const cryptoReducer = (state = initialState, action) => {
     case "UPDATE_CRYPTO_DATA":
       return {
         ...state,
-        cryptoData: action.payload.map((crypto) => {
-          // search initial saved cryptos for match
-          const savedCrypto = state.cryptoData.find(
-            (c) => c.currency === crypto.currency
-          );
-          // if crypto exists on database, combine likes array with api data
-          return { ...crypto, likes: savedCrypto ? savedCrypto.likes : [] };
-        }),
+        cryptoData: updateData(action.payload, state.cryptoData),
       };
     case "TOGGLE_LOADING":
       return {
@@ -42,11 +37,7 @@ const cryptoReducer = (state = initialState, action) => {
     case "UPDATE_LIKES":
       return {
         ...state,
-        cryptoData: state.cryptoData.map((crypto) =>
-          crypto.currency === action.payload.currency
-            ? { ...crypto, likes: action.payload.likes }
-            : crypto
-        ),
+        cryptoData: updateCryptoLikes(action.payload, state.cryptoData),
       };
     case "PREVIOUS_CRYPTOS":
       return {

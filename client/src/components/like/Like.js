@@ -19,7 +19,7 @@ export const Like = ({ addLike, crypto, cryptos, setUserLikedCryptos }) => {
     await addLike({
       variables: {
         currency,
-        name
+        name,
       },
       optimisticResponse: {
         __typename: "Mutation",
@@ -27,9 +27,9 @@ export const Like = ({ addLike, crypto, cryptos, setUserLikedCryptos }) => {
           __typename: "Crypto",
           currency,
           name,
-          likes: [...crypto.likes, "tempIp"]
-        }
-      }
+          likes: [...crypto.likes, "tempIp"],
+        },
+      },
     });
 
     // add to users liked cryptos in localstorage
@@ -37,9 +37,9 @@ export const Like = ({ addLike, crypto, cryptos, setUserLikedCryptos }) => {
     setUserLikedCryptos(likedCryptos);
   };
 
-  const renderLikes = currency => {
+  const renderLikes = (currency) => {
     const crypto = cryptos.cryptoData.find(
-      crypto => crypto.currency === currency
+      (crypto) => crypto.currency === currency
     );
 
     return crypto ? crypto.likes.length : 0;
@@ -59,8 +59,8 @@ export const Like = ({ addLike, crypto, cryptos, setUserLikedCryptos }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  cryptos: state.cryptos
+const mapStateToProps = (state) => ({
+  cryptos: state.cryptos,
 });
 
 export default connect(mapStateToProps, { setUserLikedCryptos })(Like);

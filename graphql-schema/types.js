@@ -44,18 +44,18 @@ module.exports = gql`
   }
 
   input TrendInput {
-    price_change: String!
-    price_change_pct: String!
+    price_change: String
+    price_change_pct: String
   }
 
   input CryptoInput {
     currency: String!
-    price: String!
-    circulating_supply: String!
-    name: String!
+    price: String
+    circulating_supply: String
+    name: String
     logo_url: String
-    market_cap: String!
-    rank: String!
+    market_cap: String
+    rank: String
     daily: TrendInput
     weekly: TrendInput
     monthly: TrendInput
