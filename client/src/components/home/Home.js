@@ -72,7 +72,12 @@ const Home = ({ cryptos }) => {
           <TableData cryptosToShow={cryptosToShow} />
         </div>
         <div className="home-content__buttons">
-          {cryptos.loading || search ? null : <Buttons />}
+          {cryptos.loading || search ? null : (
+            <>
+              <Buttons />
+              <ViewAllButton />
+            </>
+          )}
         </div>
         {cryptos.filter.viewAll ? <BackToTopButton /> : ""}
       </div>

@@ -4,15 +4,15 @@ import { connect } from "react-redux";
 import { toggleViewAll } from "../../redux/reducers/cryptoReducer";
 
 const ViewAll = ({ cryptos, toggleViewAll }) => (
-  <div className="btn btn-back">
+  <div className="btn btn-back va-btn">
     <a href="#content" onClick={() => toggleViewAll()}>
       {cryptos.filter.viewAll ? "view less" : "view all"}
     </a>
   </div>
 );
 
-const mapStateToProps = state => ({
-  cryptos: state.cryptos
+const mapStateToProps = (state) => ({
+  cryptos: state.cryptos,
 });
 
 export default connect(mapStateToProps, { toggleViewAll })(ViewAll);

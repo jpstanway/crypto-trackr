@@ -74,7 +74,7 @@ body {
   font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: 0.2rem;
-  margin-right: 1rem;
+  margin: 0 1rem;
   padding: 1rem 2rem;
   text-transform: uppercase; }
   .btn-large:hover, .btn-large:active {
@@ -83,7 +83,7 @@ body {
     color: #2a2a2a; }
 
 .btn-back {
-  margin: 5rem 0; }
+  margin: 5rem 1rem; }
   .btn-back a {
     color: #f58e5c !important; }
     .btn-back a:hover {
@@ -130,6 +130,10 @@ body {
   justify-content: center;
   align-items: center;
   height: 10rem; }
+
+.va-btn {
+  margin: 0;
+  text-align: center; }
 
 .crypto-card {
   border: 1px solid #eee;

@@ -3,47 +3,65 @@ import { connect } from "react-redux";
 
 import {
   previousCryptos,
-  nextCryptos
+  nextCryptos,
+  firstCryptos,
+  lastCryptos,
 } from "../../redux/reducers/cryptoReducer";
 
-import ViewAllButton from "./ViewAllButton";
+import LargeButton from "./LargeButton";
+import LinkButton from "./LinkButton";
 
-export const Buttons = ({ cryptos, previousCryptos, nextCryptos }) => (
-  <div className="home-btns">
-    {cryptos.filter.viewAll ? (
-      ""
-    ) : (
-      <div>
-        <button
-          onClick={() => previousCryptos()}
-          className={`btn btn-large ${
-            cryptos.filter.min === 0 ? "btn-disabled" : ""
-          }`}
-          disabled={cryptos.filter.min === 0}
-        >
-          prev 50
-        </button>
-        <button
-          onClick={() => nextCryptos()}
-          className={`btn btn-large ${
-            cryptos.filter.max === cryptos.cryptoData.length - 1
-              ? "btn-disabled"
-              : ""
-          }`}
-          disabled={cryptos.filter.max === cryptos.cryptoData.length - 1}
-        >
-          next 50
-        </button>
-      </div>
-    )}
-    <ViewAllButton />
-  </div>
-);
+export const Buttons = ({
+  cryptos,
+  previousCryptos,
+  nextCryptos,
+  firstCryptos,
+  lastCryptos,
+}) => {
+  const firstBtnText = (
+    <>
+      <i className="fas fa-arrow-left"></i>
+      <span> first</span>
+    </>
+  );
+  const lastBtnText = (
+    <>
+      <span>last </span>
+      <i className="fas fa-arrow-right"></i>
+    </>
+  );
 
-const mapStateToProps = state => ({
-  cryptos: state.cryptos
+  return (
+    <div>
+      {cryptos.filter.viewAll ? (
+        ""
+      ) : (
+        <div className="home-btns">
+          <LinkButton text={firstBtnText} onClick={() => firstCryptos()} />
+          <LargeButton
+            text="prev 50"
+            onClick={() => previousCryptos()}
+            disabled={cryptos.filter.min === 0}
+          />
+          <LargeButton
+            text="next 50"
+            onClick={() => nextCryptos()}
+            disabled={cryptos.filter.max === cryptos.cryptoData.length - 1}
+          />
+          <LinkButton text={lastBtnText} onClick={() => lastCryptos()} />
+        </div>
+      )}
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  cryptos: state.cryptos,
 });
 
-export default connect(mapStateToProps, { previousCryptos, nextCryptos })(
-  Buttons
-);
+export default connect(mapStateToProps, {
+  previousCryptos,
+  nextCryptos,
+  firstCryptos,
+  lastCryptos,
+})(Buttons);
