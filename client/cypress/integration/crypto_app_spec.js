@@ -5,7 +5,7 @@ describe("Crypto app", () => {
   });
 
   it("home page can be opened", () => {
-    cy.contains("Current Top 10 Cryptocurrencies");
+    cy.contains("Current Top Cryptocurrencies");
   });
 
   it("single crypto page can be viewed and exited", () => {
@@ -13,7 +13,7 @@ describe("Crypto app", () => {
     cy.wait(5000);
     cy.contains("Whitepaper");
     cy.contains("go back").click();
-    cy.contains("Current Top 10 Cryptocurrencies");
+    cy.contains("Current Top Cryptocurrencies");
   });
 
   it("crypto can be liked (duplicate error thrown)", () => {
@@ -27,21 +27,13 @@ describe("Crypto app", () => {
   });
 
   it("next and prev buttons navigate through different sets of cryptos", () => {
-    cy.get("button")
-      .contains("prev 10")
-      .should("be.disabled");
+    cy.get("button").contains("prev 50").should("be.disabled");
     cy.get(".home-table__cell:first").contains("1");
-    cy.get("button")
-      .contains("next 10")
-      .click();
+    cy.get("button").contains("next 50").click();
     cy.get(".home-table__cell:first").contains("11");
-    cy.get("button")
-      .contains("prev 10")
-      .click();
+    cy.get("button").contains("prev 50").click();
     cy.get(".home-table__cell:first").contains("1");
-    cy.get("button")
-      .contains("prev 10")
-      .should("be.disabled");
+    cy.get("button").contains("prev 50").should("be.disabled");
   });
 
   it("can search for cryptos", () => {
