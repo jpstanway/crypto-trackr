@@ -3,15 +3,7 @@ const axios = require("axios");
 
 const Crypto = require("../models/Crypto");
 
-function changeProperties(data) {
-  // change certain property names so graphql can read them
-  const cryptoObj = data;
-  cryptoObj.daily = cryptoObj["1d"];
-  cryptoObj.weekly = cryptoObj["7d"];
-  cryptoObj.monthly = cryptoObj["30d"];
-  cryptoObj.yearly = cryptoObj["365d"];
-  return cryptoObj;
-}
+const { changeProperties, createUpdateObject } = require("./helpers");
 
 module.exports = {
   Query: {
@@ -20,9 +12,9 @@ module.exports = {
       // query third party api for latest crypto updates
       const response = await axios.get(`${url}/currencies/ticker?key=${key}`);
 
-      // filter the first 2k results
+      // filter results with circulating supply only
       return response.data.filter((crypto) => {
-        if (crypto.rank <= 2000) {
+        if (crypto.circulating_supply > 0) {
           return changeProperties(crypto);
         }
       });
@@ -69,14 +61,7 @@ module.exports = {
       try {
         for (let i = 0; i < cryptosToSave.length; i++) {
           // create update object
-          const updateObject = {
-            ...cryptosToSave[i],
-            daily: { ...cryptosToSave[i].daily },
-            weekly: { ...cryptosToSave[i].weekly },
-            monthly: { ...cryptosToSave[i].monthly },
-            yearly: { ...cryptosToSave[i].yearly },
-            ytd: { ...cryptosToSave[i].ytd },
-          };
+          const updateObject = createUpdateObject(cryptosToSave[i]);
 
           // search database for crypto
           // if it already exists, update

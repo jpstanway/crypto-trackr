@@ -1,5 +1,7 @@
 import { gql } from "apollo-boost";
 
+import { Trends } from "./fragments";
+
 export const ADD_OR_UPDATE_CRYPTOS = gql`
   mutation addOrUpdateCrypto($cryptosToSave: [CryptoInput]!) {
     addCryptos(cryptosToSave: $cryptosToSave) {
@@ -10,28 +12,10 @@ export const ADD_OR_UPDATE_CRYPTOS = gql`
       market_cap
       logo_url
       circulating_supply
-      daily {
-        price_change
-        price_change_pct
-      }
-      weekly {
-        price_change
-        price_change_pct
-      }
-      monthly {
-        price_change
-        price_change_pct
-      }
-      yearly {
-        price_change
-        price_change_pct
-      }
-      ytd {
-        price_change
-        price_change_pct
-      }
+      ...CryptoTrend
     }
   }
+  ${Trends}
 `;
 
 export const ADD_LIKE = gql`
