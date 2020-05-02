@@ -25,7 +25,7 @@ export const GET_CRYPTO_METADATA = gql`
 
 export const GET_SAVED_CRYPTO_DATA = gql`
   query {
-    getCryptoData {
+    getCryptoDataFromDb {
       ...CryptoData
       ...CryptoTrend
       likes

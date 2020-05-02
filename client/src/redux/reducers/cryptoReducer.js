@@ -1,4 +1,8 @@
-import { updateData, updateCryptoLikes } from "./cryptoReducer.utils";
+import {
+  updateData,
+  updateCryptoLikes,
+  initializationCheck,
+} from "./cryptoReducer.utils";
 
 const initialState = {
   cryptoData: [],
@@ -17,7 +21,7 @@ const cryptoReducer = (state = initialState, action) => {
     case "INITIALIZE_CRYPTO_DATA":
       return {
         ...state,
-        cryptoData: action.payload,
+        cryptoData: initializationCheck(action.payload, state.cryptoData),
       };
     case "UPDATE_CRYPTO_DATA":
       return {

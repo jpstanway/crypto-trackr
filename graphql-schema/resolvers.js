@@ -45,7 +45,7 @@ module.exports = {
 
       return response.data[0];
     },
-    getCryptoData: async (root, args) => {
+    getCryptoDataFromDb: async (root, args) => {
       try {
         // get all saved crypto data from database
         return await Crypto.find();
@@ -74,6 +74,8 @@ module.exports = {
 
           await crypto.save();
         }
+
+        return Crypto.find();
       } catch (error) {
         throw new Error(error.message);
       }

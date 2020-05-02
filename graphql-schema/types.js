@@ -5,7 +5,7 @@ module.exports = gql`
     allCryptos: [Crypto!]!
     getSingleCrypto(currency: String!): Crypto!
     getCryptoMetaData(currency: String!): Crypto!
-    getCryptoData: [Crypto]
+    getCryptoDataFromDb: [Crypto]
   }
 
   type Mutation {

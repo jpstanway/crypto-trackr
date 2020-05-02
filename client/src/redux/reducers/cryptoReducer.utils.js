@@ -14,3 +14,12 @@ export const updateCryptoLikes = (data, state) => {
       : crypto
   );
 };
+
+export const initializationCheck = (data, state) => {
+  // only initialize the store if it's empty
+  if (state.length === 0) {
+    return data;
+  }
+
+  return state;
+};

@@ -26,14 +26,14 @@ const App = (props) => {
       props.toggleLoading();
     },
   });
-
+  // this code should only run at the start
   const savedData = useQuery(GET_SAVED_CRYPTO_DATA);
 
   if (savedData.loading) {
     return <Loading />;
   }
 
-  props.initializeCryptoData(savedData.data.getCryptoData);
+  props.initializeCryptoData(savedData.data.getCryptoDataFromDb);
 
   return (
     <Router>

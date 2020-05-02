@@ -31,7 +31,6 @@ const Home = ({ cryptos }) => {
     } else {
       // show updated data from api
       setCryptosToShow(showNewData(cryptos, search));
-
       // update cryptos in db with new data
       const cryptosToSave = getCryptosToSave(cryptos.cryptoData);
       addOrUpdateCryptos({ variables: { cryptosToSave } });

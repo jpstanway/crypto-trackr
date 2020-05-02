@@ -16,7 +16,7 @@ export const Like = ({ addLike, crypto, cryptos, setUserLikedCryptos }) => {
 
   const handleLikes = async ({ currency, name }) => {
     // fire addLike mutation
-    await addLike({
+    addLike({
       variables: {
         currency,
         name,

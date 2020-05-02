@@ -40,7 +40,6 @@ export const TableData = ({
         // add new if it does not
         addCrypto(data.addLike);
       }
-
       // update likes if it does
       updateLikes(data.addLike);
     },
