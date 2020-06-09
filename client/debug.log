@@ -5,3 +5,6 @@
 [1017/175203.848:ERROR:crash_report_database_win.cc(428)] unexpected header
 [1017/224214.341:ERROR:crash_report_database_win.cc(428)] unexpected header
 [1017/230109.780:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0503/140546.449:ERROR:process_info.cc(329)] VirtualQueryEx: Access is denied. (0x5)
+[0503/140546.451:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+[0503/140546.451:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)

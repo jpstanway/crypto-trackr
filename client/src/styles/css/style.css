@@ -294,7 +294,7 @@ body {
     border-bottom: 1px solid #7f7f7f; }
   .home-table__row:not(:last-child) {
     border-bottom: 1px solid #eee;
-    height: 6rem; }
+    height: 6.6rem; }
   .home-table__heading--rank {
     width: 5rem; }
   .home-table__cell {
@@ -303,7 +303,8 @@ body {
     .home-table__cell--name {
       align-items: center;
       display: flex;
-      justify-content: center; }
+      justify-content: center;
+      margin-top: 1rem; }
   .home-table__logo {
     margin-right: 1rem;
     max-height: 2rem; }
